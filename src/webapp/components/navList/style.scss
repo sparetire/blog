@@ -4,6 +4,7 @@ $navItemFont: 22px "Microsoft Yahei";
 $navItemVPd: 20px;
 $navItemLPd: 50px;
 $navItemHoverBgColor: #555;
+$navItemTsDur: 0.2s;
 $iconPd: 15px;
 #nav-list {
 	margin: 0;
@@ -21,6 +22,7 @@ $iconPd: 15px;
 	text-align: left;
 	font: $navItemFont;
 	color: #fff;
+	transition: all $navItemTsDur;
 	a {
 		padding-left: $iconPd;
 		color: #fff;

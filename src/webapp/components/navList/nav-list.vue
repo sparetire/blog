@@ -1,8 +1,6 @@
 <template src="./template.html"></template>
 
-<script>
-	import '../../style/fonticon.css';
-	export default {};
+<script src="./script.js">
 </script>
 
 <style lang="sass" src="./style.scss"></style>

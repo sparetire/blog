@@ -73,6 +73,7 @@
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
     "mongodb": "^2.2.4",
+    "nprogress": "^0.2.0",
     "query-string": "^4.2.2",
     "ramda": "^0.21.0",
     "raw-body": "^2.1.7",

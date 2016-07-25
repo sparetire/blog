@@ -98,7 +98,6 @@ module.exports = {
 			loader: 'vue-html'
 		}, {
 			test: /\.css/,
-			include: STYLE_PATH,
 			loader: 'style!css!postcss'
 		}, {
 			test: /\.s[ac]ss$/,
