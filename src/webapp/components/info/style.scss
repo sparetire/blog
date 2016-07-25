@@ -1,0 +1,33 @@
+/*info*/
+
+$blogNameColor: #fff;
+$blogNameHoverColor: #777;
+$blogNameFont: 38px "Microsoft Yahei";
+$blogNameTransitionDuration: 0.3s;
+$blogIntroFont: 16px "Microsoft Yahei";
+$blogNameMgBottom: 15px;
+#blog-name {
+	margin: 0 0;
+	h1 {
+		color: $blogNameColor;
+		font: $blogNameFont;
+		margin: 0;
+		margin-bottom: $blogNameMgBottom;
+		transition: all $blogNameTransitionDuration ease;
+	}
+}
+
+#blog-name:hover {
+	h1 {
+		color: $blogNameHoverColor;
+	}
+}
+
+#blog-intro {
+	color: $blogNameColor;
+	font: $blogIntroFont;
+	margin: 0 0;
+}
+
+
+/*info*/

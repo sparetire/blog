@@ -1,0 +1,35 @@
+/*nav list*/
+
+$navItemFont: 22px "Microsoft Yahei";
+$navItemVPd: 20px;
+$navItemLPd: 50px;
+$navItemHoverBgColor: #555;
+$iconPd: 15px;
+#nav-list {
+	margin: 0;
+	padding: 0;
+	ul {
+		margin: 30px 0 0 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
+.nav-item {
+	padding: $navItemVPd 0px $navItemVPd $navItemLPd;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	text-align: left;
+	font: $navItemFont;
+	color: #fff;
+	a {
+		padding-left: $iconPd;
+		color: #fff;
+	}
+}
+
+.nav-item:hover {
+	background: $navItemHoverBgColor;
+}
+
+
+/*nav list*/

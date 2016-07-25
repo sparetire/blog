@@ -1,0 +1,38 @@
+@import '../navBar/variables';
+
+/*sns list*/
+
+$snsListWidth: $navBarWidth;
+$snsBottom: 30px;
+$snsItemHPd: 5px;
+$snsItemFontSize: 20px;
+$snsItemColor: #fff;
+$snsItemHoverColor: #aaa;
+$snsItemTsDur: 0.3s;
+.sns-list {
+	position: fixed;
+	width: $snsListWidth;
+	bottom: $snsBottom;
+	margin: 0 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sns-item {
+	display: inline;
+	padding: 0 $snsItemHPd;
+	a {
+		color: $snsItemColor;
+		font-size: $snsItemFontSize;
+		transition: all $snsItemTsDur;
+	}
+}
+
+.sns-item:hover {
+	a {
+		color: $snsItemHoverColor;
+	}
+}
+
+
+/*sns list*/
