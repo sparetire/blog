@@ -1,13 +1,12 @@
-// var Vue = require('vue');
-// var App = require('./App.vue');
 import Vue from 'vue';
-import App from './App';
+import nav from './components/navBar/nav-bar';
 import $ from 'jquery';
+import './style/common.css';
 $(() => {
 	new Vue({
 		el: 'body',
 		components: {
-			app: App
+			navBar: nav
 		}
 	});
 });

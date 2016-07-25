@@ -2,6 +2,7 @@ const path = require('path');
 const ROOT_PATH = path.resolve(__dirname, '..');
 const APP_PATH = path.resolve(ROOT_PATH, 'src/webapp');
 const COMPONENTS_PATH = path.resolve(APP_PATH, 'components');
+const STYLE_PATH = path.resolve(APP_PATH, 'style');
 const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
 const OUTPUT_PATH = path.resolve(ROOT_PATH, 'dist');
 
@@ -99,6 +100,17 @@ module.exports = {
 			test: /\.html$/,
 			include: APP_PATH,
 			loader: 'vue-html'
+		}, {
+			test: /\.css/,
+			include: STYLE_PATH,
+			loader: 'style!css!postcss'
+		}, {
+			test: /\.s[ac]ss$/,
+			include: STYLE_PATH,
+			loader: extractSass.extract('style-loader',
+				'css-loader?sourceMap!sass-loader?sourceMap', {
+					publicPath: 'http://localhost/build/'
+				})
 		}, {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: 'url',
