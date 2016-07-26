@@ -6,6 +6,7 @@ import config from '../../config/webapp.conf';
 export default {
 	data: function () {
 		return {
+			currentLogo: config.defaultLogo,
 			navInfo: {
 				name: config.blogName,
 				intro: config.blogIntro

@@ -1,4 +1,5 @@
 export default {
+	defaultLogo: 'logo',
 	blogName: 'Sparetire',
 	blogIntro: '//无可奉告',
 	navList: [{

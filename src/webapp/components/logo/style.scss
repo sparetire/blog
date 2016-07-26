@@ -10,7 +10,7 @@ $logoPsctOrigin: $logoWidth/2+$faceBorderWidth;
 $logoScale: 0.5;
 $faceWidth: 100px;
 $cubeRotateDuration: 3s;
-$faceRotateDuration: 2s;
+$faceRotateDuration: 1s;
 $faceTransitionDuration: 2s;
 $faceContentColor: #aaa;
 $faceContentFont: bold 24px "Microsoft Yahei";
@@ -92,7 +92,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 #c-top {
 	transform-origin: 0 0;
 	animation-name: top;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	/*停留在动画最后一帧*/
 	animation-fill-mode: forwards;
 }
@@ -106,9 +106,9 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 #c-bottom {
 	transform-origin: 0 110px;
 	animation-name: bottom;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: 2s;
+	animation-delay: $faceRotateDuration * 1;
 }
 
 @keyframes bottom {
@@ -120,9 +120,9 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 #c-left {
 	transform-origin: 0 0;
 	animation-name: left;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: 4s;
+	animation-delay: $faceRotateDuration * 2;
 }
 
 @keyframes left {
@@ -134,9 +134,9 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 #c-right {
 	transform-origin: 110px 0;
 	animation-name: right;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: 6s;
+	animation-delay: $faceRotateDuration * 3;
 }
 
 @keyframes right {
@@ -147,9 +147,9 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 
 #c-back {
 	animation-name: back;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: 8s;
+	animation-delay: $faceRotateDuration * 4;
 }
 
 @keyframes back {
@@ -160,9 +160,9 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 
 #c-front {
 	animation-name: front;
-	animation-duration: 2s;
+	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: 10s;
+	animation-delay: $faceRotateDuration * 5;
 }
 
 @keyframes front {

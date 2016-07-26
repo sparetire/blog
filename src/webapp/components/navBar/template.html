@@ -1,5 +1,5 @@
 <header class="nav-bar" id="nav">
-	<logo></logo>
+	<component :is="currentLogo" keep-alive></component>
 	<info :content="navInfo"></info>
 	<nav-list :items="navItems"></nav-list>
 	<sns-list></sns-list>
