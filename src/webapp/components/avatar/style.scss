@@ -1,0 +1,48 @@
+@import '../../style/common';
+$logoWidth: 150px;
+$avatarBgWidth: 140px;
+$avatarWidth: 100px;
+$avatarBdWidth: 0px;
+$avatarTsDur: 0.4s;
+$avatarSdColor: #fff;
+$avatarSdWidth: 20px;
+$avatarRotate: 380deg;
+.avatar {
+	width: $logoWidth;
+	height: $logoWidth;
+	display: inline-block;
+	overflow: hidden;
+}
+
+#avatar-bg {
+	width: $avatarBgWidth;
+	height: $avatarBgWidth;
+	margin: ($logoWidth - $avatarBgWidth) / 2;
+	display: inline-block;
+	border-radius: 50%;
+	transition: all $avatarTsDur;
+	animation-name: avatar;
+	animation-duration: 0.3s;
+}
+
+#avatar-img {
+	width: $avatarWidth;
+	height: $avatarWidth;
+	margin: ($avatarBgWidth - $avatarWidth - $avatarBdWidth) / 2;
+	border-radius: 50%;
+	box-shadow: 0 0 $avatarSdWidth $avatarSdColor;
+	overflow: hidden;
+}
+
+#avatar-bg:hover {
+	transform: rotateZ($avatarRotate);
+}
+
+@keyframes avatar {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}

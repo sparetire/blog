@@ -1,6 +1,3 @@
 <header class="nav-bar" id="nav">
-	<component :is="currentLogo" keep-alive></component>
-	<info :content="navInfo"></info>
-	<nav-list :items="navItems"></nav-list>
-	<sns-list></sns-list>
+	<slot></slot>
 </header>

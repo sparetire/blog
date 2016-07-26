@@ -1,5 +1,6 @@
 /*nav list*/
 
+@import '../../style/common';
 $navItemFont: 22px "Microsoft Yahei";
 $navItemVPd: 20px;
 $navItemLPd: 50px;
@@ -29,7 +30,7 @@ $iconPd: 10px;
 	}
 }
 
-.nav-item:hover {
+.nav-item:hover, .active-item {
 	background: $navItemHoverBgColor;
 }
 

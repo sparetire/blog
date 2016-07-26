@@ -5,6 +5,11 @@
 	<title>Sparetire's Blog</title>
 </head>
 <body>
-	<nav-bar></nav-bar>
+	<nav-bar>
+		<component :is="currentLogo" transition="fade" transition-mode="out-in" keep-alive></component>
+		<info :content="navInfo"></info>
+		<nav-list :items="navItems"></nav-list>
+		<sns-list></sns-list>
+	</nav-bar>
 </body>
 </html>
