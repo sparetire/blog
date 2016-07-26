@@ -1,5 +1,8 @@
 <nav id="nav-list">
 	<ul>
-		<li v-for="item in items" class="nav-item"><i :class="item.iconClass"></i><a href="#">{{item.content}}</a></li>
+		<li v-for="item in items" class="nav-item">
+			<i :class="item.iconClass"></i>
+			<a v-on:click.prevent="notifyNavBar($index)" :href="item.url">{{item.content}}</a>
+		</li>
 	</ul>
 </nav>

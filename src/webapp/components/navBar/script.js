@@ -14,6 +14,16 @@ export default {
 			navItems: config.navList
 		};
 	},
+	events: {
+		navItemClick: function (msg) {
+			if (msg.content === 'About') {
+				// changeLogo();
+				//route
+			} else {
+				//route
+			}
+		}
+	},
 	components: {
 		logo,
 		info,

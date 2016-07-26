@@ -5,5 +5,10 @@ export default {
 			type: Array,
 			default: []
 		}
+	},
+	methods: {
+		notifyNavBar: function (index) {
+			this.$dispatch('navItemClick', this.items[index]);
+		}
 	}
 };
