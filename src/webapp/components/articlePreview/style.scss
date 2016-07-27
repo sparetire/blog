@@ -1,0 +1,97 @@
+$articleTitleFont: normal 36px "Microsoft Yahei";
+$articleInfoFont: normal 14px "Microsoft Yahei";
+$titleColor: #000;
+$strongColor: #3699dc;
+$strongHoverColor: #1d70a8;
+$dateViewsPd: 40px;
+$contentFont: normal 16px "Microsoft Yahei";
+$contentColor: #555;
+.article-prev {
+	width: 100%;
+	margin: 50px 0 50px 0;
+	position: relative;
+	text-align: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+	margin: 0 0 10px 0;
+	padding: 0;
+	font: $articleTitleFont;
+	display: inline-block;
+	position: relative;
+	&:before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		left: 50%;
+		right: 50%;
+		bottom: 0;
+		background: $titleColor;
+		height: 4px;
+		transition: all 0.2s ease-out;
+	}
+	&:hover, &:focus, &:active {
+		&:before {
+			left: 0;
+			right: 0;
+		}
+	}
+	a {
+		color: $titleColor;
+	}
+}
+
+.article-info {
+	margin: 0;
+	padding: 0;
+	font: $articleInfoFont;
+}
+
+.author-date {
+	padding-right: $dateViewsPd;
+}
+
+.a-strong {
+	color: $strongColor;
+	cursor: pointer;
+	&:hover {
+		color: $strongHoverColor;
+	}
+}
+
+.article-content {
+	line-height: 1.5em;
+	color: $contentColor;
+	font: $contentFont;
+	text-align: left;
+	margin-bottom: 40px;
+	a {
+		color: #000;
+	}
+	h1 {
+		font-size: 24px;
+	}
+	h2, h3, h4, h5, h6 {
+		font-size: 20px;
+	}
+}
+
+.read-more {
+	font: $articleInfoFont;
+	position: absolute;
+	bottom: 10px;
+	right: 20px;
+	a {
+		color: #888;
+		&:hover {
+			color: #555;
+			border-bottom: 1px solid #555;
+		}
+	}
+	i {
+		vertical-align: middle;
+		padding-left: 5px;
+		font-size: 12px
+	}
+}

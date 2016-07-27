@@ -1,0 +1,12 @@
+<div class="article-prev">
+	<h1 class="article-title"><a :href="article.url">{{article.title}}</a></h1>
+	<h3 class="article-info">
+		<span class="author-date">
+			<span v-if="article.author" class="author">Posted by <span class="a-strong">{{article.author}}</span></span>
+			<span v-if="article.postDate" class="post-date">on <span class="a-strong">{{article.postDate}}</span></span>
+		</span>
+		<span v-if="article.views" class="views">{{article.views}} VIEWS</span>
+	</h3>
+	<p class="article-content">{{{article.content}}}</p>
+	<span class="read-more a-strong"><a :href="article.url">more<i class="icon-circle-right"></i></a></span>
+</div>

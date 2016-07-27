@@ -9,6 +9,7 @@ $logoWidth: 150px;
 $logoPsctDist: 500px;
 $logoPsctOrigin: $logoWidth/2+$faceBorderWidth;
 $logoScale: 0.5;
+$logoAmDur: 0.3s;
 $faceWidth: 100px;
 $cubeRotateDuration: 3s;
 $faceRotateDuration: 1s;
@@ -28,6 +29,16 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	所以要加上一个边框宽度即150px/2+5px*/
 	perspective-origin: $logoPsctOrigin $logoPsctOrigin;
 	transform: scale3d($logoScale, $logoScale, $logoScale);
+	animation: logoBoom $logoAmDur;
+}
+
+@keyframes logoBoom {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale($logoScale);
+	}
 }
 
 #cube {
@@ -49,7 +60,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: cube;
 	animation-duration: $cubeRotateDuration;
 	/*等六个面动画完了以后再整个开始旋转*/
-	animation-delay: $faceRotateDuration * 6;
+	animation-delay: $faceRotateDuration * 6+ $logoAmDur;
 	/*一直旋转下去*/
 	animation-iteration-count: infinite;
 	/*匀速旋转*/
@@ -74,8 +85,19 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 		position: absolute;
 		left: 50%;
 		top: 50%;
+		opacity: 0;
 		transform: translate(-50%, -50%);
 		transition: all $faceTransitionDuration;
+		animation-name: contentDisplay;
+		animation-duration: 0.3s;
+		animation-fill-mode: forwards;
+		animation-delay: $faceRotateDuration * 6+ $logoAmDur;
+	}
+}
+
+@keyframes contentDisplay {
+	100% {
+		opacity: 1;
 	}
 }
 
@@ -96,6 +118,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-duration: $faceRotateDuration;
 	/*停留在动画最后一帧*/
 	animation-fill-mode: forwards;
+	animation-delay: $logoAmDur;
 }
 
 @keyframes top {
@@ -109,7 +132,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: bottom;
 	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: $faceRotateDuration * 1;
+	animation-delay: $faceRotateDuration * 1+ $logoAmDur;
 }
 
 @keyframes bottom {
@@ -123,7 +146,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: left;
 	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: $faceRotateDuration * 2;
+	animation-delay: $faceRotateDuration * 2+ $logoAmDur;
 }
 
 @keyframes left {
@@ -137,7 +160,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: right;
 	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: $faceRotateDuration * 3;
+	animation-delay: $faceRotateDuration * 3+ $logoAmDur;
 }
 
 @keyframes right {
@@ -150,7 +173,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: back;
 	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: $faceRotateDuration * 4;
+	animation-delay: $faceRotateDuration * 4+ $logoAmDur;
 }
 
 @keyframes back {
@@ -163,7 +186,7 @@ $faceContentFont: bold 24px "Microsoft Yahei";
 	animation-name: front;
 	animation-duration: $faceRotateDuration;
 	animation-fill-mode: forwards;
-	animation-delay: $faceRotateDuration * 5;
+	animation-delay: $faceRotateDuration * 5+ $logoAmDur;
 }
 
 @keyframes front {

@@ -9,10 +9,9 @@ export default {
 	},
 	methods: {
 		notifyNavBar: function (index) {
-			$('.active-item')
-				.removeClass('active-item');
-			$(`.nav-item:eq(${index})`)
-				.addClass('active-item');
+			this.items.forEach(function (item, i, array) {
+				index === i ? item.active = true : item.active = false;
+			});
 			this.$dispatch('navItemClick', this.items[index]);
 		}
 	}

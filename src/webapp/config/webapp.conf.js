@@ -2,21 +2,26 @@ export default {
 	defaultLogo: 'logo',
 	blogName: 'Sparetire',
 	blogIntro: '//无可奉告',
+	sumaryLimit: 100,
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
-		url: '/home'
+		url: '/home',
+		active: true
 	}, {
 		iconClass: 'icon-folder-open',
 		content: 'Achives',
-		url: '/achives'
+		url: '/achives',
+		active: false
 	}, {
 		iconClass: 'icon-price-tag',
 		content: 'Tags',
-		url: '/tags'
+		url: '/tags',
+		active: false
 	}, {
 		iconClass: 'icon-user',
 		content: 'About',
-		url: '/about'
+		url: '/about',
+		active: false
 	}]
 };
