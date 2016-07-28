@@ -123,6 +123,9 @@ module.exports = {
 			test: require.resolve('vue'),
 			loader: 'expose?Vue'
 		}, {
+			test: require.resolve('bluebird'),
+			loader: 'expose?Promise'
+		}, {
 			test: require.resolve('jquery'),
 			loader: 'expose?$!expose?jQuery'
 		}]
@@ -140,6 +143,7 @@ module.exports = {
 		}),
 		new ProvidePlugin({
 			Vue: 'vue',
+			Promise: 'bluebird',
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery'

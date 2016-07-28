@@ -11,8 +11,24 @@ import articleList from './components/articleList/article-list';
 import config from './config/webapp.conf';
 import ArticleService from './services/ArticleService';
 import './style/app.scss';
+import APIConfig from './config/api.conf';
+import API from '../common/APIs';
+import RequestWrapper from './lib/RequestWrapper';
+
+let APIs = new API(APIConfig, RequestWrapper);
+
 
 $(() => {
+	APIs.test.post({
+			page: 1
+		}, {
+			queryString: {
+				wtf: 2
+			}
+		})
+		.then((data) => {
+			console.log(data);
+		});
 	let service = ArticleService.getInstance();
 	service.getArticles();
 	let articles = [{
