@@ -2,7 +2,7 @@ export default {
 	defaultLogo: 'logo',
 	blogName: 'Sparetire',
 	blogIntro: '//无可奉告',
-	sumaryLimit: 100,
+	sumaryLimit: 5,
 	pageLimit: 5,
 	navList: [{
 		iconClass: 'icon-home',

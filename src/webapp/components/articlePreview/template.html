@@ -7,6 +7,6 @@
 		</span>
 		<span v-if="article.views" class="views">{{article.views}} VIEWS</span>
 	</h3>
-	<p class="article-content">{{{article.content}}}</p>
+	<p class="article-summary">{{{article.content | summary}}}</p>
 	<span class="read-more a-strong"><a :href="article.url">more<i class="icon-circle-right"></i></a></span>
 </div>

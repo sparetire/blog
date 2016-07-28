@@ -10,6 +10,7 @@ import mainContent from './components/mainContent/main-content';
 import articleList from './components/articleList/article-list';
 import config from './config/webapp.conf';
 import ArticleService from './services/ArticleService';
+import MarkdownParseService from './services/MarkdownParseService';
 import APIConfig from './config/api.conf';
 import API from '../common/APIs';
 import RequestWrapper from './lib/RequestWrapper';
@@ -24,6 +25,17 @@ ArticleService.apiConfig({
 	getArticles: APIs.getArticles
 });
 let articleService = ArticleService.getInstance();
+// MarkdownParseService.config({
+// 	renderer: new marked.Renderer(),
+// 	gfm: true,
+// 	tables: true,
+// 	breaks: false,
+// 	pedantic: false,
+// 	sanitize: true,
+// 	smartLists: true,
+// 	smartypants: false
+// });
+let markdownParser = MarkdownParseService.getInstance();
 
 
 $(() => {
@@ -66,10 +78,16 @@ $(() => {
 	co(function* () {
 		NProgress.start();
 		let remoteArticles = yield articleService.getArticles(1, config.pageLimit);
-		remoteArticles.forEach(function (item, index, array) {
-			articles.push(item);
-		});
+		// remoteArticles.forEach(function (item, index, array) {
+		// 	articles.push(item);
+		// });
 		NProgress.inc(0.2);
+		for (let i in remoteArticles) {
+			remoteArticles[i].content = yield markdownParser.parse(remoteArticles[i]
+				.content);
+			articles.push(remoteArticles[i]);
+		}
+		NProgress.inc(0.3);
 		NProgress.done();
 	});
 });
