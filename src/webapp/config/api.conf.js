@@ -14,19 +14,12 @@ let APIs = {
 	// 如果单个配置既有href又有host属性，以拼接完后最长的为准
 	// 如果get的api中已带查询字符串，且又有参数，
 	// 参数会被作为查询字符串拼接到已有的查询字符串之后
-	defaultHost: 'www.chetong.net',
-	accessToken: {
-		href: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
-		method: 'get'
-	},
-	createMenu: {
-		href: 'https://api.weixin.qq.com/cgi-bin/menu/create',
-		method: 'post',
-		type: 'json'
-	},
-	test: {
-		href: 'http://localhost/',
-		method: 'post'
+	defaultHost: 'localhost',
+	// 请求参数page页数，limit每页个数
+	// 返回页数，每页个数，文章总数，状态码
+	getArticles: {
+		// pathname: '/articles/?page=1&limit=5'
+		pathname: '/articles'
 	}
 };
 

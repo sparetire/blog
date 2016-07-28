@@ -82,16 +82,19 @@ $contentColor: #555;
 	position: absolute;
 	bottom: 10px;
 	right: 20px;
+	transition: all 0.2s ease;
 	a {
 		color: #888;
-		&:hover {
-			color: #555;
-			border-bottom: 1px solid #555;
-		}
 	}
 	i {
 		vertical-align: middle;
 		padding-left: 5px;
 		font-size: 12px
+	}
+	&:hover {
+		a {
+			color: #555;
+			border-bottom: 1px solid #555;
+		}
 	}
 }

@@ -10,38 +10,24 @@ import mainContent from './components/mainContent/main-content';
 import articleList from './components/articleList/article-list';
 import config from './config/webapp.conf';
 import ArticleService from './services/ArticleService';
-import './style/app.scss';
 import APIConfig from './config/api.conf';
 import API from '../common/APIs';
 import RequestWrapper from './lib/RequestWrapper';
+import co from 'co';
+import NProgress from 'nprogress/nprogress';
+import './style/app.scss';
+import 'nprogress/nprogress.css';
 
+/** init */
 let APIs = new API(APIConfig, RequestWrapper);
+ArticleService.apiConfig({
+	getArticles: APIs.getArticles
+});
+let articleService = ArticleService.getInstance();
 
 
 $(() => {
-	APIs.test.post({
-			page: 1
-		}, {
-			queryString: {
-				wtf: 2
-			}
-		})
-		.then((data) => {
-			console.log(data);
-		});
-	let service = ArticleService.getInstance();
-	service.getArticles();
-	let articles = [{
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		url: '/article'
-	}, {
-		title: 'Hello',
-		content: 'aaaaaaaaaaaa'
-	}];
+	let articles = [];
 	new Vue({
 		el: 'body',
 		data: function () {
@@ -76,5 +62,14 @@ $(() => {
 				}
 			}
 		}
+	});
+	co(function* () {
+		NProgress.start();
+		let remoteArticles = yield articleService.getArticles(1, config.pageLimit);
+		remoteArticles.forEach(function (item, index, array) {
+			articles.push(item);
+		});
+		NProgress.inc(0.2);
+		NProgress.done();
 	});
 });

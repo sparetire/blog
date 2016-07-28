@@ -33,6 +33,7 @@ module.exports = {
 			'allowSingleLine': true
 		}],
 		'comma-style': ['warn', 'last'],
+		'require-yield': 'off',
 		'comma-spacing': 'warn',
 		'radix': 'warn',
 		'no-console': 'off',

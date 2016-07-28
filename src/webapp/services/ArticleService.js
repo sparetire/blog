@@ -1,37 +1,46 @@
-let NProgress = require('nprogress/nprogress');
-let util = require('../../common/util');
-require('nprogress/nprogress.css');
+const util = require('../../common/util');
+
+/*global ArticleService, APIs */
 
 let ArticleService = (function () {
-	let instance = null;
+	let [instance, flag, getArticles] = [null, true, null];
 
 	function ArticleService() {
 		let self = this instanceof ArticleService ? this : Object.create(
 			ArticleService.prototype);
+		if (flag) {
+			throw new Error('To get an instance of ArticleService, use getInstance.');
+		}
 
 		if (!util.isFunction(self.getArticles)) {
-			ArticleService.prototype.getArticles = function () {
-				NProgress.start();
-				let i = 0;
-				let handler = setInterval(function () {
-					++i;
-					NProgress.inc();
-					if (i == 10) {
-						clearInterval(handler);
-						NProgress.done();
-					}
-				}, 1000);
+			ArticleService.prototype.getArticles = function (pageNum, pageLimit) {
+				if (!util.isObject(getArticles)) {
+					throw new Error('API getArticles must be set properly.');
+				}
+				return getArticles.get({
+						page: pageNum,
+						per: pageLimit
+					})
+					.then((resp) => {
+						return resp.json();
+					});
 			};
 		}
+		flag = true;
 		return self;
 	}
 
+	ArticleService.apiConfig = function (opts) {
+		getArticles = opts.getArticles;
+	};
+
 
 	ArticleService.getInstance = function () {
-		// if (!instance) {
-		// 	instance = new ArticleService();
-		// }
-		return instance || new ArticleService();
+		if (!instance) {
+			flag = false;
+			instance = new ArticleService();
+		}
+		return instance;
 	};
 
 	return ArticleService;
