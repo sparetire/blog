@@ -1,5 +1,3 @@
-import co from 'co';
-import NProgress from 'nprogress/nprogress';
 import navBar from '../navBar/nav-bar';
 import logo from '../logo/logo';
 import info from '../info/info';
@@ -8,7 +6,6 @@ import snsList from '../snsList/sns-list';
 import avatar from '../avatar/avatar';
 import mainContent from '../mainContent/main-content';
 import ArticleService from '../../services/ArticleService';
-import MarkdownParseService from '../../services/MarkdownParseService';
 import config from '../../config/webapp.conf';
 import APIConfig from '../../config/api.conf';
 import API from '../../../common/APIs';
@@ -21,7 +18,6 @@ let APIs = new API(APIConfig, RequestWrapper);
 ArticleService.apiConfig({
 	getArticles: APIs.getArticles
 });
-let articleService = ArticleService.getInstance();
 // MarkdownParseService.config({
 // 	renderer: new marked.Renderer(),
 // 	gfm: true,
@@ -32,20 +28,10 @@ let articleService = ArticleService.getInstance();
 // 	smartLists: true,
 // 	smartypants: false
 // });
-let markdownParser = MarkdownParseService.getInstance();
-let articles = [];
-co(function* () {
-	NProgress.start();
-	let remoteArticles = yield articleService.getArticles(1, config.pageLimit);
-	NProgress.inc(0.2);
-	for (let i in remoteArticles) {
-		remoteArticles[i].content = yield markdownParser.parse(remoteArticles[i]
-			.content);
-		articles.push(remoteArticles[i]);
-	}
-	NProgress.inc(0.3);
-	NProgress.done();
-});
+
+// 个人觉得在这里取文章列表比较好，因为此时还没渲染组件，先发起请求反正是异步，
+// 等组件渲染好数据差不多也到了，而在组件中取数据则是等大部分组件渲染好后才发请求，
+// 稍慢一点，但在组件中取数据让路由更方便点
 
 export default {
 	data: function () {
@@ -55,8 +41,7 @@ export default {
 				name: config.blogName,
 				intro: config.blogIntro
 			},
-			navItems: config.navList,
-			articles: articles
+			navItems: config.navList
 		};
 	},
 	components: {
