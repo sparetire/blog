@@ -69,13 +69,16 @@ export default {
 		mainContent
 	},
 	events: {
-		navItemClick: function (msg) {
-			if (msg.content === 'About') {
+		//切换应当和路由绑定而不是和点击事件绑定
+		onRouteChange: function (route) {
+			let path = route.path;
+			this.navItems.forEach(function (item, i, array) {
+				item.url === path ? item.active = true : item.active = false;
+			});
+			if (path === '/about') {
 				this.currentLogo = 'avatar';
-				//route
 			} else {
 				this.currentLogo = 'logo';
-				//route
 			}
 		}
 	}

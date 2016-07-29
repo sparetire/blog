@@ -2,8 +2,7 @@
 	<ul>
 		<li v-for="item in items" class="nav-item" :class="{'active-item': item.active}">
 			<i :class="item.iconClass"></i>
-			<a v-on:click="notifyNavBar($index)" v-link="item.url">{{item.content}}</a>
-			<!--<a v-link="{path:item.url, exact: true, activeClass:''}">{{item.content}}</a>-->
+			<a v-link="item.url">{{item.content}}</a>
 		</li>
 	</ul>
 </nav>

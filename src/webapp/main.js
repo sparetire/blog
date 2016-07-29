@@ -9,15 +9,18 @@ let router = new VueRouter();
 router.map({
 	'/': {
 		component: articleList
+	},
+	'/achives': {
+		component: articleList
+	},
+	'/tags': {
+		component: articleList
+	},
+	'/about': {
+		component: articleList
 	}
 });
 
 $(() => {
 	router.start(app, 'app');
-	// new Vue({
-	// 	el: 'body',
-	// 	components: {
-	// 		app
-	// 	}
-	// });
 });

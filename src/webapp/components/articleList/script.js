@@ -8,5 +8,11 @@ export default {
 	},
 	components: {
 		articlePreview
+	},
+	route: {
+		data: function (transition) {
+			this.$dispatch('onRouteChange', this.$route);
+			transition.next();
+		}
 	}
 };

@@ -7,7 +7,7 @@ export default {
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
-		url: '/home',
+		url: '/',
 		active: true
 	}, {
 		iconClass: 'icon-folder-open',
