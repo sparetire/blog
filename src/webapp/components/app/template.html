@@ -1,0 +1,11 @@
+<div class="app">
+	<nav-bar>
+		<component :is="currentLogo" transition="fade" transition-mode="out-in" keep-alive></component>
+		<info :content="navInfo"></info>
+		<nav-list :items="navItems"></nav-list>
+		<sns-list></sns-list>
+	</nav-bar>
+	<main-content>
+		<router-view :articles="articles"></router-view>
+	</main-content>
+</div>

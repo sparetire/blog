@@ -5,14 +5,6 @@
 	<title>Sparetire's Blog</title>
 </head>
 <body>
-	<nav-bar>
-		<component :is="currentLogo" transition="fade" transition-mode="out-in" keep-alive></component>
-		<info :content="navInfo"></info>
-		<nav-list :items="navItems"></nav-list>
-		<sns-list></sns-list>
-	</nav-bar>
-	<main-content>
-		<article-list :articles="articles"></article-list>
-	</main-content>
+	<app></app>
 </body>
 </html>
