@@ -21,6 +21,7 @@ export default {
 			this.$dispatch('onRouteChange', this.$route);
 			let articleService = ArticleService.getInstance();
 			let markdownParser = MarkdownParseService.getInstance();
+			// co会绑定this，所以在这里先把this.article取一下
 			let articles = this.articles;
 			co(function* () {
 				NProgress.start();
