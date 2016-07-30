@@ -61,6 +61,7 @@ export default {
 	events: {
 		//切换应当和路由绑定而不是和点击事件绑定
 		onRouteChange: function (route) {
+			// 到时候改成switch路由的形式，来对不同路由做处理
 			let articleService = ArticleService.getInstance();
 			let markdownParser = MarkdownParseService.getInstance();
 			// co会绑定this，所以在这里先把this.article取一下
