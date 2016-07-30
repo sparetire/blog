@@ -1,5 +1,4 @@
 @charset 'utf-8';
-@import '../../style/aside';
 .article-list {
-	@include aside;
+	width: 100%;
 }

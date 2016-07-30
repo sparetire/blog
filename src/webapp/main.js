@@ -2,22 +2,22 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import $ from 'jquery';
 import app from './components/app/app';
-import articleList from './components/articleList/article-list';
+import articleAside from './components/aside/aside';
 
 Vue.use(VueRouter);
 let router = new VueRouter();
 router.map({
 	'/': {
-		component: articleList
+		component: articleAside
 	},
 	'/achives': {
-		component: articleList
+		component: articleAside
 	},
 	'/tags': {
-		component: articleList
+		component: articleAside
 	},
 	'/about': {
-		component: articleList
+		component: articleAside
 	}
 });
 
