@@ -1,4 +1,5 @@
 import articleList from '../articleList/article-list';
+import pagination from '../pagination/pagination';
 export default {
 	props: {
 		articles: {
@@ -6,12 +7,21 @@ export default {
 			default: []
 		},
 		curPage: {
-			type: Number,
 			default: 1
+		},
+		pageCount: {
+			default: 10
+		},
+		total: {
+			default: 0
+		},
+		urlTemplate: {
+			default: '/'
 		}
 	},
 	components: {
-		articleList
+		articleList,
+		pagination
 	},
 	route: {
 		data: function (transition) {

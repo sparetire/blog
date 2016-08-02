@@ -3,7 +3,8 @@ export default {
 	blogName: 'Sparetire',
 	blogIntro: '//无可奉告',
 	sumaryLimit: 5,
-	pageLimit: 5,
+	perPageLimit: 5,
+	pageCount: 10,
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
@@ -23,6 +24,10 @@ export default {
 		iconClass: 'icon-user',
 		content: 'About',
 		url: '/about',
+		active: false
+	}, {
+		iconClass: 'icon-user',
+		content: 'Test',
 		active: false
 	}]
 };

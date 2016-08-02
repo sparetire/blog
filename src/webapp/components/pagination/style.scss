@@ -1,0 +1,48 @@
+.pagination {
+	text-align: center;
+}
+
+.pages {
+	display: inline-block;
+	padding: 0;
+	margin: 50px 0;
+}
+
+$textColor: #000;
+$textActiveColor: #fff;
+$textFont: "Microsoft Yahei";
+$bgHoverColor: #ddd;
+$bgActiveColor: #333;
+$paginationRadius: 5px;
+.page-item {
+	display: inline;
+	font-family: $textFont;
+	a {
+		color: $textColor;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+		border: 1px solid $bgHoverColor;
+		&.active-page {
+			background-color: $bgActiveColor;
+			color: $textActiveColor;
+			border: 1px solid $bgActiveColor;
+		}
+		&:hover:not(.active-page) {
+			background-color: $bgHoverColor
+		}
+	}
+	&:first-child {
+		a {
+			border-top-left-radius: $paginationRadius;
+			border-bottom-left-radius: $paginationRadius;
+		}
+	}
+	&:last-child {
+		a {
+			border-top-right-radius: $paginationRadius;
+			border-bottom-right-radius: $paginationRadius;
+		}
+	}
+}

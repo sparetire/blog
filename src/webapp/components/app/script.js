@@ -46,7 +46,11 @@ export default {
 				intro: config.blogIntro
 			},
 			navItems: config.navList,
-			articles: []
+			articles: [],
+			curPage: 2,
+			total: 50,
+			pageCount: config.pageCount,
+			urlTemplate: '/{pageNum}'
 		};
 	},
 	components: {
@@ -65,10 +69,10 @@ export default {
 			let articleService = ArticleService.getInstance();
 			let markdownParser = MarkdownParseService.getInstance();
 			// co会绑定this，所以在这里先把this.article取一下
-			let articles = this.articles;
+			let articles = this.articles = [];
 			co(function* () {
 				NProgress.start();
-				let remoteArticles = yield articleService.getArticles(1, config.pageLimit);
+				let remoteArticles = yield articleService.getArticles(1, config.perPageLimit);
 				NProgress.inc(0.2);
 				for (let i in remoteArticles) {
 					remoteArticles[i].content = yield markdownParser.parse(remoteArticles[i]
