@@ -41,7 +41,7 @@ function loadArticleAside(ctx, route) {
 	co(function* () {
 		NProgress.start();
 		// 高亮当前页
-		ctx.curPage = parseInt(route.params.page);
+		ctx.curPage = parseInt(route.params.page, 10);
 		if (ctx.curPage < 1 || ctx.curPage > ctx.total) {
 			ctx.curPage = 1;
 			router.go({
@@ -98,16 +98,16 @@ export default {
 		//切换应当和路由绑定而不是和点击事件绑定
 		onRouteChange: function (route) {
 			switch (route.name) {
-				case 'home':
+				case router.HOME:
 					loadArticleAside(this, route);
 					break;
-				case 'achives':
+				case router.ACHIVES:
 					loadArticleAside(this, route);
 					break;
-				case 'tags':
+				case router.TAGS:
 					loadArticleAside(this, route);
 					break;
-				case 'about':
+				case router.ABOUT:
 					loadArticleAside(this, route);
 					break;
 				default:
