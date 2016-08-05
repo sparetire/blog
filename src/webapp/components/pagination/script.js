@@ -3,6 +3,10 @@ export default {
 	computed: {
 		// 起始页页码数
 		startPage: function () {
+			if (!(this.curPage % this.pageCount)) {
+				// (this.curPage - 1) - (this.curPage - 1) % this.pageCount + 1;
+				return this.curPage - (this.curPage - 1) % this.pageCount;
+			}
 			return this.curPage - this.curPage % this.pageCount + 1;
 		},
 		// 当前这轮最后一页的页码数

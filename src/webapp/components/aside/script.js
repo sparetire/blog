@@ -25,10 +25,8 @@ export default {
 	},
 	route: {
 		data: function (transition) {
-			let that = this;
-			return new Promise((resolve, reject) => {
-				that.$dispatch('onRouteChange', this.$route);
-			});
+			this.$dispatch('onRouteChange', this.$route);
+			transition.next();
 		}
 	}
 };

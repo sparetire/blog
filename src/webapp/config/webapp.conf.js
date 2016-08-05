@@ -8,7 +8,7 @@ export default {
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
-		url: '/',
+		url: '/home',
 		active: true
 	}, {
 		iconClass: 'icon-folder-open',
@@ -24,10 +24,6 @@ export default {
 		iconClass: 'icon-user',
 		content: 'About',
 		url: '/about',
-		active: false
-	}, {
-		iconClass: 'icon-user',
-		content: 'Test',
 		active: false
 	}]
 };

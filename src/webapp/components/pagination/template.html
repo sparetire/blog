@@ -1,7 +1,7 @@
 <div class="pagination">
 	<ul class="pages">
-		<li class="page-item"> <a v-link="urlTemplate | pageurl startPage-1">«</a></li>
+		<li class="page-item"> <a v-link="urlTemplate | pageurl curPage-1">«</a></li>
 		<li v-for="n in curPageCount" class="page-item"><a :class="{'active-page': curIndex === n}" v-link="urlTemplate | pageurl startPage+n">{{startPage + n}}</a></li>
-		<li class="page-item"> <a v-link="urlTemplate | pageurl endPage+1">»</a></li>
+		<li class="page-item"> <a v-link="urlTemplate | pageurl curPage+1">»</a></li>
 	</ul>
 </div>
