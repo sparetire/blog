@@ -8,5 +8,6 @@
 	<main-content>
 		<router-view :articles="articles" :total="total" :cur-page="curPage" :page-count="pageCount"
 				:url-template="urlTemplate"></router-view>
+		<scroll-top :show="scrollTopShow"></scroll-top>
 	</main-content>
 </div>

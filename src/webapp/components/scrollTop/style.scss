@@ -1,0 +1,47 @@
+$scrollTopFontSize: 30px;
+$scrollTopBgColor: #666;
+$containerSize: 40px;
+$containerPd: 8px;
+#scroll-top {
+	width: $containerSize;
+	height: $containerSize;
+	color: #333;
+	padding: $containerPd;
+	display: inline-block;
+	font-size: $scrollTopFontSize;
+	border: 2px solid $scrollTopBgColor;
+	border-radius: 50%;
+	background-color: #fff;
+	z-index: 999;
+	cursor: pointer;
+	box-shadow: 0 0 4px #999;
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	transition: all 0.3s ease;
+	&:hover {
+		color: #fff;
+		background-color: $scrollTopBgColor;
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+	}
+	i {
+		width: $scrollTopFontSize;
+		height: $scrollTopFontSize+ 2px;
+		margin: auto;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}
+
+.sctop-transition {
+	transform: scale(1);
+	transition: all 0.5s ease;
+}
+
+.sctop-enter, .sctop-leave {
+	transform: scale(0);
+	opacity: 0;
+}

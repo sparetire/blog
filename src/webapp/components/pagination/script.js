@@ -2,7 +2,7 @@ import '../../filters/pageurl';
 export default {
 	computed: {
 		// 起始页页码数
-		startPage: function () {
+		startPage() {
 			if (!(this.curPage % this.pageCount)) {
 				// (this.curPage - 1) - (this.curPage - 1) % this.pageCount + 1;
 				return this.curPage - (this.curPage - 1) % this.pageCount;
@@ -10,16 +10,16 @@ export default {
 			return this.curPage - this.curPage % this.pageCount + 1;
 		},
 		// 当前这轮最后一页的页码数
-		endPage: function () {
+		endPage() {
 			let temp = this.startPage + this.pageCount - 1;
 			return temp > this.total ? this.total : temp;
 		},
 		// 当前这轮组件item的个数
-		curPageCount: function () {
+		curPageCount() {
 			return this.endPage - this.startPage + 1;
 		},
 		// 当前页或者请求页的索引
-		curIndex: function () {
+		curIndex() {
 			return this.curPage - this.startPage;
 		}
 	},
@@ -31,7 +31,7 @@ export default {
 		},
 		// 当前页数，也是请求的页数
 		curPage: {
-			validator: function (value) {
+			validator(value) {
 				return value > 0;
 			}
 		},

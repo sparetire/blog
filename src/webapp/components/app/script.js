@@ -5,6 +5,7 @@ import navList from '../navList/nav-list';
 import snsList from '../snsList/sns-list';
 import avatar from '../avatar/avatar';
 import mainContent from '../mainContent/main-content';
+import scrollTop from '../scrollTop/scroll-top';
 import ArticleService from '../../services/ArticleService';
 import config from '../../config/webapp.conf';
 import APIConfig from '../../config/api.conf';
@@ -14,6 +15,7 @@ import MarkdownParseService from '../../services/MarkdownParseService';
 import router from '../../config/router';
 import co from 'co';
 import NProgress from 'nprogress/nprogress';
+import $ from 'jquery';
 import '../../style/app.scss';
 import 'nprogress/nprogress.css';
 
@@ -32,6 +34,7 @@ ArticleService.apiConfig({
 // 	smartLists: true,
 // 	smartypants: false
 // });
+/** init */
 
 function loadArticleAside(ctx, route) {
 	let articleService = ArticleService.getInstance();
@@ -70,61 +73,75 @@ function loadArticleAside(ctx, route) {
 
 
 export default {
-	data: function () {
-		return {
-			currentLogo: config.defaultLogo,
-			navInfo: {
-				name: config.blogName,
-				intro: config.blogIntro
-			},
-			navItems: config.navList,
-			articles: [],
-			curPage: 2,
-			total: 43,
-			pageCount: config.pageCount,
-			urlTemplate: '/home/{pageNum}'
-		};
-	},
-	components: {
-		navBar,
-		logo,
-		info,
-		navList,
-		snsList,
-		avatar,
-		mainContent
-	},
-	events: {
-		//切换应当和路由绑定而不是和点击事件绑定
-		onRouteChange: function (route) {
-			switch (route.name) {
-				case router.HOME:
-					loadArticleAside(this, route);
-					break;
-				case router.ACHIVES:
-					loadArticleAside(this, route);
-					break;
-				case router.TAGS:
-					loadArticleAside(this, route);
-					break;
-				case router.ABOUT:
-					loadArticleAside(this, route);
-					break;
-				default:
-					break;
-			}
+	ready() {
+			$(window)
+				.scroll((event) => {
+					let currentScrollTop = $(window)
+						.scrollTop();
+					if (!this.scrollTopShow && currentScrollTop > 200) {
+						this.scrollTopShow = true;
+					} else if (this.scrollTopShow && currentScrollTop < 200) {
+						this.scrollTopShow = false;
+					}
+				});
+		},
+		data() {
+			return {
+				currentLogo: config.defaultLogo,
+				navInfo: {
+					name: config.blogName,
+					intro: config.blogIntro
+				},
+				navItems: config.navList,
+				articles: [],
+				curPage: 2,
+				total: 43,
+				pageCount: config.pageCount,
+				urlTemplate: '/home/{pageNum}',
+				scrollTopShow: false
+			};
+		},
+		components: {
+			navBar,
+			logo,
+			info,
+			navList,
+			snsList,
+			avatar,
+			mainContent,
+			scrollTop
+		},
+		events: {
+			//切换应当和路由绑定而不是和点击事件绑定
+			onRouteChange(route) {
+				switch (route.name) {
+					case router.HOME:
+						loadArticleAside(this, route);
+						break;
+					case router.ACHIVES:
+						loadArticleAside(this, route);
+						break;
+					case router.TAGS:
+						loadArticleAside(this, route);
+						break;
+					case router.ABOUT:
+						loadArticleAside(this, route);
+						break;
+					default:
+						break;
+				}
 
-			// 高亮当前导航栏
-			let path = route.path;
-			this.navItems.forEach(function (item, i, array) {
-				!path.indexOf(item.url) ? item.active = true : item.active = false;
-			});
-			// logo 切换
-			if (path === '/about') {
-				this.currentLogo = 'avatar';
-			} else {
-				this.currentLogo = 'logo';
+				// 高亮当前导航栏
+				let path = route.path;
+				this.navItems.forEach(function (item, i, array) {
+					!path.indexOf(item.url) ? item.active = true : item.active = false;
+				});
+				// logo 切换
+				if (path === '/about') {
+					this.currentLogo = 'avatar';
+				} else {
+					this.currentLogo = 'logo';
+				}
 			}
 		}
-	}
 };

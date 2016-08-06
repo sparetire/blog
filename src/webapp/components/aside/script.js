@@ -24,7 +24,7 @@ export default {
 		pagination
 	},
 	route: {
-		data: function (transition) {
+		data(transition) {
 			this.$dispatch('onRouteChange', this.$route);
 			transition.next();
 		}
