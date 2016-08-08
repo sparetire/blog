@@ -20,6 +20,7 @@ import '../../style/app.scss';
 import 'nprogress/nprogress.css';
 
 /** init */
+let routerMap = router.routerMap;
 let APIs = new API(APIConfig, RequestWrapper);
 ArticleService.apiConfig({
 	getArticles: APIs.getArticles
@@ -97,7 +98,7 @@ export default {
 				curPage: 2,
 				total: 43,
 				pageCount: config.pageCount,
-				urlTemplate: '/home/{pageNum}',
+				urlTemplate: routerMap.home.path,
 				scrollTopShow: false
 			};
 		},
@@ -115,16 +116,16 @@ export default {
 			//切换应当和路由绑定而不是和点击事件绑定
 			onRouteChange(route) {
 				switch (route.name) {
-					case router.HOME:
+					case routerMap.home.name:
 						loadArticleAside(this, route);
 						break;
-					case router.ACHIVES:
+					case routerMap.archives.name:
 						loadArticleAside(this, route);
 						break;
-					case router.TAGS:
+					case routerMap.tags.name:
 						loadArticleAside(this, route);
 						break;
-					case router.ABOUT:
+					case routerMap.about.name:
 						loadArticleAside(this, route);
 						break;
 					default:

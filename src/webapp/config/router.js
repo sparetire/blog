@@ -3,25 +3,39 @@ import VueRouter from 'vue-router';
 import articleAside from '../components/aside/aside';
 Vue.use(VueRouter);
 let router = new VueRouter();
-router.HOME = 'home';
-router.ACHIVES = 'achives';
-router.TAGS = 'tags';
-router.ABOUT = 'about';
+let routerMap = {
+	home: {
+		name: 'home',
+		path: '/home/:page'
+	},
+	archives: {
+		name: 'archives',
+		path: '/archives'
+	},
+	tags: {
+		name: 'tags',
+		path: '/tags'
+	},
+	about: {
+		name: 'about',
+		path: '/about'
+	},
+};
 router.map({
 	'/home/:page': {
-		name: router.HOME,
+		name: routerMap.home.name,
 		component: articleAside
 	},
 	'/achives': {
-		name: router.ACHIVES,
+		name: routerMap.archives.name,
 		component: articleAside
 	},
 	'/tags': {
-		name: router.TAGS,
+		name: routerMap.tags.name,
 		component: articleAside
 	},
 	'/about': {
-		name: router.ABOUT,
+		name: routerMap.about.name,
 		component: articleAside
 	}
 });
@@ -29,5 +43,6 @@ router.map({
 router.redirect({
 	'*': '/home/1'
 });
+router.routerMap = routerMap;
 
 export default router;
