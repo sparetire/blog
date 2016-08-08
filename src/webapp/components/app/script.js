@@ -13,6 +13,7 @@ import API from '../../../common/APIs';
 import RequestWrapper from '../../lib/RequestWrapper';
 import MarkdownParseService from '../../services/MarkdownParseService';
 import router from '../../config/router';
+import routerMap from '../../config/routerMap';
 import co from 'co';
 import NProgress from 'nprogress/nprogress';
 import $ from 'jquery';
@@ -20,7 +21,6 @@ import '../../style/app.scss';
 import 'nprogress/nprogress.css';
 
 /** init */
-let routerMap = router.routerMap;
 let APIs = new API(APIConfig, RequestWrapper);
 ArticleService.apiConfig({
 	getArticles: APIs.getArticles

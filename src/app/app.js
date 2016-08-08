@@ -16,35 +16,35 @@ router.get('/articles', function* (next) {
 		author: 'Sparetire',
 		views: '50',
 		postDate: '2016/07/27',
-		url: '/article'
+		id: '1'
 	}, {
 		title: 'Hello',
 		content: '# Marked in browser\n\nRendered by **marked**.',
 		author: 'Sparetire',
 		views: '50',
 		postDate: '2016/07/27',
-		url: '/article'
+		id: '2'
 	}, {
 		title: 'Hello',
 		content: '# Marked in browser\n\nRendered by **marked**.',
 		author: 'Sparetire',
 		views: '50',
 		postDate: '2016/07/27',
-		url: '/article'
+		id: '3'
 	}, {
 		title: 'Hello',
 		content: '# Marked in browser\n\nRendered by **marked**.',
 		author: 'Sparetire',
 		views: '50',
 		postDate: '2016/07/27',
-		url: '/article'
+		id: '4'
 	}, {
 		title: 'Hello',
 		content: '# Marked in browser\n\nRendered by **marked**.',
 		author: 'Sparetire',
 		views: '50',
 		postDate: '2016/07/27',
-		url: '/article'
+		id: '5'
 	}];
 	yield next;
 });
