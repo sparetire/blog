@@ -1,3 +1,6 @@
 <header class="nav-bar" id="nav">
-	<slot></slot>
+	<component :is="currentLogo" transition="fade" transition-mode="out-in" keep-alive></component>
+	<info :content="navInfo"></info>
+	<nav-list :items="navItems"></nav-list>
+	<sns-list></sns-list>
 </header>

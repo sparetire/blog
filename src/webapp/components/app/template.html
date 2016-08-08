@@ -1,10 +1,5 @@
 <div class="app">
-	<nav-bar>
-		<component :is="currentLogo" transition="fade" transition-mode="out-in" keep-alive></component>
-		<info :content="navInfo"></info>
-		<nav-list :items="navItems"></nav-list>
-		<sns-list></sns-list>
-	</nav-bar>
+	<nav-bar :path="path"></nav-bar>
 	<main-content>
 		<router-view></router-view>
 		<scroll-top :show="scrollTopShow"></scroll-top>

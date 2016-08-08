@@ -1,12 +1,6 @@
 import navBar from '../navBar/nav-bar';
-import logo from '../logo/logo';
-import info from '../info/info';
-import navList from '../navList/nav-list';
-import snsList from '../snsList/sns-list';
-import avatar from '../avatar/avatar';
 import mainContent from '../mainContent/main-content';
 import scrollTop from '../scrollTop/scroll-top';
-import config from '../../config/webapp.conf';
 import $ from 'jquery';
 import '../../style/app.scss';
 
@@ -32,22 +26,12 @@ export default {
 		},
 		data() {
 			return {
-				currentLogo: config.defaultLogo,
-				navInfo: {
-					name: config.blogName,
-					intro: config.blogIntro
-				},
-				navItems: config.navList,
+				path: '',
 				scrollTopShow: false
 			};
 		},
 		components: {
 			navBar,
-			logo,
-			info,
-			navList,
-			snsList,
-			avatar,
 			mainContent,
 			scrollTop
 		},
@@ -70,18 +54,8 @@ export default {
 				// 	default:
 				// 		break;
 				// }
+				this.path = route.path;
 
-				// 高亮当前导航栏
-				let path = route.path;
-				this.navItems.forEach(function (item, i, array) {
-					!path.indexOf(item.url) ? item.active = true : item.active = false;
-				});
-				// logo 切换
-				if (path === '/about') {
-					this.currentLogo = 'avatar';
-				} else {
-					this.currentLogo = 'logo';
-				}
 			}
 		}
 };
