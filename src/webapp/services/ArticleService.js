@@ -3,7 +3,7 @@ const util = require('../../common/util');
 /*global ArticleService, APIs */
 
 let ArticleService = (function () {
-	let [instance, flag, getArticles] = [null, true, null];
+	let [instance, flag, getArticles, getTotal] = [null, true, null, null];
 
 	function ArticleService() {
 		let self = this instanceof ArticleService ? this : Object.create(
@@ -26,12 +26,22 @@ let ArticleService = (function () {
 					});
 			};
 		}
+
+		if (!util.isFunction(self.getTotal)) {
+			ArticleService.prototype.getTotal = function (queryOpts) {
+				if (!util.isObject(getTotal)) {
+					throw new Error('API getTotal must be set properly.');
+				}
+				return getTotal.get(queryOpts);
+			};
+		}
 		flag = true;
 		return self;
 	}
 
 	ArticleService.apiConfig = function (opts) {
 		getArticles = opts.getArticles;
+		getTotal = opts.getTotal;
 	};
 
 

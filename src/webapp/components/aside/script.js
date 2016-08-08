@@ -39,7 +39,7 @@ export default {
 					co(function* () {
 						NProgress.start();
 						ctx.curPage = parseInt(ctx.$route.params.page, 10);
-						// todo 取一下total的数据
+						ctx.total = Math.ceil((yield articleService.getTotal()) / config.perPageLimit);
 						if (ctx.curPage < 1 || ctx.curPage > ctx.total) {
 							ctx.curPage = 1;
 							router.go({

@@ -8,7 +8,12 @@ import ArticleService from './services/ArticleService';
 /** init */
 let APIs = new API(APIConfig, RequestWrapper);
 ArticleService.apiConfig({
-	getArticles: APIs.getArticles
+	getArticles: APIs.getArticles,
+	getTotal: {
+		get: function (opts) {
+			return Promise.resolve(43);
+		}
+	}
 });
 // MarkdownParseService.config({
 // 	renderer: new marked.Renderer(),
