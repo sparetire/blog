@@ -5,29 +5,10 @@ import routerMap from '../../config/routerMap';
 import MarkdownParseService from '../../services/MarkdownParseService';
 import ArticleService from '../../services/ArticleService';
 import router from '../../config/router';
-import APIConfig from '../../config/api.conf';
-import API from '../../../common/APIs';
-import RequestWrapper from '../../lib/RequestWrapper';
 import co from 'co';
 import NProgress from 'nprogress/nprogress';
 import Promise from 'bluebird';
 import 'nprogress/nprogress.css';
-/** init */
-let APIs = new API(APIConfig, RequestWrapper);
-ArticleService.apiConfig({
-	getArticles: APIs.getArticles
-});
-// MarkdownParseService.config({
-// 	renderer: new marked.Renderer(),
-// 	gfm: true,
-// 	tables: true,
-// 	breaks: false,
-// 	pedantic: false,
-// 	sanitize: true,
-// 	smartLists: true,
-// 	smartypants: false
-// });
-/** init */
 
 
 
