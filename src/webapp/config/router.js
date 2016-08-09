@@ -24,7 +24,7 @@ router.map({
 		name: routerMap.about.name,
 		component: articleAside
 	},
-	'/articles/:id': {
+	'/post/:id': {
 		name: routerMap.articles.name,
 		component: article
 	}

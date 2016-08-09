@@ -1,0 +1,54 @@
+$dtTitleFont: 40px "Microsoft Yahei";
+$dtTitleColor: #333;
+$dtInfoFont: 14px "Microsoft Yahei";
+$dtInfoColor: #999;
+$authorColor: #3699dc;
+$authorHoverColor: #1d70a8;
+$dtContentColor: #555;
+$dtContentFont: 16px "Microsoft Yahei";
+.article-header {
+	padding: 50px 0 20px 0;
+	text-align: center;
+}
+
+.article-dt-title {
+	margin: 0 0 15px 0;
+	padding: 0;
+	font: $dtTitleFont;
+	color: $dtTitleColor;
+}
+
+.article-dt-info {
+	margin: 0;
+	padding: 0;
+	font: $dtInfoFont;
+	color: $dtInfoColor;
+}
+
+.article-dt-author, .article-dt-date {
+	color: $authorColor;
+	cursor: pointer;
+	&:hover {
+		color: $authorHoverColor;
+	}
+}
+
+.article-dt-content {
+	color: $dtContentColor;
+	font: $dtContentFont;
+	h1, h2, h3, h4, h5, h6, p {
+		margin: 20px 0;
+	}
+	h1 {
+		font-size: 28px;
+	}
+	h2 {
+		font-size: 26px;
+	}
+	h3 {
+		font-size: 24px;
+	}
+	h4, h5, h6 {
+		font-size: 20px;
+	}
+}

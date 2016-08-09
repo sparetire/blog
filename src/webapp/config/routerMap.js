@@ -17,6 +17,6 @@ export default {
 	},
 	articles: {
 		name: 'articles',
-		path: '/articles/:id'
+		path: '/post/:id'
 	}
 };
