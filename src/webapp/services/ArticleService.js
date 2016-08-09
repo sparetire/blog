@@ -1,9 +1,14 @@
 const util = require('../../common/util');
+const Promise = require('bluebird');
+const MarkdownParseService = require('./MarkdownParseService');
 
 /*global ArticleService, APIs */
 
 let ArticleService = (function () {
-	let [instance, flag, getArticles, getTotal] = [null, true, null, null];
+	let [instance, flag, getArticles, getArticle, getTotal, cacheArticles] = [
+		null, true,
+		null, null, null, []
+	];
 
 	function ArticleService() {
 		let self = this instanceof ArticleService ? this : Object.create(
@@ -35,12 +40,48 @@ let ArticleService = (function () {
 				return getTotal.get(queryOpts);
 			};
 		}
+
+		if (!util.isFunction(self.setCachedArticles)) {
+			ArticleService.prototype.setCachedArticles = function (articles) {
+				cacheArticles = articles;
+			};
+		}
+
+		if (!util.isFunction(self.getArticleById)) {
+			ArticleService.prototype.getArticleById = function (id) {
+				for (let i = 0; i < cacheArticles.length; ++i) {
+					if (cacheArticles[i].id === id) {
+						return Promise.resolve(cacheArticles[i]);
+					}
+				}
+				if (!util.isObject(getArticle)) {
+					throw new Error('API getArticle must be set properly.');
+				}
+				let article = null;
+				return getArticle.post({
+						id
+					})
+					.then((resp) => {
+						return resp.json();
+					})
+					.then((data) => {
+						let markdownParser = MarkdownParseService.getInstance();
+						article = data;
+						return markdownParser.parse(article.content);
+					})
+					.then((content) => {
+						article.content = content;
+						return article;
+					});
+			};
+		}
 		flag = true;
 		return self;
 	}
 
 	ArticleService.apiConfig = function (opts) {
 		getArticles = opts.getArticles;
+		getArticle = opts.getArticle;
 		getTotal = opts.getTotal;
 	};
 

@@ -1,0 +1,9 @@
+// main-content-route
+.mc-route-transition {
+	transition: height, opacify 3s ease;
+}
+
+.mc-route-enter, .mc-route-leave {
+	height: 0;
+	opacity: 0;
+}

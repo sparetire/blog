@@ -9,6 +9,7 @@ import ArticleService from './services/ArticleService';
 let APIs = new API(APIConfig, RequestWrapper);
 ArticleService.apiConfig({
 	getArticles: APIs.getArticles,
+	getArticle: APIs.getArticle,
 	getTotal: {
 		get: function (opts) {
 			return Promise.resolve(43);

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import articleAside from '../components/aside/aside';
+import article from '../components/article/article';
 import routerMap from './routerMap';
 
 
@@ -22,6 +23,10 @@ router.map({
 	'/about': {
 		name: routerMap.about.name,
 		component: articleAside
+	},
+	'/articles/:id': {
+		name: routerMap.articles.name,
+		component: article
 	}
 });
 

@@ -10,44 +10,55 @@ const API = require('../common/APIs');
 let APIs = new API(APIConfig, RequestWrapper);
 let router = new KoaRouter();
 router.get('/articles', function* (next) {
-	this.body = [{
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		id: '1'
-	}, {
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		id: '2'
-	}, {
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		id: '3'
-	}, {
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		id: '4'
-	}, {
-		title: 'Hello',
-		content: '# Marked in browser\n\nRendered by **marked**.',
-		author: 'Sparetire',
-		views: '50',
-		postDate: '2016/07/27',
-		id: '5'
-	}];
-	yield next;
-});
+		this.body = [{
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '1'
+		}, {
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '2'
+		}, {
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '3'
+		}, {
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '4'
+		}, {
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '5'
+		}];
+		yield next;
+	})
+	.post('/article', function* (next) {
+		this.body = {
+			title: 'Hello',
+			content: '# Marked in browser\n\nRendered by **marked**.',
+			author: 'Sparetire',
+			views: '50',
+			postDate: '2016/07/27',
+			id: '5'
+		};
+		yield next;
+	});
 
 // setTimeout(function () {
 // 	APIs.test.post({
