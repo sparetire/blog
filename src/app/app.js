@@ -14,49 +14,73 @@ router.get('/articles', function* (next) {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
 			id: '1'
 		}, {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
 			id: '2'
 		}, {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
 			id: '3'
 		}, {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
 			id: '4'
 		}, {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
 			id: '5'
 		}];
 		yield next;
 	})
-	.post('/article', function* (next) {
+	.post('/post', function* (next) {
 		this.body = {
 			title: 'Hello',
 			content: '# Marked in browser\n\nRendered by **marked**.',
 			author: 'Sparetire',
-			views: '50',
-			postDate: '2016/07/27',
-			id: '5'
+			views: 50,
+			timeStamp: 1470751691242,
+			year: 2016,
+			month: 8,
+			day: 10,
+			id: '4'
 		};
+		yield next;
+	})
+	.get('/archives', function* (next) {
+		this.body = [{
+			month: '2016'
+		}];
 		yield next;
 	});
 

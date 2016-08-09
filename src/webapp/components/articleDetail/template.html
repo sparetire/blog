@@ -1,7 +1,7 @@
 <div class="article-detail">
 	<div class="article-header">
 		<h1 class="article-dt-title">{{article.title}}</h1>
-		<p class="article-dt-info">Posted by <span class="article-dt-author">{{article.author}}</span> on <span class="article-dt-date">{{article.postDate}}</span>			</p>
+		<p class="article-dt-info">Posted by <span class="article-dt-author">{{article.author}}</span> on <span class="article-dt-date">{{article | postdate}}</span></p>
 	</div>
 	<div class="article-dt-content">{{{article.content}}}</div>
 </div>

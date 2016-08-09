@@ -3,7 +3,7 @@
 	<h3 class="article-info">
 		<span class="author-date">
 			<span v-if="article.author" class="author">Posted by <span class="a-strong">{{article.author}}</span></span>
-			<span v-if="article.postDate" class="post-date">on <span class="a-strong">{{article.postDate}}</span></span>
+			<span v-if="article.day" class="post-date">on <span class="a-strong">{{article | postdate}}</span></span>
 		</span>
 		<span v-if="article.views" class="views">{{article.views}} VIEWS</span>
 	</h3>

@@ -1,3 +1,4 @@
+import '../../filters/postdate';
 export default {
 	props: {
 		article: {
