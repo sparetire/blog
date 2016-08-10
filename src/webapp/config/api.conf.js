@@ -25,6 +25,10 @@ let APIs = {
 	getArticle: {
 		pathname: '/post',
 		method: 'post'
+	},
+	// localhost/archives?page=1&limit=5
+	getArchives: {
+		pathname: '/archives'
 	}
 };
 

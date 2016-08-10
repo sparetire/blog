@@ -7,6 +7,7 @@ import router from './config/router';
 import ArticleService from './services/ArticleService';
 /** init */
 let APIs = new API(APIConfig, RequestWrapper);
+window.APIs = APIs;
 ArticleService.apiConfig({
 	getArticles: APIs.getArticles,
 	getArticle: APIs.getArticle,

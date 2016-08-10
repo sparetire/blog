@@ -1,0 +1,4 @@
+<div class="archive">
+	<archive-item v-for="item in archiveList" :month-item="item"></archive-item>
+	<pagination :total="total" :cur-page="curPage" :page-count="pageCount" :url-template="urlTemplate"></pagination>
+</div>

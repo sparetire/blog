@@ -5,7 +5,7 @@ export default {
 	},
 	archives: {
 		name: 'archives',
-		path: '/archives'
+		path: '/archives/:page'
 	},
 	tags: {
 		name: 'tags',

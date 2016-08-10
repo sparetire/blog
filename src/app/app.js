@@ -78,9 +78,58 @@ router.get('/articles', function* (next) {
 		yield next;
 	})
 	.get('/archives', function* (next) {
-		this.body = [{
-			month: '2016'
-		}];
+		this.body = {
+			total: 23,
+			archiveList: [{
+				year: 2016,
+				month: 8,
+				posts: [{
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}]
+			}, {
+				year: 2016,
+				month: 8,
+				posts: [{
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}]
+			}, {
+				year: 2016,
+				month: 8,
+				posts: [{
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}, {
+					title: 'Hello',
+					id: '1'
+				}]
+			}]
+		};
 		yield next;
 	});
 

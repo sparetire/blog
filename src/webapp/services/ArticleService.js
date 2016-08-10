@@ -24,7 +24,7 @@ let ArticleService = (function () {
 				}
 				return getArticles.get({
 						page: pageNum,
-						per: pageLimit
+						limit: pageLimit
 					})
 					.then((resp) => {
 						return resp.json();

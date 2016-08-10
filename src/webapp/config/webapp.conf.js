@@ -12,8 +12,8 @@ export default {
 		active: true
 	}, {
 		iconClass: 'icon-folder-open',
-		content: 'Achives',
-		url: '/achives',
+		content: 'Archives',
+		url: '/archives',
 		active: false
 	}, {
 		iconClass: 'icon-price-tag',

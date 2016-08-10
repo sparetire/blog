@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import articleAside from '../components/aside/aside';
 import article from '../components/article/article';
+import archive from '../components/archive/archive';
 import routerMap from './routerMap';
 
 
@@ -12,9 +13,9 @@ router.map({
 		name: routerMap.home.name,
 		component: articleAside
 	},
-	'/achives': {
+	'/archives/:page': {
 		name: routerMap.archives.name,
-		component: articleAside
+		component: archive
 	},
 	'/tags': {
 		name: routerMap.tags.name,
@@ -31,6 +32,7 @@ router.map({
 });
 
 router.redirect({
+	'/archives': '/archives/1',
 	'*': '/home/1'
 });
 
