@@ -25,16 +25,27 @@ export default {
 			NProgress.start();
 			NProgress.inc(0.2);
 			this.archiveList = [];
-			this.curPage = parseInt(this.$route.params.page, 10);
+			let curPage = parseInt(this.$route.params.page, 10);
+			if (curPage < 1) {
+				this.curPage = 1;
+				NProgress.done();
+				router.go({
+					name: routerMap.archives.name,
+					params: {
+						page: 1
+					}
+				});
+				return true;
+			}
 			/* global APIs */
 			return APIs.getArchives.get({
-					page: this.curPage,
+					page: curPage,
 					limit: config.perPageLimit
 				})
 				.then(data => data.json())
 				.then(data => {
 					this.total = Math.ceil(data.total / config.perPageLimit);
-					if (this.curPage < 1 || this.curPage > this.total) {
+					if (curPage > this.total) {
 						this.curPage = 1;
 						NProgress.done();
 						router.go({
@@ -45,6 +56,7 @@ export default {
 						});
 						return;
 					}
+					this.curPage = curPage;
 					this.archiveList = data.archiveList;
 					NProgress.inc(0.5);
 					NProgress.done();

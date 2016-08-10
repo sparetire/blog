@@ -38,10 +38,9 @@ export default {
 					let articles = ctx.articles = [];
 					co(function* () {
 						NProgress.start();
-						ctx.curPage = parseInt(ctx.$route.params.page, 10);
-						ctx.total = Math.ceil((yield articleService.getTotal()) / config.perPageLimit);
 						NProgress.inc(0.3);
-						if (ctx.curPage < 1 || ctx.curPage > ctx.total) {
+						let curPage = parseInt(ctx.$route.params.page, 10);
+						if (curPage < 1) {
 							ctx.curPage = 1;
 							resolve();
 							NProgress.done();
@@ -53,8 +52,24 @@ export default {
 							});
 							return;
 						}
-						let remoteArticles = yield articleService.getArticles(ctx.curPage,
-							config.perPageLimit);
+
+						let data = yield articleService.getArticles(curPage, config.perPageLimit);
+						ctx.total = Math.ceil((data.total / config.perPageLimit));
+						if (curPage > ctx.total) {
+							ctx.curPage = 1;
+							resolve();
+							NProgress.done();
+							router.go({
+								name: routerMap.home.name,
+								params: {
+									page: 1
+								}
+							});
+							return;
+						}
+
+						ctx.curPage = curPage;
+						let remoteArticles = data.articleList;
 						NProgress.inc(0.3);
 						for (let i in remoteArticles) {
 							remoteArticles[i].content = yield markdownParser.parse(
@@ -64,7 +79,8 @@ export default {
 						}
 						articleService.setCachedArticles(articles);
 						resolve(articles);
-						NProgress.inc(0.2);
+						NProgress
+							.inc(0.2);
 						NProgress.done();
 					});
 				});
