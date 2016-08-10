@@ -1,4 +1,4 @@
-import archiveItem from '../archiveItem/archive-item';
+import archiveList from '../archiveList/archive-list';
 import pagination from '../pagination/pagination';
 import routerMap from '../../config/routerMap';
 import router from '../../config/router';
@@ -7,7 +7,7 @@ import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
 export default {
 	components: {
-		archiveItem,
+		archiveList,
 		pagination
 	},
 	data() {
