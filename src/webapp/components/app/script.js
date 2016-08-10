@@ -14,7 +14,7 @@ import '../../style/app.scss';
 export default {
 	ready() {
 			$(window)
-				.scroll((event) => {
+				.scroll(event => {
 					let currentScrollTop = $(window)
 						.scrollTop();
 					if (!this.scrollTopShow && currentScrollTop > 200) {

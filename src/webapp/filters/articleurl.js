@@ -5,5 +5,5 @@ let template = routerMap.articles.path;
 
 Vue.filter('articleurl', function (id) {
 	let reg = /:(id)/g;
-	return template.replace(reg, () => id);
+	return template.replace(reg, id);
 });

@@ -5,7 +5,7 @@ let isScrollingTop = false;
 let lastScrollTop = 0;
 
 $(window)
-	.scroll((event) => {
+	.scroll(event => {
 		let curScrollTop = $(window)
 			.scrollTop();
 		if (isScrollingTop && curScrollTop > lastScrollTop) {

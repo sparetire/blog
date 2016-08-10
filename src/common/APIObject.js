@@ -143,16 +143,16 @@ function APIObject(opts, requestWrapper) {
 
 			if (callback && !flag) {
 				this.requestWrapper(this.method, requestURL)
-					.then((data) => {
+					.then(data => {
 						callback(data);
-					}, (err) => {
+					}, err => {
 						callback(err);
 					});
 			} else if (callback && flag && util.isObject(opts)) {
 				this.requestWrapper(this.method, requestURL, opts)
-					.then((data) => {
+					.then(data => {
 						callback(data);
-					}, (err) => {
+					}, err => {
 						callback(err);
 					});
 			} else if (!callback && flag && util.isObject(opts)) {
@@ -240,16 +240,16 @@ function APIObject(opts, requestWrapper) {
 
 			if (callback && !flag) {
 				this.requestWrapper(this.method, requestURL, body, bodyType)
-					.then((data) => {
+					.then(data => {
 						callback(data);
-					}, (err) => {
+					}, err => {
 						callback(err);
 					});
 			} else if (callback && flag && util.isObject(opts)) {
 				this.requestWrapper(this.method, requestURL, opts, bodyType)
-					.then((data) => {
+					.then(data => {
 						callback(data);
-					}, (err) => {
+					}, err => {
 						callback(err);
 					});
 			} else if (!callback && flag && util.isObject(opts)) {

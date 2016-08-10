@@ -12,7 +12,7 @@ export default {
 			let id = this.$route.params.id;
 			NProgress.start();
 			articleService.getArticleById(id)
-				.then((article) => {
+				.then(article => {
 					this.article = article;
 					NProgress.done();
 					transition.next();

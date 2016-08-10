@@ -26,7 +26,7 @@ let ArticleService = (function () {
 						page: pageNum,
 						limit: pageLimit
 					})
-					.then((resp) => {
+					.then(resp => {
 						return resp.json();
 					});
 			};
@@ -61,15 +61,15 @@ let ArticleService = (function () {
 				return getArticle.post({
 						id
 					})
-					.then((resp) => {
+					.then(resp => {
 						return resp.json();
 					})
-					.then((data) => {
+					.then(data => {
 						let markdownParser = MarkdownParseService.getInstance();
 						article = data;
 						return markdownParser.parse(article.content);
 					})
-					.then((content) => {
+					.then(content => {
 						article.content = content;
 						return article;
 					});

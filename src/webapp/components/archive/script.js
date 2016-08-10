@@ -32,7 +32,7 @@ export default {
 					limit: config.perPageLimit
 				})
 				.then(data => data.json())
-				.then((data) => {
+				.then(data => {
 					this.total = Math.ceil(data.total / config.perPageLimit);
 					if (this.curPage < 1 || this.curPage > this.total) {
 						this.curPage = 1;
