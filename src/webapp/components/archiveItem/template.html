@@ -1,5 +1,5 @@
 <div class="archive-item">
-	<h1 class="archive-month">{{monthItem | month}}</h1>
+	<h1 class="archive-month"><i class="icon-table"></i>{{monthItem | month}}</h1>
 	<ul v-if="monthItem.posts.length" class="archive-title-list">
 		<li v-for="item in monthItem.posts" class="archive-title-item">
 			<a v-link="item.id | articleurl">{{item.title}}</a>
