@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import articleAside from '../components/aside/aside';
 import article from '../components/article/article';
 import archive from '../components/archive/archive';
+import tags from '../components/tags/tags';
 import routerMap from './routerMap';
 
 
@@ -19,7 +20,7 @@ router.map({
 	},
 	'/tags': {
 		name: routerMap.tags.name,
-		component: articleAside
+		component: tags
 	},
 	'/about': {
 		name: routerMap.about.name,
