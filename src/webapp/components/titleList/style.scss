@@ -1,0 +1,45 @@
+@charset 'utf-8';
+$archiveTitleFont: 34px "Microsoft Yahei";
+$archiveItemFont: 26px "Microsoft Yahei";
+.title-list {
+	ul {
+		padding-left: 50px;
+	}
+	width: 100%;
+}
+
+.archive-month {
+	color: #333;
+	font: $archiveTitleFont;
+	margin: 25px 0;
+	i {
+		padding-right: 15px;
+	}
+}
+
+.title-item {
+	font: $archiveItemFont;
+	list-style: none;
+	border-bottom: 1px dashed #ccc;
+	margin: 10px 0;
+	transition: all 0.3s ease;
+	a {
+		color: #555;
+	}
+	&::before {
+		content: ' ';
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		margin-right: 15px;
+		background: #bbb;
+		border-radius: 50%;
+		vertical-align: middle;
+	}
+	&:hover {
+		border-bottom: 1px dashed #666;
+	}
+	&:hover::before {
+		background: #555;
+	}
+}

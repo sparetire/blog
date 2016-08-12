@@ -1,0 +1,7 @@
+<div class="title-list">
+	<ul v-if="titleList.length">
+		<li v-for="item in titleList" class="title-item">
+			<a v-link="{name: routeName, 	params: {id: item.id}}">{{item.title}}</a>
+		</li>
+	</ul>
+</div>
