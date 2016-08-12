@@ -1,7 +1,7 @@
 <div class="app">
 	<nav-bar :path="path"></nav-bar>
 	<main-content>
-		<router-view transition="mc-route" transition-mode="out-in"></router-view>
+		<router-view transition="mc-route" transition-mode="out-in" @route-data-loaded="changeTitle"></router-view>
 		<scroll-top :show="scrollTopShow"></scroll-top>
 	</main-content>
 </div>

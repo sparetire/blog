@@ -30,6 +30,11 @@ export default {
 				scrollTopShow: false
 			};
 		},
+		methods: {
+			changeTitle(vm) {
+				document.title = vm.pageTitle;
+			}
+		},
 		components: {
 			navBar,
 			mainContent,

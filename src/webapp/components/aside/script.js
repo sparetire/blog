@@ -16,6 +16,7 @@ import 'nprogress/nprogress.css';
 export default {
 	data() {
 			return {
+				pageTitle: 'Home | Sparetire',
 				articles: [],
 				curPage: 1,
 				pageCount: config.pageCount,

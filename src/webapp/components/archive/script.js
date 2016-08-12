@@ -12,6 +12,7 @@ export default {
 	},
 	data() {
 		return {
+			pageTitle: 'Archives | Sparetire',
 			archiveList: [],
 			curPage: 1,
 			pageCount: config.pageCount,

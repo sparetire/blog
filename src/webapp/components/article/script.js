@@ -14,6 +14,7 @@ export default {
 			articleService.getArticleById(id)
 				.then(article => {
 					this.article = article;
+					this.pageTitle = `${article.title} | Sparetire`;
 					NProgress.done();
 					transition.next();
 				});
@@ -21,7 +22,8 @@ export default {
 	},
 	data() {
 		return {
-			article: {}
+			article: {},
+			pageTitle: ''
 		};
 	}
 };
