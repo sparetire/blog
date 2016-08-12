@@ -2,7 +2,7 @@
 	<h1 class="archive-month"><i class="icon-table"></i>{{monthItem | month}}</h1>
 	<ul v-if="monthItem.posts.length" class="archive-title-list">
 		<li v-for="item in monthItem.posts" class="archive-title-item">
-			<a v-link="item.id | articleurl">{{item.title}}</a>
+			<a v-link="{name: routeName, 	params: {id: item.id}}">{{item.title}}</a>
 		</li>
 	</ul>
 </div>

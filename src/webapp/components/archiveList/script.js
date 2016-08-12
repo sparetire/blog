@@ -9,6 +9,10 @@ export default {
 			default: function () {
 				return [];
 			}
+		},
+		routeName: {
+			type: String,
+			required: true
 		}
 	}
 };

@@ -16,7 +16,8 @@ export default {
 			curPage: 1,
 			pageCount: config.pageCount,
 			total: 1,
-			urlTemplate: routerMap.archives.path
+			postRouteName: routerMap.articles.name,
+			pageRouteName: routerMap.archives.name
 		};
 	},
 	route: {

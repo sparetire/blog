@@ -1,4 +1,3 @@
-import '../../filters/pageurl';
 export default {
 	computed: {
 		// 起始页页码数
@@ -40,8 +39,9 @@ export default {
 			type: Number,
 			required: true
 		},
-		urlTemplate: {
-			type: String
+		routeName: {
+			type: String,
+			required: true
 		}
 	}
 
