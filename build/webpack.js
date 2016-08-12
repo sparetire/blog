@@ -76,7 +76,7 @@ module.exports = {
 			loader: 'vue'
 		}, {
 			test: /\.jsx?$/,
-			include: APP_PATH,
+			exclude: /node_modules/,
 			loader: 'babel-loader',
 			query: {
 				presets: ['es2015'],
