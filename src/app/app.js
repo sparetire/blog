@@ -64,7 +64,7 @@ router.get('/articles', function* (next) {
 				id: '5'
 			}]
 		};
-		yield next;
+		return;
 	})
 	.post('/post', function* (next) {
 		this.body = {
@@ -78,7 +78,7 @@ router.get('/articles', function* (next) {
 			day: 10,
 			id: '4'
 		};
-		yield next;
+		return;
 	})
 	.get('/archives', function* (next) {
 		this.body = {
@@ -133,7 +133,91 @@ router.get('/articles', function* (next) {
 				}]
 			}]
 		};
-		yield next;
+		return;
+	})
+	.get('/tags', function* (next) {
+		let temp = [{
+			name: 'Linux',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}, {
+			name: 'Javascript',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}, {
+			name: 'Security',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}, {
+			name: 'Node',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}, {
+			name: 'CSS',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}, {
+			name: 'HTML',
+			titles: [{
+				title: 'Hello',
+				id: 0
+			}, {
+				title: 'Hello',
+				id: 1
+			}, {
+				title: 'Hello',
+				id: 2
+			}]
+		}];
+		let tagList = temp.concat(temp)
+			.concat(temp)
+			.concat(temp)
+			.concat(temp);
+		this.body = {
+			total: 20,
+			tagList
+		};
+		return;
 	});
 
 // setTimeout(function () {

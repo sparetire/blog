@@ -29,6 +29,9 @@ let APIs = {
 	// localhost/archives?page=1&limit=5
 	getArchives: {
 		pathname: '/archives'
+	},
+	tags: {
+		pathname: '/tags'
 	}
 };
 

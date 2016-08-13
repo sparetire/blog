@@ -11,6 +11,7 @@ export default {
 			let articleService = ArticleService.getInstance();
 			let id = this.$route.params.id;
 			NProgress.start();
+			NProgress.inc(0.2);
 			articleService.getArticleById(id)
 				.then(article => {
 					this.article = article;
