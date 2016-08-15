@@ -11,6 +11,10 @@ export default {
 		name: 'tags',
 		path: '/tags'
 	},
+	tag: {
+		name: 'tag',
+		path: '/tags/:tag'
+	},
 	about: {
 		name: 'about',
 		path: '/about'

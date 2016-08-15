@@ -1,6 +1,6 @@
 import tagFilter from '../tagFilter/tag-filter';
 import tagFilterBar from '../tagFilterBar/tag-filter-bar';
-import tagList from '../tagList/tag-list';
+// import tagList from '../tagList/tag-list';
 import routerMap from '../../config/routerMap';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
@@ -12,8 +12,8 @@ function titleUnique(array) {
 			if (array[i].title === array[j].title)
 				array.splice(j--, 1);
 		}
-		return array;
 	}
+	return array;
 }
 
 // 合并标题数组
@@ -24,40 +24,74 @@ function mergeTitleList(list) {
 export default {
 	components: {
 		tagFilter,
-		tagFilterBar,
-		tagList
+		tagFilterBar
+		// tagList
+	},
+	computed: {
+		tagList() {
+			return this.rawData.tagList;
+		}
 	},
 	route: {
+		canReuse() {
+			this.enter = false;
+			return true;
+		},
+		// 不用canActivate是因为触发canActivate的时候enter还没有被注册/被代理,
+		// 即还没有到Vue生命周期的observe data阶段
+		activate() {
+			this.enter = true;
+			return true;
+		},
 		data(transition) {
 			this.$dispatch('onRouteChange', this.$route);
-			NProgress.start();
-			NProgress.inc(0.2);
-			/* global APIs */
-			return APIs.tags.get()
-				.then((resp) => {
-					return resp.json();
-				})
-				.then((data) => {
-					this.tagList = data.tagList;
-					if (this.$route.name === routerMap.tags.name) {
-						this.tagItem.name = `${data.total} posts`;
-						this.tagItem.titles = titleUnique(mergeTitleList(data.tagList));
-					} else {
-						this.tagItem = data.tagList[0];
-					}
-					NProgress.done();
-				});
+			if (this.enter) {
+				NProgress.start();
+				NProgress.inc(0.2);
+				/* global APIs */
+				return APIs.tags.get()
+					.then((resp) => {
+						return resp.json();
+					})
+					.then((data) => {
+						this.rawData = data;
+						if (this.$route.name === routerMap.tags.name) {
+							// 不要修改这个tagItem最好，会有副作用
+							// 最好这个tagItem是不可变变量，或者深复制也行
+							// 总之就是不要修改别人传给你的对象
+							this.tagItem.name = `${data.total} posts`;
+							this.tagItem.titles = titleUnique(mergeTitleList(data.tagList));
+						} else {
+							this.tagItem.name = data.tagList[0].name;
+							this.tagItem.titles = data.tagList[0].titles;
+						}
+						NProgress.done();
+					});
+			} else {
+				if (this.$route.name === routerMap.tags.name) {
+					this.tagItem.name = `${this.rawData.total} posts`;
+					this.tagItem.titles = titleUnique(mergeTitleList(this.tagList));
+				} else {
+					this.tagItem.name = this.tagList[0].name;
+					this.tagItem.titles = this.tagList[0].titles;
+				}
+				return true;
+			}
 		}
 	},
 	data() {
 		return {
 			pageTitle: 'Tags | Sparetire',
+			enter: true,
+			rawData: {
+				tagList: []
+			},
 			tagList: [],
 			tagItem: {
 				name: '',
 				titles: []
 			},
-			tagRouteName: routerMap.tags.name,
+			tagRouteName: routerMap.tag.name,
 			postRouteName: routerMap.articles.name
 		};
 	}

@@ -142,10 +142,10 @@ router.get('/articles', function* (next) {
 				title: 'Hello',
 				id: 0
 			}, {
-				title: 'Hello',
+				title: 'Hello1',
 				id: 1
 			}, {
-				title: 'Hello',
+				title: 'Hello2',
 				id: 2
 			}]
 		}, {

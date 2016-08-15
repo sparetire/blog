@@ -4,6 +4,7 @@ import articleAside from '../components/aside/aside';
 import article from '../components/article/article';
 import archive from '../components/archive/archive';
 import tags from '../components/tags/tags';
+import tagList from '../components/tagList/tag-list';
 import routerMap from './routerMap';
 
 
@@ -19,9 +20,22 @@ router.map({
 		component: archive
 	},
 	'/tags': {
-		name: routerMap.tags.name,
-		component: tags
+		component: tags,
+		subRoutes: {
+			'/': {
+				name: routerMap.tags.name,
+				component: tagList
+			},
+			'/:tag': {
+				name: routerMap.tag.name,
+				component: tagList
+			}
+		}
 	},
+	// '/tags/:tag': {
+	// 	name: routerMap.tag.name,
+	// 	component: tags
+	// },
 	'/about': {
 		name: routerMap.about.name,
 		component: articleAside
