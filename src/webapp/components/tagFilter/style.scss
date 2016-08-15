@@ -1,5 +1,7 @@
 $tagItemFont: 16px "Microsoft Yahei";
 $tagItemBgColor: #e1e1e1;
+$activeTagBgColor: #555;
+$activeTagColor: #fff;
 .tag-filter {
 	overflow: hidden;
 }
@@ -19,7 +21,13 @@ $tagItemBgColor: #e1e1e1;
 	transform: translateZ(0);
 	transition-duration: 0.3s;
 	transition-property: transform;
-	&:hover, &:focus, &:active {
+	&:hover, &:active {
 		transform: scale(1.1) rotate(4deg);
 	}
+}
+
+.active-tag {
+	color: $activeTagColor;
+	background: $activeTagBgColor;
+	border-color: $activeTagBgColor;
 }

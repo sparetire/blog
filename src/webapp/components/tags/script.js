@@ -1,6 +1,5 @@
 import tagFilter from '../tagFilter/tag-filter';
 import tagFilterBar from '../tagFilterBar/tag-filter-bar';
-// import tagList from '../tagList/tag-list';
 import routerMap from '../../config/routerMap';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
@@ -21,6 +20,14 @@ function mergeTitleList(list) {
 	return list.reduce((prev, cur) => prev.concat(cur.titles), []);
 }
 
+function getItemByName(array, name) {
+	for (let i = 0; i < array.length; ++i) {
+		if (array[i].name === name) {
+			return array[i];
+		}
+	}
+}
+
 export default {
 	components: {
 		tagFilter,
@@ -32,6 +39,23 @@ export default {
 			return this.rawData.tagList;
 		}
 	},
+	// events: {
+	// 	tagMatched(item) {
+	// 		if (item) {
+	// 			let temp = getItemByName(this.tagList, item.name);
+	// 			if (temp) {
+	// 				this.tagItem.name = temp.name;
+	// 				this.tagItem.titles = temp.titles;
+	// 			} else {
+	// 				this.tagItem.name = 'Something wrong.';
+	// 				this.tagItem.titles = [];
+	// 			}
+	// 		} else {
+	// 			this.tagItem.name = `${this.rawData.total} posts`;
+	// 			this.tagItem.titles = titleUnique(mergeTitleList(this.tagList));
+	// 		}
+	// 	}
+	// },
 	route: {
 		canReuse() {
 			this.enter = false;
@@ -62,8 +86,14 @@ export default {
 							this.tagItem.name = `${data.total} posts`;
 							this.tagItem.titles = titleUnique(mergeTitleList(data.tagList));
 						} else {
-							this.tagItem.name = data.tagList[0].name;
-							this.tagItem.titles = data.tagList[0].titles;
+							let temp = getItemByName(this.tagList, this.$route.params.tag);
+							if (temp) {
+								this.tagItem.name = temp.name;
+								this.tagItem.titles = temp.titles;
+							} else {
+								this.tagItem.name = 'Something wrong.';
+								this.tagItem.titles = [];
+							}
 						}
 						NProgress.done();
 					});
@@ -72,8 +102,14 @@ export default {
 					this.tagItem.name = `${this.rawData.total} posts`;
 					this.tagItem.titles = titleUnique(mergeTitleList(this.tagList));
 				} else {
-					this.tagItem.name = this.tagList[0].name;
-					this.tagItem.titles = this.tagList[0].titles;
+					let temp = getItemByName(this.tagList, this.$route.params.tag);
+					if (temp) {
+						this.tagItem.name = temp.name;
+						this.tagItem.titles = temp.titles;
+					} else {
+						this.tagItem.name = 'Something wrong.';
+						this.tagItem.titles = [];
+					}
 				}
 				return true;
 			}
