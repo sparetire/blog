@@ -34,6 +34,11 @@ export default {
 		tagFilterBar
 		// tagList
 	},
+	methods: {
+		changeTitle(vm) {
+			document.title = vm.pageTitle;
+		}
+	},
 	computed: {
 		tagList() {
 			return this.rawData.tagList;
@@ -117,7 +122,6 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'Tags | Sparetire',
 			enter: true,
 			rawData: {
 				tagList: []

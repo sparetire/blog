@@ -3,5 +3,5 @@
 		<tag-filter :tag-list="tagList" :route-name="tagRouteName"></tag-filter>
 	</tag-filter-bar>
 	<!--<tag-list :tag-item="tagItem" :route-name="postRouteName"></tag-list>-->
-	<router-view :tag-item="tagItem" :route-name="postRouteName"></router-view>
+	<router-view :tag-item="tagItem" :route-name="postRouteName" @route-data-loaded="changeTitle"></router-view>
 </div>
