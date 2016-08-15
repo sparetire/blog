@@ -1,0 +1,62 @@
+$searchPd: 6px;
+$searchFontSize: 16px;
+$searchColor: #555;
+$searchFont: $searchFontSize "Microsoft Yahei";
+$tagListTitleFontSize: $searchPd * 2+ $searchFontSize;
+$tagListTitleFont: $tagListTitleFontSize "Microsoft Yahei";
+.tag-list {
+	padding-top: 40px;
+}
+
+.tag-search-bar {
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 0 0 8px 0;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+	// for BFC
+	// 不用overflow是因为它会挡住input的阴影
+	float: left;
+}
+
+.tag-name {
+	padding: 0;
+	margin: 0;
+	color: #333;
+	font: $tagListTitleFont;
+	float: left;
+}
+
+.search-bar {
+	float: right;
+	font-size: $tagListTitleFontSize;
+	position: relative;
+	input {
+		font: $searchFont;
+		width: 9em;
+		color: $searchColor;
+		border: 1px solid $searchColor;
+		border-radius: 4px;
+		outline: none;
+		padding: $searchPd 2em $searchPd 10px;
+		transition: all 0.3s ease;
+		&:focus, &:hover {
+			width: 16em;
+			box-shadow: 0 0 2px 2px rgba($color: #555, $alpha: 0.3);
+		}
+	}
+	.btn-search {
+		width: 2em;
+		height: 36px;
+		padding: 0;
+		font-size: 20px;
+		border: none;
+		outline: none;
+		background: transparent;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		i {
+			vertical-align: middle;
+		}
+	}
+}

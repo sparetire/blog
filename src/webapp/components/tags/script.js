@@ -36,7 +36,7 @@ export default {
 	},
 	methods: {
 		changeTitle(vm) {
-			document.title = vm.pageTitle;
+			document.title = this.pageTitle = vm.pageTitle ? vm.pageTitle : this.pageTitle;
 		}
 	},
 	computed: {
@@ -123,6 +123,7 @@ export default {
 	data() {
 		return {
 			enter: true,
+			pageTitle: 'Tag | Sparetire',
 			rawData: {
 				tagList: []
 			},

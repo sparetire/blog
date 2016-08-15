@@ -1,4 +1,10 @@
 <div class="tag-list">
-	<h1 class="tag-name">{{tagItem.name}}</h1>
-	<title-list :title-list="tagItem.titles" :route-name="routeName"></title-list>
+	<div class="tag-search-bar">
+		<h1 class="tag-name">{{tagItem.name}}</h1>
+		<div class="search-bar">
+			<input type="text" maxlength="16" name="search" placeholder="搜索标题中的关键字" v-model="query">
+			<button class="btn-search"><i class="icon-search"></i></button>
+		</div>
+	</div>
+	<title-list :title-list="titles" :route-name="routeName"></title-list>
 </div>
