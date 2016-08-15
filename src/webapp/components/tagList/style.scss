@@ -37,7 +37,7 @@ $tagListTitleFont: $tagListTitleFontSize "Microsoft Yahei";
 		border: 1px solid $searchColor;
 		border-radius: 4px;
 		outline: none;
-		padding: $searchPd 2em $searchPd 10px;
+		padding: $searchPd 2.5em $searchPd 10px;
 		transition: all 0.3s ease;
 		&:focus, &:hover {
 			width: 16em;
