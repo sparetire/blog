@@ -1,4 +1,4 @@
-$dtTitleFont: 40px "Microsoft Yahei";
+$dtTitleFont: bold 40px "Microsoft Yahei";
 $dtTitleColor: #333;
 $dtInfoFont: 14px "Microsoft Yahei";
 $dtInfoColor: #999;
@@ -39,16 +39,19 @@ $dtContentFont: 16px "Microsoft Yahei";
 	h1, h2, h3, h4, h5, h6, p {
 		margin: 20px 0;
 	}
-	h1 {
-		font-size: 28px;
+	h1, h2, h3, h4, h5, h6 {
+		color: #444;
 	}
-	h2 {
+	h1 {
 		font-size: 26px;
 	}
-	h3 {
+	h2 {
 		font-size: 24px;
 	}
+	h3 {
+		font-size: 22px;
+	}
 	h4, h5, h6 {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }

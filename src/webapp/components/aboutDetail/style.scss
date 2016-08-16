@@ -1,0 +1,34 @@
+$aboutTitleColor: #333;
+$aboutContentColor: #555;
+$aboutContentFont: 16px "Microsoft Yahei";
+.about-detail {
+	width: 100%;
+	margin-top: 80px;
+}
+
+.about-content {
+	color: $aboutContentColor;
+	font: $aboutContentFont;
+	h1, h2, h3, h4, h5, h6, p, ul {
+		margin: 20px 0;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 40px;
+		color: $aboutTitleColor;
+	}
+	h1 {
+		font-size: 30px;
+	}
+	h2 {
+		font-size: 28px;
+	}
+	h3 {
+		font-size: 26px;
+	}
+	h4, h5, h6 {
+		font-size: 22px;
+	}
+	li {
+		margin: 10px 0;
+	}
+}

@@ -14,11 +14,6 @@ export default {
 			required: true
 		}
 	},
-	// computed: {
-	// 	titles() {
-	// 		return this.tagItem.titles.slice();
-	// 	}
-	// },
 	route: {
 		data() {
 			if (this.$route.name === routerMap.tags.name) {

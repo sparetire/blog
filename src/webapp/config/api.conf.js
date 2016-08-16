@@ -32,6 +32,9 @@ let APIs = {
 	},
 	tags: {
 		pathname: '/tags'
+	},
+	about: {
+		pathname: '/about'
 	}
 };
 

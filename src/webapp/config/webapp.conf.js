@@ -1,8 +1,8 @@
 export default {
 	defaultLogo: 'logo',
-	blogName: 'Sparetire',
+	blogName: '0x45E0',
 	blogIntro: '//无可奉告',
-	sumaryLimit: 5,
+	summaryLimit: 200,
 	perPageLimit: 5,
 	pageCount: 10,
 	navList: [{
