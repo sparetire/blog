@@ -43,24 +43,7 @@ export default {
 		events: {
 			//切换应当和路由绑定而不是和点击事件绑定
 			onRouteChange(route) {
-				// switch (route.name) {
-				// 	case routerMap.home.name:
-				// 		loadArticleAside(this, route);
-				// 		break;
-				// 	case routerMap.archives.name:
-				// 		loadArticleAside(this, route);
-				// 		break;
-				// 	case routerMap.tags.name:
-				// 		loadArticleAside(this, route);
-				// 		break;
-				// 	case routerMap.about.name:
-				// 		loadArticleAside(this, route);
-				// 		break;
-				// 	default:
-				// 		break;
-				// }
 				this.path = route.path;
-
 			}
 		}
 };

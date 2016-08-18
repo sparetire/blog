@@ -16,7 +16,8 @@ module.exports = {
 	target: 'web',
 	cache: true,
 	entry: {
-		main: path.resolve(APP_PATH, 'main.js')
+		main: path.resolve(APP_PATH, 'main.js'),
+		login: path.resolve(APP_PATH, 'login.js')
 	},
 	output: {
 		path: OUTPUT_PATH,
@@ -134,6 +135,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: path.resolve(APP_PATH, 'index.ejs'),
+			favicon: path.resolve(APP_PATH, './assets/favicon.ico'),
 			chunks: ['main', 'common'],
 			inject: 'body',
 			minify: {

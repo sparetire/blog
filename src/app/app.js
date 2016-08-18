@@ -1,8 +1,11 @@
 const Koa = require('koa');
 const KoaStatic = require('koa-static');
 const KoaRouter = require('koa-router');
+const render = require('koa-ejs');
 const getRawBody = require('raw-body');
 const path = require('path');
+const favicon = require('koa-favicon');
+const captchagen = require('captchagen');
 const RequestWrapper = require('./RequestWrapper');
 const APIConfig = require('./api.conf');
 const API = require('../common/APIs');
@@ -242,6 +245,19 @@ router.get('/articles', function* (next) {
 * Android(也写上吧。。)`
 		};
 		return;
+	})
+	.get('/captcha.png', function* (next) {
+		var captcha = captchagen.create({
+			height: 38,
+			width: 120,
+			font: 'Microsoft Yahei'
+		});
+		captcha.generate();
+		console.log(captcha.text());
+		this.body = captcha.buffer();
+	})
+	.get('/login', function* (next) {
+		yield this.render('login');
 	});
 
 // setTimeout(function () {
@@ -258,9 +274,26 @@ router.get('/articles', function* (next) {
 // }, 5000);
 
 let app = new Koa();
+render(app, {
+	root: path.resolve(__dirname, 'view'),
+	layout: 'template',
+	viewExt: 'html',
+	cache: false,
+	debug: true
+});
+
 
 app.use(KoaStatic(path.resolve(__dirname, '../../dist')))
+	.use(favicon(path.resolve(__dirname, '../../dist/favicon.ico')))
 	.use(router.routes())
+	.use(function* (next) {
+		if (this.status == 404) {
+			this.redirect('/');
+			return;
+		} else {
+			yield next;
+		}
+	})
 	.use(function* (next) {
 		let ctx = this;
 		let body = yield getRawBody(ctx.req, {

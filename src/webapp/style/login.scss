@@ -1,0 +1,99 @@
+$formFontFamily: "Microsoft Yahei";
+$legendColor: #333;
+$formColor: #555;
+$formFontSize: 16px;
+$btnColor: #999;
+body {
+	background: url('../assets/bg.jpg');
+}
+
+.btcf:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.login-form {
+	margin-top: 200px;
+	width: 100%;
+	form {
+		color: $formColor;
+		background: #fff;
+		font: 16px $formFontFamily;
+		width: 450px;
+		margin: auto;
+		border-radius: 8px;
+		position: relative;
+		legend {
+			color: $legendColor;
+			font-size: 26px;
+			padding: 5px;
+			border-bottom: 2px solid $legendColor;
+			position: absolute;
+			top: 20px;
+		}
+		fieldset {
+			width: 400px;
+			border: none;
+			margin: auto;
+			// border: 2px solid #aaa;
+		}
+		label, input {
+			display: block;
+		}
+		input {
+			width: 15em;
+			font: 18px $formFontFamily;
+			margin-top: 8px;
+			padding: 6px 12px;
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			transition: all 0.3s ease;
+			&:focus {
+				outline: $legendColor;
+				border: 1px solid $formColor;
+				box-shadow: 0 0 8px rgba($color: $legendColor, $alpha: 0.2);
+			}
+			&#captcha {
+				display: inline-block;
+				margin-right: 20px;
+				width: 7em;
+			}
+		}
+	}
+}
+
+#captcha-img {
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+div.first-row {
+	margin-top: 90px;
+}
+
+.form-row {
+	margin: 20px 0;
+}
+
+.submit {
+	text-align: center;
+}
+
+#btn-login {
+	color: #fff;
+	background: $btnColor;
+	border: 2px solid $btnColor;
+	border-radius: 8px;
+	width: 120px;
+	font-size: 20px;
+	display: inline-block;
+	padding: 8px 15px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	&:hover {
+		color: $btnColor;
+		background: #fff;
+		box-shadow: 0 0 10px rgba($color: $formColor, $alpha: 0.2);
+	}
+}
