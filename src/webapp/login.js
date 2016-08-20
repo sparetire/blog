@@ -10,5 +10,12 @@ window.APIs = APIs;
 /** init */
 
 $(() => {
-	console.log('Loading');
+	$('#captcha-img')
+		.click(function () {
+			this.src = `${APIs.captcha.url}?id=${(new Date()).getTime()}`;
+		});
+	// $('#lg-form')
+	// 	.submit(function (event) {
+	// 		event.preventDefault();
+	// 	});
 });

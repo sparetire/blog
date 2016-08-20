@@ -1,5 +1,5 @@
 <div class="login-form">
-	<form action="#" method="post" autocomplete="off">
+	<form id="lg-form" action="/authorize" method="post" autocomplete="off">
 		<fieldset>
 			<legend>用户登录</legend>
 			<div class="form-row first-row">
@@ -16,7 +16,7 @@
 				<label for="captcha">验证码</label>
 				<div class="form-captcha btcf">
 					<input type="text" id="captcha" name="captcha" axlength="8" autocomplete="off" placeholder="请输入验证码">
-					<img id="captcha-img" src="/captcha.png" width="76" height="38" alt="点击刷新">
+					<img id="captcha-img" src="/captcha" width="76" height="38" alt="点击刷新">
 				</div>
 			</div>
 			<div class="form-row submit">

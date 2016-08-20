@@ -1,0 +1,98 @@
+const BlackList = require('../lib/blacklist');
+const AuthErrList = require('../lib/auth-err-list');
+const UuidCaptchaList = require('../lib/uuid-captcha-list');
+const UuidTokenList = require('../lib/uuid-token-list');
+const getRawBody = require('raw-body');
+const queryString = require('querystring');
+const crypto = require('crypto');
+
+
+let secret = 'sparetire';
+
+// todo
+function getToken(uuid) {
+	let currentTime = (new Date())
+		.getTime();
+	let data = uuid + currentTime;
+	let token = crypto.createHmac('sha256', secret)
+		.update(data)
+		.digest('hex');
+	return token;
+}
+
+// todo
+function isValidUser(username, password, captcha, uuid) {
+	let uuidCaptchaList = UuidCaptchaList.getInstance();
+	return uuidCaptchaList.get(uuid)
+		.then(data => {
+			return username === 'admin' && password === '123' && captcha === data;
+		});
+}
+
+//todo
+function isOverLimit(ipInfo) {
+	let currentTime = (new Date())
+		.getTime();
+	console.log(`授权失败次数:${ipInfo.errorCount}`);
+	return currentTime - ipInfo.startTime < 36000 && ipInfo.errorCount >= 5;
+}
+
+function authorize(opts) {
+	return function* (next) {
+		let ctx = this;
+		let ip = this.ip;
+		let session = this.session;
+		let blkList = BlackList.getInstance();
+		let authErrList = AuthErrList.getInstance();
+		// 一个ip只可能存在于黑名单或观察列表中的一个里面
+		// 不可能既属于黑名单又属于观察列表
+		// 如果ip在黑名单中就返回错误
+		if (yield blkList.has(ip)) {
+			ctx.body = '该ip请求次数过多';
+			return;
+		} else if (!(yield authErrList.has(ip))) {
+			// 将新ip加入请求授权错误次数的观察队列
+			authErrList.addOrUpdate(ip);
+		}
+
+		// 解析请求body
+		let reqBody = yield getRawBody(ctx.req, {
+			length: ctx.request.length,
+			limit: '1mb',
+			encoding: 'utf8'
+		});
+		let formdata = queryString.parse(reqBody);
+		// 授权成功标记
+		let isAuthorized = yield isValidUser(formdata.username, formdata.password,
+			formdata.captcha, session.uuid);
+		// 不论授权成功还是失败都删除上次的验证码
+		let uuidCaptchaList = UuidCaptchaList.getInstance();
+		uuidCaptchaList.del(session.uuid);
+
+		if (isAuthorized) {
+			// 根据uuid取得一个token
+			let currentTime = (new Date())
+				.getTime();
+			let token = getToken(session.uuid);
+			let uuidTokenList = UuidTokenList.getInstance();
+			uuidTokenList.addOrUpdate(session.uuid, token);
+			ctx.cookies.set('token', token, {
+				expires: new Date(currentTime + 30000)
+			});
+			// todo
+			ctx.body = token;
+			return;
+		} else {
+			authErrList.incr(ip);
+			let ipInfo = yield * authErrList.get(ip);
+			if (isOverLimit(ipInfo)) {
+				authErrList.del(ip);
+				blkList.addOrUpdate(ip);
+			}
+			ctx.redirect('/login');
+		}
+		return;
+	};
+}
+
+module.exports = authorize;
