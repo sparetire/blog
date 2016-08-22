@@ -31,11 +31,7 @@ export default {
 	},
 	watch: {
 		path(newVal, oldVal) {
-			// 高亮当前导航栏
 			let path = newVal;
-			this.navItems.forEach(function (item, i, array) {
-				!path.indexOf(item.url) ? item.active = true : item.active = false;
-			});
 			// logo 切换
 			if (path === '/about') {
 				this.currentLogo = 'avatar';

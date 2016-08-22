@@ -1,3 +1,4 @@
+import routerMap from './routerMap';
 export default {
 	defaultLogo: 'logo',
 	blogName: '0x45E0',
@@ -8,22 +9,18 @@ export default {
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
-		url: '/home',
-		active: true
+		routeName: routerMap.home.name
 	}, {
 		iconClass: 'icon-folder-open',
 		content: 'Archives',
-		url: '/archives',
-		active: false
+		routeName: routerMap.archives.name
 	}, {
 		iconClass: 'icon-price-tag',
 		content: 'Tags',
-		url: '/tags',
-		active: false
+		routeName: routerMap.tags.name
 	}, {
 		iconClass: 'icon-user',
 		content: 'About',
-		url: '/about',
-		active: false
+		routeName: routerMap.about.name
 	}]
 };
