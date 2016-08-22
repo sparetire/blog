@@ -79,10 +79,10 @@ export default {
 				NProgress.inc(0.2);
 				/* global APIs */
 				return APIs.tags.get()
-					.then((resp) => {
+					.then(resp => {
 						return resp.json();
 					})
-					.then((data) => {
+					.then(data => {
 						this.rawData = data;
 						if (this.$route.name === routerMap.tags.name) {
 							// 不要修改这个tagItem最好，会有副作用

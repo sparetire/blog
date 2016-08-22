@@ -1,27 +1,33 @@
 /* global logger */
 const RedisClient = require('./redis-client');
 const util = require('../../common/util');
+// 记录每个ip在一定时间内请求验证码的次数的池
 
 let startTimePrefix = 'starttime';
 let requestCountPrefix = 'count';
+// 默认记录一个小时内请求验证码的次数
+let defaultTimeout = 3600;
 let config = {
 	prefix: 'rc',
-	timeout: 30
+	timeout: defaultTimeout
 };
 let client = null;
 let instance = null;
 let flag = true;
 
 function CaptchaReqList() {
-	let self = this instanceof CaptchaReqList ? this : Object.create(CaptchaReqList.prototype);
+	let self = this instanceof CaptchaReqList ? this : Object.create(
+		CaptchaReqList.prototype);
 	if (flag) {
-		throw new Error('Use CaptchaReqList.getInstance to get an instance of CaptchaReqList.');
+		throw new Error(
+			'Use CaptchaReqList.getInstance to get an instance of CaptchaReqList.');
 	}
 	if (!util.isFunction(self.has)) {
 		CaptchaReqList.prototype.has = function (ip) {
-			return client.existsAsync(`${config.prefix}${startTimePrefix}${ip}`).then((reply) => {
-				return !!reply;
-			});
+			return client.existsAsync(`${config.prefix}${startTimePrefix}${ip}`)
+				.then(reply =>
+					!!reply
+				);
 		};
 	}
 	if (!util.isFunction(self.addOrUpdate)) {
@@ -29,7 +35,8 @@ function CaptchaReqList() {
 			let startTimeKey = `${config.prefix}${startTimePrefix}${ip}`;
 			let countKey = `${config.prefix}${requestCountPrefix}${ip}`;
 			// 非原子性，可能有隐患
-			client.set(startTimeKey, (new Date()).getTime());
+			client.set(startTimeKey, (new Date())
+				.getTime());
 			client.expire(startTimeKey, timeout || config.timeout);
 			client.set(countKey, '0');
 			client.expire(countKey, timeout || config.timeout);
@@ -61,6 +68,13 @@ function CaptchaReqList() {
 			client.incr(countKey);
 		};
 	}
+	self.DEFAULT_TIMEOUT = config.timeout;
+	Object.defineProperties(self, {
+		DEFAULT_TIMEOUT: {
+			configurable: false,
+			writable: false
+		}
+	});
 	flag = true;
 	return self;
 }
@@ -68,6 +82,16 @@ function CaptchaReqList() {
 CaptchaReqList.config = function (opts) {
 	config = opts || config;
 	instance = null;
+	Object.defineProperties(config, {
+		prefix: {
+			configurable: false,
+			writable: false
+		},
+		timeout: {
+			configurable: false,
+			writable: false
+		}
+	});
 };
 
 CaptchaReqList.getInstance = function () {

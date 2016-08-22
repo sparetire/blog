@@ -2,8 +2,12 @@ const winston = require('winston');
 const path = require('path');
 const RedisClient = require('./lib/redis-client');
 const config = require('./config/app.conf');
+const APIConfig = require('./api.conf');
+const API = require('../common/APIs');
+const RequestWrapper = require('./RequestWrapper');
 
 function init(app) {
+	let APIs = new API(APIConfig, RequestWrapper);
 	let logger = new(winston.Logger)({
 		exitOnError: false,
 		transports: [

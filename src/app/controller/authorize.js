@@ -1,7 +1,8 @@
 const BlackList = require('../lib/blacklist');
 const AuthErrList = require('../lib/auth-err-list');
 const UuidCaptchaList = require('../lib/uuid-captcha-list');
-const UuidTokenList = require('../lib/uuid-token-list');
+// const UuidTokenList = require('../lib/uuid-token-list');
+const TokenList = require('../lib/token-list');
 const getRawBody = require('raw-body');
 const queryString = require('querystring');
 const crypto = require('crypto');
@@ -44,6 +45,7 @@ function authorize(opts) {
 		let session = this.session;
 		let blkList = BlackList.getInstance();
 		let authErrList = AuthErrList.getInstance();
+		let tokenList = TokenList.getInstance();
 		// 一个ip只可能存在于黑名单或观察列表中的一个里面
 		// 不可能既属于黑名单又属于观察列表
 		// 如果ip在黑名单中就返回错误
@@ -74,14 +76,12 @@ function authorize(opts) {
 			let currentTime = (new Date())
 				.getTime();
 			let token = getToken(session.uuid);
-			let uuidTokenList = UuidTokenList.getInstance();
-			uuidTokenList.addOrUpdate(session.uuid, token);
+			tokenList.addOrUpdate(token);
 			ctx.cookies.set('token', token, {
-				expires: new Date(currentTime + 30000)
+				expires: new Date(currentTime + tokenList.DEFAULT_TIMEOUT * 1000)
 			});
 			// todo
 			ctx.body = token;
-			return;
 		} else {
 			authErrList.incr(ip);
 			let ipInfo = yield * authErrList.get(ip);

@@ -1,13 +1,15 @@
 /* global logger */
 const RedisClient = require('./redis-client');
 const util = require('../../common/util');
-
+// 记录每个ip在一定时间内授权失败次数的池
 
 let startTimePrefix = 'starttime';
 let errorCountPrefix = 'count';
+// 默认记录一个小时内的失败次数
+let defaultTimeout = 3600;
 let config = {
 	prefix: 'autherr',
-	timeout: 30
+	timeout: defaultTimeout
 };
 let client = null;
 let instance = null;
@@ -22,9 +24,7 @@ function AuthErrList() {
 	if (!util.isFunction(self.has)) {
 		AuthErrList.prototype.has = function (ip) {
 			return client.existsAsync(`${config.prefix}${startTimePrefix}${ip}`)
-				.then((reply) => {
-					return !!reply;
-				});
+				.then(reply => !!reply);
 		};
 	}
 	if (!util.isFunction(self.addOrUpdate)) {
@@ -64,6 +64,13 @@ function AuthErrList() {
 			};
 		};
 	}
+	self.DEFAULT_TIMEOUT = config.timeout;
+	Object.defineProperties(self, {
+		DEFAULT_TIMEOUT: {
+			configurable: false,
+			writable: false
+		}
+	});
 	flag = true;
 	return self;
 }
@@ -71,6 +78,16 @@ function AuthErrList() {
 AuthErrList.config = function (opts) {
 	config = opts || config;
 	instance = null;
+	Object.defineProperties(config, {
+		prefix: {
+			configurable: false,
+			writable: false
+		},
+		timeout: {
+			configurable: false,
+			writable: false
+		}
+	});
 };
 
 AuthErrList.getInstance = function () {

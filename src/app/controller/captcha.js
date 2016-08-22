@@ -3,21 +3,14 @@ const uuid = require('node-uuid');
 const BlackList = require('../lib/blacklist');
 const CaptchaReqList = require('../lib/captcha-req-list');
 const UuidCaptchaList = require('../lib/uuid-captcha-list');
-// 用来存放每个ip第一次请求验证码的时间的表
-let reqCaptchaTime = 'reqCaptchaTime';
-// 用来存放每个ip请求验证码的次数的表
-let reqCaptchaCount = 'reqCaptchaCount';
-// ip黑名单
-let blacklist = 'blacklist';
-// 用来存放每个session/uuid对应的验证码的值
-let captchaContent = 'captchaContent';
-// session的最大无响应时间也即过期时间，也是uuid的过期时间，每次重新请求会刷新,ms
-let sessionTimeout = 20000;
+// session的最大无响应时间也即过期时间，也是uuid的过期时间，uuid过期不代表token过期，每次重新请求会刷新,ms
+let SESSION_TIMEOUT = 300000;
 
 
 
 function isOverLimit(ipInfo) {
-	let currentTime = (new Date()).getTime();
+	let currentTime = (new Date())
+		.getTime();
 	// todo
 	console.log(`验证码请求次数:${ipInfo.requestCount}`);
 	return currentTime - ipInfo.startTime < 36000 && ipInfo.requestCount >= 10;
@@ -56,7 +49,6 @@ function captcha(opts) {
 		// 虽然要多查一次redis
 		if (yield blkList.has(ip)) {
 			ctx.body = '该ip请求次数过多';
-			return;
 		} else {
 			let session = ctx.session;
 			// 生成验证码，这个智障库不能复用这个配置对象。。它是根据这个对象来生成随机文本的。。
@@ -69,14 +61,14 @@ function captcha(opts) {
 			// 需要一个额外id变量的原因是可能删除redis[session.id]的时候session的id已经变了
 			let id = session.uuid = session.isNew ? uuid.v4() : session.uuid || uuid.v4();
 			// 刷新session过期时间
-			session.maxAge = sessionTimeout;
+			session.maxAge = SESSION_TIMEOUT;
 			// 将uuid-验证码存入redis的验证码池或者刷新验证码
 			uuidCaptchaList.addOrUpdate(id, captchaImg.text());
 			// todo
 			console.log(captchaImg.text());
 			ctx.body = captchaImg.buffer();
-			return;
 		}
+		return;
 	};
 }
 

@@ -13,15 +13,15 @@ export default {
 			this.$dispatch('onRouteChange', this.$route);
 			/* global APIs */
 			return APIs.about.get()
-				.then((resp) => {
+				.then(resp => {
 					NProgress.inc(0.2);
 					return resp.json();
 				})
-				.then((data) => {
+				.then(data => {
 					let markdownParser = MarkdownParseService.getInstance();
 					NProgress.inc(0.2);
 					return markdownParser.parse(data.content)
-						.then((content) => {
+						.then(content => {
 							NProgress.done();
 							this.userInfo = content;
 						});
