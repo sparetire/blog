@@ -1,6 +1,7 @@
 import navBar from '../navBar/nav-bar';
 import mainContent from '../mainContent/main-content';
 import scrollTop from '../scrollTop/scroll-top';
+import config from '../../config/webapp.conf';
 import $ from 'jquery';
 import '../../style/app.scss';
 
@@ -26,8 +27,14 @@ export default {
 		},
 		data() {
 			return {
-				path: '',
-				scrollTopShow: false
+				routeName: '',
+				defaultLogo: config.defaultLogo,
+				navList: config.navList,
+				scrollTopShow: false,
+				navInfo: {
+					name: config.blogName,
+					intro: config.blogIntro
+				}
 			};
 		},
 		methods: {
@@ -43,7 +50,7 @@ export default {
 		events: {
 			//切换应当和路由绑定而不是和点击事件绑定
 			onRouteChange(route) {
-				this.path = route.path;
+				this.routeName = route.name;
 			}
 		}
 };

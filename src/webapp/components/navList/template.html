@@ -2,7 +2,7 @@
 	<ul>
 		<li v-for="item in items" class="nav-item" v-link-active>
 			<i :class="item.iconClass"></i>
-			<a v-link="{name: item.routeName, activeClass: 'active-item'}">{{item.content}}</a>
+			<a v-link="{name: item.routeName, params: item.params, activeClass: 'active-item'}">{{item.content}}</a>
 		</li>
 	</ul>
 </nav>

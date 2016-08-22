@@ -44,23 +44,6 @@ export default {
 			return this.rawData.tagList;
 		}
 	},
-	// events: {
-	// 	tagMatched(item) {
-	// 		if (item) {
-	// 			let temp = getItemByName(this.tagList, item.name);
-	// 			if (temp) {
-	// 				this.tagItem.name = temp.name;
-	// 				this.tagItem.titles = temp.titles;
-	// 			} else {
-	// 				this.tagItem.name = 'Something wrong.';
-	// 				this.tagItem.titles = [];
-	// 			}
-	// 		} else {
-	// 			this.tagItem.name = `${this.rawData.total} posts`;
-	// 			this.tagItem.titles = titleUnique(mergeTitleList(this.tagList));
-	// 		}
-	// 	}
-	// },
 	route: {
 		canReuse() {
 			this.enter = false;

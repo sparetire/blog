@@ -9,11 +9,17 @@ export default {
 	navList: [{
 		iconClass: 'icon-home',
 		content: 'Home',
-		routeName: routerMap.home.name
+		routeName: routerMap.home.name,
+		params: {
+			page: 1
+		}
 	}, {
 		iconClass: 'icon-folder-open',
 		content: 'Archives',
-		routeName: routerMap.archives.name
+		routeName: routerMap.archives.name,
+		params: {
+			page: 1
+		}
 	}, {
 		iconClass: 'icon-price-tag',
 		content: 'Tags',

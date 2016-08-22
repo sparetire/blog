@@ -3,7 +3,6 @@ import info from '../info/info';
 import navList from '../navList/nav-list';
 import snsList from '../snsList/sns-list';
 import avatar from '../avatar/avatar';
-import config from '../../config/webapp.conf';
 
 export default {
 	components: {
@@ -13,27 +12,25 @@ export default {
 		snsList,
 		avatar,
 	},
-	data() {
-		return {
-			currentLogo: config.defaultLogo,
-			navInfo: {
-				name: config.blogName,
-				intro: config.blogIntro
-			},
-			navItems: config.navList,
-		};
-	},
 	props: {
-		path: {
+		routeName: {
 			type: String,
 			required: true
+		},
+		currentLogo: {
+			type: String,
+			default: 'logo'
+		},
+		navItems: {
+			type: Array,
+			default: []
 		}
 	},
 	watch: {
-		path(newVal, oldVal) {
-			let path = newVal;
+		routeName(newVal, oldVal) {
+			let routeName = newVal;
 			// logo 切换
-			if (path === '/about') {
+			if (routeName === 'about') {
 				this.currentLogo = 'avatar';
 			} else {
 				this.currentLogo = 'logo';
