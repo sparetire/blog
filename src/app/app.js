@@ -2,7 +2,6 @@ const Koa = require('koa');
 const KoaStatic = require('koa-static');
 const KoaRouter = require('koa-router');
 const KoaSession = require('koa-session');
-const render = require('koa-ejs');
 const getRawBody = require('raw-body');
 const path = require('path');
 const favicon = require('koa-favicon');
@@ -10,6 +9,7 @@ const init = require('./init');
 const captcha = require('./controller/captcha');
 const authorize = require('./controller/authorize');
 const login = require('./controller/login');
+const backstage = require('./controller/backstage');
 
 let router = new KoaRouter();
 router.get('/articles', function* (next) {
@@ -248,18 +248,12 @@ router.get('/articles', function* (next) {
 	})
 	.get('/captcha', captcha())
 	.get('/login', login())
-	.post('/authorize', authorize());
+	.post('/authorize', authorize())
+	.get('/backstage', backstage());
 
 let app = new Koa();
 app.keys = ['wTf852,./'];
 init(app);
-render(app, {
-	root: path.resolve(__dirname, 'view'),
-	layout: 'template',
-	viewExt: 'html',
-	cache: false,
-	debug: true
-});
 
 
 app.use(KoaStatic(path.resolve(__dirname, '../../dist')))

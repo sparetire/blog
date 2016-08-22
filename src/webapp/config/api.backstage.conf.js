@@ -35,9 +35,6 @@ let APIs = {
 	},
 	about: {
 		pathname: '/about'
-	},
-	captcha: {
-		pathname: '/captcha'
 	}
 };
 

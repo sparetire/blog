@@ -6,7 +6,8 @@
 </head>
 <body>
 	<%- body -%>
-		<script src="/scripts/vendor.js"></script>
-		<script src="/scripts/login.js"></script>
+		<% scripts.forEach(function (script) {%>
+			<script src="<%= script %>"></script>
+			<%}) %>
 </body>
 </html>

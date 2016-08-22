@@ -8,12 +8,12 @@ let SESSION_TIMEOUT = 300000;
 
 
 
-function isOverLimit(ipInfo) {
+function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
 	// todo
 	console.log(`验证码请求次数:${ipInfo.requestCount}`);
-	return currentTime - ipInfo.startTime < 36000 && ipInfo.requestCount >= 10;
+	return currentTime - ipInfo.startTime < timeout && ipInfo.requestCount >= 10;
 }
 
 
@@ -36,7 +36,7 @@ function captcha(opts) {
 		}
 
 		let ipInfo = yield * cpReqList.get(ip);
-		if (isOverLimit(ipInfo)) {
+		if (isOverLimit(ipInfo, cpReqList.DEFAULT_TIMEOUT)) {
 			cpReqList.del(ip);
 			blkList.addOrUpdate(ip);
 		} else {

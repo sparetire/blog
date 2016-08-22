@@ -1,15 +1,15 @@
 const TokenList = require('../lib/token-list');
 
-function login(opst) {
+function backstage(opts) {
 	return function* (next) {
 		let ctx = this;
 		let tokenList = TokenList.getInstance();
 		let token = ctx.cookies.get('token');
 		let scripts = ['/scripts/vendor.js', '/scripts/login.js'];
 		if (yield tokenList.has(token)) {
-			ctx.redirect('/');
+			ctx.redirect('/login');
 		} else {
-			yield this.render('login', {
+			yield this.render('backstage', {
 				scripts
 			});
 		}
@@ -17,4 +17,4 @@ function login(opst) {
 	};
 }
 
-module.exports = login;
+module.exports = backstage;

@@ -31,11 +31,11 @@ function isValidUser(username, password, captcha, uuid) {
 }
 
 //todo
-function isOverLimit(ipInfo) {
+function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
 	console.log(`授权失败次数:${ipInfo.errorCount}`);
-	return currentTime - ipInfo.startTime < 36000 && ipInfo.errorCount >= 5;
+	return currentTime - ipInfo.startTime < timeout && ipInfo.errorCount >= 5;
 }
 
 function authorize(opts) {
@@ -85,7 +85,7 @@ function authorize(opts) {
 		} else {
 			authErrList.incr(ip);
 			let ipInfo = yield * authErrList.get(ip);
-			if (isOverLimit(ipInfo)) {
+			if (isOverLimit(ipInfo, authErrList.DEFAULT_TIMEOUT)) {
 				authErrList.del(ip);
 				blkList.addOrUpdate(ip);
 			}

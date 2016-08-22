@@ -1,4 +1,5 @@
 const winston = require('winston');
+const render = require('koa-ejs');
 const path = require('path');
 const RedisClient = require('./lib/redis-client');
 const config = require('./config/app.conf');
@@ -8,6 +9,13 @@ const RequestWrapper = require('./RequestWrapper');
 
 function init(app) {
 	let APIs = new API(APIConfig, RequestWrapper);
+	render(app, {
+		root: path.resolve(__dirname, 'view'),
+		layout: 'template',
+		viewExt: 'html',
+		cache: false,
+		debug: true
+	});
 	let logger = new(winston.Logger)({
 		exitOnError: false,
 		transports: [
