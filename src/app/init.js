@@ -6,6 +6,7 @@ const config = require('./config/app.conf');
 const APIConfig = require('./api.conf');
 const API = require('../common/APIs');
 const RequestWrapper = require('./RequestWrapper');
+const routerMap = require('./config/routerMap');
 
 function init(app) {
 	let APIs = new API(APIConfig, RequestWrapper);
@@ -35,6 +36,8 @@ function init(app) {
 	});
 	// winston.remove(winston.transports.Console);
 	global.logger = logger;
+	global.routerMap = routerMap;
+	app.routerMap = routerMap;
 	RedisClient.config(config.redis);
 	logger.info('Koa app is initializing...');
 }

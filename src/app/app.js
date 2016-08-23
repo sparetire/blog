@@ -10,6 +10,7 @@ const captcha = require('./controller/captcha');
 const authorize = require('./controller/authorize');
 const login = require('./controller/login');
 const backstage = require('./controller/backstage');
+const routerMap = require('./config/routerMap');
 
 let router = new KoaRouter();
 router.get('/articles', function* (next) {
@@ -247,9 +248,9 @@ router.get('/articles', function* (next) {
 		return;
 	})
 	.get('/captcha', captcha())
-	.get('/login', login())
+	.get(routerMap.login.name, routerMap.login.path, login())
 	.post('/authorize', authorize())
-	.get('/backstage', backstage());
+	.get(routerMap.backstage.name, routerMap.backstage.path, backstage());
 
 let app = new Koa();
 app.keys = ['wTf852,./'];

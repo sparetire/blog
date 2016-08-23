@@ -1,0 +1,9 @@
+// main-content-route
+.mc-route-transition {
+	transition: all 0.5s ease;
+}
+
+.mc-route-enter, .mc-route-leave {
+	opacity: 0;
+	transform: translateX(20px);
+}

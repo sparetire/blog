@@ -1,7 +1,6 @@
 const BlackList = require('../lib/blacklist');
 const AuthErrList = require('../lib/auth-err-list');
 const UuidCaptchaList = require('../lib/uuid-captcha-list');
-// const UuidTokenList = require('../lib/uuid-token-list');
 const TokenList = require('../lib/token-list');
 const getRawBody = require('raw-body');
 const queryString = require('querystring');
@@ -80,8 +79,7 @@ function authorize(opts) {
 			ctx.cookies.set('token', token, {
 				expires: new Date(currentTime + tokenList.DEFAULT_TIMEOUT * 1000)
 			});
-			// todo
-			ctx.body = token;
+			ctx.redirect(ctx.routerMap.backstage);
 		} else {
 			authErrList.incr(ip);
 			let ipInfo = yield * authErrList.get(ip);
@@ -89,7 +87,7 @@ function authorize(opts) {
 				authErrList.del(ip);
 				blkList.addOrUpdate(ip);
 			}
-			ctx.redirect('/login');
+			ctx.redirect(ctx.routerMap.login);
 		}
 		return;
 	};

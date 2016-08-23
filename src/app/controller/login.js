@@ -7,7 +7,7 @@ function login(opst) {
 		let token = ctx.cookies.get('token');
 		let scripts = ['/scripts/vendor.js', '/scripts/login.js'];
 		if (yield tokenList.has(token)) {
-			ctx.redirect('/');
+			ctx.redirect(ctx.routerMap.backstage);
 		} else {
 			yield this.render('login', {
 				scripts

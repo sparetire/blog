@@ -17,7 +17,8 @@ module.exports = {
 	cache: true,
 	entry: {
 		main: path.resolve(APP_PATH, 'main.js'),
-		login: path.resolve(APP_PATH, 'login.js')
+		login: path.resolve(APP_PATH, 'login.js'),
+		backstage: path.resolve(APP_PATH, 'backstage.js')
 	},
 	output: {
 		path: OUTPUT_PATH,

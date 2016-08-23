@@ -1,0 +1,9 @@
+<div class="app">
+	<nav-bar :route-name="routeName" :current-logo="defaultLogo" :nav-items="navList"
+			:nav-info="navInfo"></nav-bar>
+	<main-content>
+		<router-view :config="config" :router="router" :router-map="routerMap" transition="mc-route"
+				transition-mode="out-in" @route-data-loaded="changeTitle" keep-alive></router-view>
+		<scroll-top :show="scrollTopShow"></scroll-top>
+	</main-content>
+</div>
