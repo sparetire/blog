@@ -22,5 +22,9 @@ export default {
 	articles: {
 		name: 'articles',
 		path: '/post/:id'
+	},
+	dashboard: {
+		name: 'dashboard',
+		path: '/dashboard'
 	}
 };

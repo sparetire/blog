@@ -43,3 +43,14 @@ $archiveItemFont: 26px "Microsoft Yahei";
 		background: #555;
 	}
 }
+
+.title-extra {
+	color: #555;
+	margin: 0 10px;
+	float: right;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	&:hover {
+		color: #000;
+	}
+}

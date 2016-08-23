@@ -42,6 +42,7 @@ function authorize(opts) {
 		let ctx = this;
 		let ip = this.ip;
 		let session = this.session;
+		let routerMap = this.routerMap;
 		let blkList = BlackList.getInstance();
 		let authErrList = AuthErrList.getInstance();
 		let tokenList = TokenList.getInstance();
@@ -79,7 +80,7 @@ function authorize(opts) {
 			ctx.cookies.set('token', token, {
 				expires: new Date(currentTime + tokenList.DEFAULT_TIMEOUT * 1000)
 			});
-			ctx.redirect(ctx.routerMap.backstage);
+			ctx.redirect(routerMap.backstage.path);
 		} else {
 			authErrList.incr(ip);
 			let ipInfo = yield * authErrList.get(ip);
@@ -87,7 +88,7 @@ function authorize(opts) {
 				authErrList.del(ip);
 				blkList.addOrUpdate(ip);
 			}
-			ctx.redirect(ctx.routerMap.login);
+			ctx.redirect(routerMap.login.path);
 		}
 		return;
 	};

@@ -3,10 +3,11 @@ import VueRouter from 'vue-router';
 import articleAside from '../components/aside/aside';
 import article from '../components/article/article';
 import archive from '../components/archive/archive';
+import dashboard from '../components/dashboard/dashboard';
 import tags from '../components/tags/tags';
 import tagList from '../components/tagList/tag-list';
 import about from '../components/about/about';
-import routerMap from './routerMap';
+import routerMap from './routerMap.backstage';
 
 
 Vue.use(VueRouter);
@@ -44,11 +45,16 @@ router.map({
 	'/post/:id': {
 		name: routerMap.articles.name,
 		component: article
+	},
+	'/dashboard/:page': {
+		name: routerMap.dashboard.name,
+		component: dashboard
 	}
 });
 
 router.redirect({
 	'/archives': '/archives/1',
+	'/dashboard': '/dashboard/1',
 	'*': '/home/1'
 });
 

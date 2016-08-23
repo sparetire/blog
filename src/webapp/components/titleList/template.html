@@ -2,6 +2,7 @@
 	<ul v-if="titleList.length">
 		<li v-for="item in titleList" class="title-item">
 			<a v-link="{name: routeName, 	params: {id: item.id}}">{{item.title}}</a>
+			<span v-for="itm in options" @click="onExtraClick(item.id, itm.id, $index)" class="title-extra"><i :class="itm.className"></i></span>
 		</li>
 	</ul>
 </div>

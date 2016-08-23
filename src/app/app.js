@@ -255,6 +255,7 @@ router.get('/articles', function* (next) {
 let app = new Koa();
 app.keys = ['wTf852,./'];
 init(app);
+app.context.router = router;
 
 
 app.use(KoaStatic(path.resolve(__dirname, '../../dist')))

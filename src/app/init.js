@@ -37,7 +37,7 @@ function init(app) {
 	// winston.remove(winston.transports.Console);
 	global.logger = logger;
 	global.routerMap = routerMap;
-	app.routerMap = routerMap;
+	app.context.routerMap = routerMap;
 	RedisClient.config(config.redis);
 	logger.info('Koa app is initializing...');
 }

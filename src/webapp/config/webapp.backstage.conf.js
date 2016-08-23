@@ -1,4 +1,4 @@
-import routerMap from './routerMap';
+import routerMap from './routerMap.backstage';
 export default {
 	defaultLogo: 'logo',
 	blogName: '0x45E0',
@@ -25,12 +25,15 @@ export default {
 		content: 'Tags',
 		routeName: routerMap.tags.name
 	}, {
-		iconClass: 'icon-user',
-		content: 'About',
-		routeName: routerMap.about.name
-	}, {
 		iconClass: 'icon-equalizer',
 		content: 'Dashboard',
+		routeName: routerMap.dashboard.name,
+		params: {
+			page: 1
+		}
+	}, {
+		iconClass: 'icon-user',
+		content: 'About',
 		routeName: routerMap.about.name
 	}]
 };
