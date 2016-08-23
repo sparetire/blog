@@ -1,8 +1,5 @@
 import archiveList from '../archiveList/archive-list';
 import pagination from '../pagination/pagination';
-import routerMap from '../../config/routerMap';
-import router from '../../config/router';
-import config from '../../config/webapp.conf';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
 export default {
@@ -10,16 +7,37 @@ export default {
 		archiveList,
 		pagination
 	},
+	// 最好用compiled而不用ready，ready会在route的data后触发
+	compiled() {
+		this.pageCount = this.config.pageCount;
+		this.postRouteName = this.routerMap.articles.name;
+		this.pageRouteName = this.routerMap.archives.name;
+		this.router = this.router;
+	},
 	data() {
 		return {
 			pageTitle: 'Archives | Sparetire',
 			archiveList: [],
 			curPage: 1,
-			pageCount: config.pageCount,
+			pageCount: 1,
 			total: 1,
-			postRouteName: routerMap.articles.name,
-			pageRouteName: routerMap.archives.name
+			postRouteName: '',
+			pageRouteName: ''
 		};
+	},
+	props: {
+		config: {
+			type: Object,
+			required: true
+		},
+		router: {
+			type: Object,
+			required: true
+		},
+		routerMap: {
+			type: Object,
+			required: true
+		}
 	},
 	route: {
 		data(transition) {
@@ -31,8 +49,8 @@ export default {
 			if (curPage < 1) {
 				this.curPage = 1;
 				NProgress.done();
-				router.go({
-					name: routerMap.archives.name,
+				this.router.go({
+					name: this.routerMap.archives.name,
 					params: {
 						page: 1
 					}
@@ -42,16 +60,16 @@ export default {
 			/* global APIs */
 			return APIs.getArchives.get({
 					page: curPage,
-					limit: config.perPageLimit
+					limit: this.config.perPageLimit
 				})
 				.then(data => data.json())
 				.then(data => {
-					this.total = Math.ceil(data.total / config.perPageLimit);
+					this.total = Math.ceil(data.total / this.config.perPageLimit);
 					if (curPage > this.total) {
 						this.curPage = 1;
 						NProgress.done();
-						router.go({
-							name: routerMap.archives.name,
+						this.router.go({
+							name: this.routerMap.archives.name,
 							params: {
 								page: 1
 							}

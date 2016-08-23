@@ -2,6 +2,8 @@ import navBar from '../navBar/nav-bar';
 import mainContent from '../mainContent/main-content';
 import scrollTop from '../scrollTop/scroll-top';
 import config from '../../config/webapp.conf';
+import routerMap from '../../config/routerMap';
+import router from '../../config/router';
 import $ from 'jquery';
 import '../../style/app.scss';
 
@@ -34,7 +36,10 @@ export default {
 				navInfo: {
 					name: config.blogName,
 					intro: config.blogIntro
-				}
+				},
+				router: router,
+				routerMap: routerMap,
+				config: config
 			};
 		},
 		methods: {

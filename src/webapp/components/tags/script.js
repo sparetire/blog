@@ -1,6 +1,5 @@
 import tagFilter from '../tagFilter/tag-filter';
 import tagFilterBar from '../tagFilterBar/tag-filter-bar';
-import routerMap from '../../config/routerMap';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
 
@@ -44,6 +43,17 @@ export default {
 			return this.rawData.tagList;
 		}
 	},
+	compiled() {
+		this.tagRouteName = this.routerMap.tag.name;
+		this.tagsRouteName = this.routerMap.tags.name;
+		this.postRouteName = this.routerMap.articles.name;
+	},
+	props: {
+		routerMap: {
+			type: Object,
+			required: true
+		}
+	},
 	route: {
 		canReuse() {
 			this.enter = false;
@@ -67,7 +77,7 @@ export default {
 					})
 					.then(data => {
 						this.rawData = data;
-						if (this.$route.name === routerMap.tags.name) {
+						if (this.$route.name === this.tagsRouteName) {
 							// 不要修改这个tagItem最好，会有副作用
 							// 最好这个tagItem是不可变变量，或者深复制也行
 							// 总之就是不要修改别人传给你的对象
@@ -86,7 +96,7 @@ export default {
 						NProgress.done();
 					});
 			} else {
-				if (this.$route.name === routerMap.tags.name) {
+				if (this.$route.name === this.tagsRouteName) {
 					this.tagItem.name = `${this.rawData.total} posts`;
 					this.tagItem.titles = titleUnique(mergeTitleList(this.tagList));
 				} else {
@@ -115,8 +125,9 @@ export default {
 				name: '',
 				titles: []
 			},
-			tagRouteName: routerMap.tag.name,
-			postRouteName: routerMap.articles.name
+			tagRouteName: '',
+			tagsRouteName: '',
+			postRouteName: ''
 		};
 	}
 };

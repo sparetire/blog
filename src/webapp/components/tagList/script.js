@@ -1,5 +1,4 @@
 import titleList from '../titleList/title-list';
-import routerMap from '../../config/routerMap';
 export default {
 	components: {
 		titleList
@@ -12,11 +11,15 @@ export default {
 		routeName: {
 			type: String,
 			required: true
+		},
+		tagsRouteName: {
+			type: String,
+			required: true
 		}
 	},
 	route: {
 		data() {
-			if (this.$route.name === routerMap.tags.name) {
+			if (this.$route.name === this.tagsRouteName) {
 				this.pageTitle = 'Tags | Sparetire';
 			} else {
 				this.pageTitle = `${this.$route.params.tag} | Sparetire`;
