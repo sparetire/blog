@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import trimHtml from 'trim-html';
-import config from '../config/webapp.conf';
 
-let limit = {
-	limit: config.summaryLimit
+export default {
+	config(opts) {
+		Vue.filter('summary', function (value) {
+			let limit = opts ? opts.summaryLimit : 100;
+			return trimHtml(value, limit)
+				.html;
+		});
+	}
 };
-Vue.filter('summary', function (value) {
-	return trimHtml(value, limit)
-		.html;
-});
