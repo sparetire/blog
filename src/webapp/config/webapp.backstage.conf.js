@@ -28,5 +28,9 @@ export default {
 		iconClass: 'icon-user',
 		content: 'About',
 		routeName: routerMap.about.name
+	}, {
+		iconClass: 'icon-equalizer',
+		content: 'Dashboard',
+		routeName: routerMap.about.name
 	}]
 };

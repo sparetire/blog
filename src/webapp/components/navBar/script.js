@@ -24,6 +24,10 @@ export default {
 		navItems: {
 			type: Array,
 			default: []
+		},
+		navInfo: {
+			type: Object,
+			required: true
 		}
 	},
 	watch: {

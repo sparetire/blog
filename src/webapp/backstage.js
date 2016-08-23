@@ -2,7 +2,7 @@ import $ from 'jquery';
 import APIConfig from './config/api.backstage.conf';
 import API from '../common/APIs';
 import RequestWrapper from './lib/RequestWrapper';
-import app from './components/app/app';
+import app from './components/backstage/backstage';
 import router from './config/router.backstage';
 import ArticleService from './services/ArticleService';
 /** init */
