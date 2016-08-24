@@ -1,0 +1,15 @@
+<div class="modal-mask" v-show="show" transition="modal">
+	<div class="modal-wrapper">
+		<div class="modal-container">
+			<div v-if="header" class="modal-header">
+				<h1>{{header}}</h1>
+			</div>
+			<div v-if="detail" class="modal-body">
+				<p>{{detail}}</p>
+			</div>
+			<div class="modal-footer">
+				<button v-for="btn in buttons" class="modal-btn" @click="onButtonClick(btn.id)">{{btn.content}}</button>
+			</div>
+		</div>
+	</div>
+</div>

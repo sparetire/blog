@@ -12,6 +12,12 @@ export default {
 		routeName: {
 			type: String,
 			required: true
+		},
+		options: {
+			type: Array,
+			default: function () {
+				return [];
+			}
 		}
 	}
 };

@@ -52,5 +52,6 @@ $archiveItemFont: 26px "Microsoft Yahei";
 	transition: all 0.3s ease;
 	&:hover {
 		color: #000;
+		transform: scale(1.1);
 	}
 }
