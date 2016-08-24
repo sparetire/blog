@@ -1,3 +1,4 @@
 <div class="archive-list">
-	<archive-item v-for="item in archiveList" :month-item="item" :options="options" :route-name="routeName"></archive-item>
+	<archive-item v-for="item in archiveList" :index="$index" :month-item="item" :options="options"
+			:route-name="routeName"></archive-item>
 </div>

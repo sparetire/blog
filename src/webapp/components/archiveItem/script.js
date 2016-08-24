@@ -5,6 +5,9 @@ export default {
 		titleList
 	},
 	props: {
+		index: {
+			type: Number
+		},
 		monthItem: {
 			type: Object,
 			required: true
@@ -18,6 +21,13 @@ export default {
 			default: function () {
 				return [];
 			}
+		}
+	},
+	events: {
+		onExtraClick([postId, postIndex, iconId, iconIndex]) {
+			this.$dispatch('onItemMsg', [this.index, postId, postIndex, iconId,
+				iconIndex
+			]);
 		}
 	}
 };

@@ -1,6 +1,7 @@
 import archiveList from '../archiveList/archive-list';
 import writeButton from '../writeButton/write-button';
 import modal from '../modal/modal';
+import loading from '../loading/loading';
 import pagination from '../pagination/pagination';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
@@ -9,13 +10,16 @@ let DELETE = 0;
 let MODIFY = 1;
 let OK = 1;
 let CANCEL = 0;
+// 锁，防止重复提交以及在一个修改/删除操作未完成时进行其他修改删除操作
+let lock = false;
 
 export default {
 	components: {
 		archiveList,
 		pagination,
 		writeButton,
-		modal
+		modal,
+		loading
 	},
 	// 最好用compiled而不用ready，ready会在route的data后触发
 	compiled() {
@@ -33,6 +37,7 @@ export default {
 			total: 1,
 			postRouteName: '',
 			pageRouteName: '',
+			showLoading: false,
 			showModal: false,
 			modalHeader: 'Warning',
 			modalDetail: '一旦删除日志便无法恢复，是否确认删除该日志?',
@@ -49,20 +54,31 @@ export default {
 			}, {
 				id: MODIFY,
 				className: 'icon-pencil'
-			}]
+			}],
+			beDeletePost: {
+				itemIndex: null,
+				postIndex: null
+			}
 		};
 	},
 	events: {
-		onExtraClick([itemId, iconId, index]) {
-			if (iconId === DELETE) {
-				this.showModal = true;
+		onItemMsg([itemIndex, postId, postIndex, iconId, iconIndex]) {
+			// 没有锁才响应修改删除操作
+			if (!lock) {
+				if (iconId === DELETE) {
+					this.showModal = true;
+					this.beDeletePost.itemIndex = itemIndex;
+					this.beDeletePost.postIndex = postIndex;
+				} else if (iconId === MODIFY) {
+					console.log('modify');
+				}
 			}
 		},
 		onModalBtnClick(id) {
 			if (id === OK) {
-				console.log('OK');
-			} else if (id === CANCEL) {
-				console.log('CANCEL');
+				this.showLoading = true;
+				lock = true;
+				// todo
 			}
 		}
 	},
@@ -81,6 +97,14 @@ export default {
 		}
 	},
 	route: {
+		deactivate(transition) {
+			// 如果有锁则需要等锁释放才可以切换路由
+			if (!lock) {
+				transition.next();
+			} else {
+				return transition.abort();
+			}
+		},
 		data(transition) {
 			this.$dispatch('onRouteChange', this.$route);
 			NProgress.start();

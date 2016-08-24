@@ -3,4 +3,5 @@
 	<pagination :total="total" :cur-page="curPage" :page-count="pageCount" :route-name="pageRouteName"></pagination>
 	<write-button></write-button>
 	<modal :header="modalHeader" :detail="modalDetail" :buttons="modalButtons" :show.sync="showModal"></modal>
+	<loading :show="showLoading"></loading>
 </div>

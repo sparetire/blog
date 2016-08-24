@@ -1,7 +1,7 @@
 export default {
 	methods: {
-		onExtraClick(itemId, iconId, index) {
-			this.$dispatch('onExtraClick', [itemId, iconId, index]);
+		onExtraClick(itemId, itemIndex, iconId, iconIndex) {
+			this.$dispatch('onExtraClick', [itemId, itemIndex, iconId, iconIndex]);
 		}
 	},
 	props: {
