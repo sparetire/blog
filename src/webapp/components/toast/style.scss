@@ -1,0 +1,37 @@
+$toastFont: 22px 'Microsoft Yahei';
+$toastCancelFontSize: 12px;
+.toast, .toast-transition {
+	color: #fff;
+	padding: 10px 20px;
+	background: rgba($color: #000, $alpha: 0.5);
+	border-radius: 5px;
+	display: inline-block;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 1000;
+	transform: translate(-50%, -50%);
+}
+
+.toast-enter, .toast-leave {
+	opacity: 0;
+	height: 0;
+	transform: scale(1.1);
+}
+
+.toast-content {
+	font: $toastFont;
+}
+
+.toast-cancel-btn {
+	font-size: $toastCancelFontSize;
+	width: $toastCancelFontSize;
+	height: $toastCancelFontSize;
+	padding: 6px;
+	border-radius: 50%;
+	cursor: pointer;
+	background: #888;
+	position: absolute;
+	top: -7px;
+	right: -7px;
+}

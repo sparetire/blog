@@ -35,6 +35,10 @@ let APIs = {
 	},
 	about: {
 		pathname: '/about'
+	},
+	removeArticle: {
+		pathname: '/removearticle',
+		method: 'post'
 	}
 };
 

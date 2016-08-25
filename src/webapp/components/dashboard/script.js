@@ -2,9 +2,13 @@ import archiveList from '../archiveList/archive-list';
 import writeButton from '../writeButton/write-button';
 import modal from '../modal/modal';
 import loading from '../loading/loading';
+import toast from '../toast/toast';
 import pagination from '../pagination/pagination';
 import NProgress from 'nprogress/nprogress';
+import StatusCode from '../../../common/status-code';
 import 'nprogress/nprogress.css';
+
+/* global APIs */
 
 let DELETE = 0;
 let MODIFY = 1;
@@ -19,7 +23,8 @@ export default {
 		pagination,
 		writeButton,
 		modal,
-		loading
+		loading,
+		toast
 	},
 	// 最好用compiled而不用ready，ready会在route的data后触发
 	compiled() {
@@ -37,6 +42,8 @@ export default {
 			total: 1,
 			postRouteName: '',
 			pageRouteName: '',
+			toastContent: 'Hello',
+			showToast: false,
 			showLoading: false,
 			showModal: false,
 			modalHeader: 'Warning',
@@ -57,7 +64,8 @@ export default {
 			}],
 			beDeletePost: {
 				itemIndex: null,
-				postIndex: null
+				postIndex: null,
+				postId: null
 			}
 		};
 	},
@@ -69,6 +77,7 @@ export default {
 					this.showModal = true;
 					this.beDeletePost.itemIndex = itemIndex;
 					this.beDeletePost.postIndex = postIndex;
+					this.beDeletePost.postId = postId;
 				} else if (iconId === MODIFY) {
 					console.log('modify');
 				}
@@ -78,7 +87,21 @@ export default {
 			if (id === OK) {
 				this.showLoading = true;
 				lock = true;
-				// todo
+				APIs.removeArticle.post({
+						id: this.beDeletePost.postId
+					})
+					.then(resp => resp.json())
+					.then(data => {
+						this.showLoading = false;
+						lock = false;
+						if (data.status === StatusCode.OK) {
+							console.log(data);
+						} else {
+							console.log(data);
+						}
+						this.toastContent = data.description;
+						this.showToast = true;
+					});
 			}
 		}
 	},
