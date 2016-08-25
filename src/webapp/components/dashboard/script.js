@@ -95,7 +95,9 @@ export default {
 						this.showLoading = false;
 						lock = false;
 						if (data.status === StatusCode.OK) {
-							console.log(data);
+							let beDeletePost = this.beDeletePost;
+							this.archiveList[beDeletePost.itemIndex].posts.splice(beDeletePost.postIndex,
+								1);
 						} else {
 							console.log(data);
 						}
