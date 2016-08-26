@@ -85,6 +85,7 @@
     "redis": "^2.6.2",
     "request": "^2.73.0",
     "sha1": "^1.1.1",
+    "simplemde": "^1.11.2",
     "trim-html": "^0.1.7",
     "vue": "^1.0.26",
     "vue-resource": "^0.9.3",

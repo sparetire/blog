@@ -26,5 +26,13 @@ export default {
 	dashboard: {
 		name: 'dashboard',
 		path: '/dashboard'
+	},
+	write: {
+		name: 'write',
+		path: '/write'
+	},
+	modify: {
+		name: 'modify',
+		path: '/write/:id'
 	}
 };

@@ -6,6 +6,8 @@ import archive from '../components/archive/archive';
 import dashboard from '../components/dashboard/dashboard';
 import tags from '../components/tags/tags';
 import tagList from '../components/tagList/tag-list';
+import write from '../components/write/write';
+import writeDetail from '../components/writeDetail/write-detail';
 import about from '../components/about/about';
 import routerMap from './routerMap.backstage';
 
@@ -34,10 +36,6 @@ router.map({
 			}
 		}
 	},
-	// '/tags/:tag': {
-	// 	name: routerMap.tag.name,
-	// 	component: tags
-	// },
 	'/about': {
 		name: routerMap.about.name,
 		component: about
@@ -49,6 +47,19 @@ router.map({
 	'/dashboard/:page': {
 		name: routerMap.dashboard.name,
 		component: dashboard
+	},
+	'/write': {
+		component: write,
+		subRoutes: {
+			'/': {
+				name: routerMap.write.name,
+				component: writeDetail
+			},
+			'/:id': {
+				name: routerMap.modify.name,
+				component: writeDetail
+			}
+		}
 	}
 });
 

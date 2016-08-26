@@ -65,11 +65,14 @@ module.exports = {
 		inline: true,
 		progress: true
 	},
+	node: {
+		fs: 'empty'
+	},
 	devtool: 'source-map',
 	module: {
 		preLoaders: [{
 			test: /\.(jsx?|vue)$/,
-			exclude: MODULE_PATH,
+			exclude: [MODULE_PATH, path.resolve(APP_PATH, 'lib/simplemde.min.js')],
 			loader: 'eslint-loader'
 		}],
 		loaders: [{
@@ -78,7 +81,7 @@ module.exports = {
 			loader: 'vue'
 		}, {
 			test: /\.jsx?$/,
-			exclude: /node_modules/,
+			exclude: [MODULE_PATH, path.resolve(APP_PATH, 'lib/simplemde.min.js')],
 			loader: 'babel-loader',
 			query: {
 				presets: ['es2015'],
@@ -147,6 +150,9 @@ module.exports = {
 			name: 'common',
 			filename: 'scripts/vendor.js',
 			minChunks: Infinity
+		}),
+		new ProvidePlugin({
+			CodeMirror: 'codemirror'
 		})
 	]
 };
