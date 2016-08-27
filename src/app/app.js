@@ -11,6 +11,8 @@ const authorize = require('./controller/authorize');
 const login = require('./controller/login');
 const backstage = require('./controller/backstage');
 const removeArticle = require('./controller/remove-article');
+const allTags = require('./controller/all-tags');
+const post = require('./controller/post');
 const routerMap = require('./config/routerMap');
 
 let router = new KoaRouter();
@@ -71,20 +73,7 @@ router.get('/articles', function* (next) {
 		};
 		return;
 	})
-	.post('/post', function* (next) {
-		this.body = {
-			title: 'Hello',
-			content: '# Marked in browser\n\nRendered by **marked**.',
-			author: 'Sparetire',
-			views: 50,
-			timeStamp: 1470751691242,
-			year: 2016,
-			month: 8,
-			day: 10,
-			id: '4'
-		};
-		return;
-	})
+	.get(routerMap.post.name, routerMap.post.path, post())
 	.get('/archives', function* (next) {
 		this.body = {
 			total: 23,
@@ -252,7 +241,8 @@ router.get('/articles', function* (next) {
 	.get(routerMap.login.name, routerMap.login.path, login())
 	.post('/authorize', authorize())
 	.get(routerMap.backstage.name, routerMap.backstage.path, backstage())
-	.post('/removearticle', removeArticle());
+	.post('/removearticle', removeArticle())
+	.get(routerMap.allTags.name, routerMap.allTags.path, allTags());
 
 let app = new Koa();
 app.keys = ['wTf852,./'];

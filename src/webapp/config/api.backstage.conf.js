@@ -23,8 +23,8 @@ let APIs = {
 	},
 	// 根据条件查询一个文档，类似mongodb，post一个json对象作为条件
 	getArticle: {
-		pathname: '/post',
-		method: 'post'
+		pathname: '/post/{id}',
+		restful: true
 	},
 	// localhost/archives?page=1&limit=5
 	getArchives: {
@@ -39,6 +39,9 @@ let APIs = {
 	removeArticle: {
 		pathname: '/removearticle',
 		method: 'post'
+	},
+	allTags: {
+		pathname: '/alltags'
 	}
 };
 

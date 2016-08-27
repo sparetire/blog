@@ -6,5 +6,13 @@ module.exports = {
 	backstage: {
 		name: 'backstage',
 		path: '/backstage'
+	},
+	allTags: {
+		name: 'allTags',
+		path: '/alltags'
+	},
+	post: {
+		name: 'post',
+		path: '/post/:id'
 	}
 };

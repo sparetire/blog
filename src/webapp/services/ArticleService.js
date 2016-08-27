@@ -58,7 +58,7 @@ let ArticleService = (function () {
 					throw new Error('API getArticle must be set properly.');
 				}
 				let article = null;
-				return getArticle.post({
+				return getArticle.get({
 						id
 					})
 					.then(resp => {
@@ -66,7 +66,7 @@ let ArticleService = (function () {
 					})
 					.then(data => {
 						let markdownParser = MarkdownParseService.getInstance();
-						article = data;
+						article = data.post;
 						return markdownParser.parse(article.content);
 					})
 					.then(content => {
