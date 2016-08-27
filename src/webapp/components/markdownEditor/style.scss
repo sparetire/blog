@@ -20,6 +20,7 @@ $previewTitleFont: normal 26px $fontFamily;
 }
 
 .mkd-preview {
+	color: #333;
 	width: 50%;
 	padding-left: 20px;
 	font-family: $fontFamily;
@@ -44,4 +45,8 @@ $previewTitleFont: normal 26px $fontFamily;
 
 .editor-toolbar {
 	background: #fff;
+}
+
+.CodeMirror-scroll {
+	font-family: $fontFamily;
 }

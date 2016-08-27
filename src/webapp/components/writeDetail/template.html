@@ -1,3 +1,19 @@
 <div class="write-detail">
-	<mkd-editor :content="content"></mkd-editor>
+	<form action="#" method="GET">
+		<div class="write-item">
+			<label for="post-title" class="write-label">Title:</label>
+			<input type="text" v-model="title" name="title" class="write-input" id="post-title">
+		</div>
+		<div class="write-item">
+			<label for="post-author" class="write-label">Author:</label>
+			<input type="text" v-model="author" name="author" class="write-input" id="post-author">
+		</div>
+		<div class="write-item">
+			<label for="post-tags" class="write-label">Tags:</label>
+			<input type="text" v-model="tagsStr" name="tags" class="write-input" id="post-tags"
+					placeholder="用逗号分隔，如：Linux,Node">
+			<dropdown :items="dropDownItems" :current-item="currentItem"></dropdown>
+		</div>
+	</form>
+	<mkd-editor :content="setContent"></mkd-editor>
 </div>

@@ -1,7 +1,7 @@
 <div class="archive">
 	<archive-list :archive-list="archiveList" :options="options" :route-name="postRouteName"></archive-list>
 	<pagination :total="total" :cur-page="curPage" :page-count="pageCount" :route-name="pageRouteName"></pagination>
-	<write-button></write-button>
+	<write-button :router="router" :route-name="routerMap.write.name"></write-button>
 	<modal :header="modalHeader" :detail="modalDetail" :buttons="modalButtons" :show.sync="showModal"></modal>
 	<loading :show="showLoading"></loading>
 	<toast :content="toastContent" :show.sync="showToast"></toast>

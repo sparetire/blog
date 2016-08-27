@@ -1,0 +1,9 @@
+<div v-if="items.length" class="m-dropdown">
+	<div class="display-item">
+		<div class="display-item-content">{{currentItem && currentItem.key}}</div>
+		<span class="dropdown-triangle"></span>
+	</div>
+	<ul :class="{'hide-dropdown': hideDropdown}">
+		<li v-for="item in items" @click="onItemClick(currentItem, item, $index)">{{item.key}}</li>
+	</ul>
+</div>

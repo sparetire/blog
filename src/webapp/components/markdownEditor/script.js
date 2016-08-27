@@ -15,11 +15,6 @@ export default {
 			default: 300
 		}
 	},
-	// watch: {
-	// 	content(newVal, oldVal) {
-	// 		this.simplemde.value(newVal);
-	// 	}
-	// },
 	data() {
 		return {
 			simplemde: null,
@@ -36,7 +31,7 @@ export default {
 		});
 		this.mkdParser = MarkdownParseService.getInstance();
 		simplemde.value(this.content);
-		simplemde.codemirror.on("change", () => {
+		simplemde.codemirror.on('change', () => {
 			this.content = simplemde.value();
 			clearTimeout(this.handler);
 			setTimeout(() => {

@@ -19,7 +19,7 @@ export default {
 	},
 	data() {
 		return {
-			content: 'Hello'
+			pageTitle: 'New | Sparetire'
 		};
 	}
 };

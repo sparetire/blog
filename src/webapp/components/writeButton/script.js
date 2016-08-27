@@ -2,9 +2,21 @@ import '../../style/fonticon.css';
 
 
 export default {
+	props: {
+		router: {
+			type: Object,
+			required: true
+		},
+		routeName: {
+			type: String,
+			required: true
+		}
+	},
 	methods: {
 		onWriteClick() {
-			console.log('Write');
+			this.router.go({
+				name: this.routeName
+			});
 		}
 	}
 };

@@ -1,0 +1,90 @@
+$itemHeight: 1.8em;
+$itemBorderWidth: 2px;
+$itemBgColor: #f9f9f9;
+$itemHoverBgColor: #e8e8e8;
+.m-dropdown {
+	display: inline-block;
+	position: relative;
+	ul {
+		margin: 0;
+		padding: 0;
+		box-shadow: 0 8px 16px 0 rgba($color: #000, $alpha: 0.2);
+		position: absolute;
+		top: 2.2em;
+		z-index: 400;
+		display: none;
+		li {
+			height: $itemHeight;
+			line-height: $itemHeight;
+			list-style: none;
+			background: $itemBgColor;
+			cursor: pointer;
+			// 加上padding总共宽9em
+			width: 7em;
+			padding: 0 1em;
+			border-left: $itemBorderWidth solid $itemBgColor;
+			border-right: $itemBorderWidth solid $itemBgColor;
+			transition: all 0.2s ease;
+			&:hover {
+				background: $itemHoverBgColor;
+				border-left: $itemBorderWidth solid $itemHoverBgColor;
+				border-right: $itemBorderWidth solid $itemHoverBgColor;
+			}
+		}
+	}
+	&:hover {
+		ul {
+			display: block;
+		}
+	}
+}
+
+.dropdown-triangle {
+	width: 0;
+	height: 0;
+	display: inline-block;
+	border: 0.5em solid transparent;
+	border-top: 10px solid #fff;
+	position: absolute;
+	top: 0.7em;
+	right: 0.3em;
+}
+
+.display-item {
+	color: #fff;
+	font-size: 18px;
+	// 加上padding总共宽9.2em
+	width: 8em;
+	height: $itemHeight;
+	line-height: $itemHeight;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	background: #999;
+	border: $itemBorderWidth solid #999;
+	border-radius: 0.4em;
+	box-shadow: 0 1px 3px rgba($color: #000, $alpha: 0.3);
+	transition: all 0.3s ease;
+	&:hover {
+		background: #aaa;
+		border: $itemBorderWidth solid #aaa;
+		box-shadow: 0 2px 5px rgba($color: #000, $alpha: 0.3);
+	}
+}
+
+.display-item-content {
+	text-align: center;
+	margin-right: 1.2em;
+}
+
+.hide-dropdown {
+	display: none!important;
+}
+
+// .dropdown-transition {
+// 	transition: all 0.3s ease;
+// }
+// .dropdown-enter, .dropdown-leave {
+// 	height: 0;
+// 	opacity: 0;
+// }
