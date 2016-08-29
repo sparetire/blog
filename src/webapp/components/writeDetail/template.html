@@ -26,4 +26,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="btn-bar">
+		<button class="submit-btn" @click="save">Save</button>
+	</div>
+	<loading :show="showLoading"></loading>
+	<toast :content="toastContent" :show.sync="showToast"></toast>
 </div>

@@ -79,7 +79,12 @@ export default {
 					this.beDeletePost.postIndex = postIndex;
 					this.beDeletePost.postId = postId;
 				} else if (iconId === MODIFY) {
-					console.log('modify');
+					this.router.go({
+						name: this.routerMap.modify.name,
+						params: {
+							id: postId
+						}
+					});
 				}
 			}
 		},

@@ -4,7 +4,12 @@ import MarkdownParseService from '../../services/MarkdownParseService';
 import '../../style/simplemde.min.css';
 import '../../style/font-awesome.min.css';
 import dropdown from '../dropdown/dropdown';
+import loading from '../loading/loading';
+import toast from '../toast/toast';
 import Promise from 'bluebird';
+import _ from 'lodash';
+import NProgress from 'nprogress/nprogress';
+import 'nprogress/nprogress.css';
 /* global APIs */
 
 // 非常乱。。
@@ -17,10 +22,44 @@ function init(ctx) {
 	ctx.dropDownItems = [];
 }
 
+function getTagsArray(tagsStr) {
+	tagsStr = tagsStr.trim();
+	tagsStr = tagsStr[0] === ',' ? tagsStr.slice(1) : tagsStr;
+	tagsStr = tagsStr[tagsStr.length - 1] === ',' ? tagsStr.slice(0, tagsStr.length -
+		1) : tagsStr;
+	let array = tagsStr.split(',');
+	return _.uniq(array);
+}
+
 export default {
 	components: {
 		// mkdEditor,
-		dropdown
+		dropdown,
+		loading,
+		toast
+	},
+	methods: {
+		save() {
+			let tags = getTagsArray(this.tagsStr);
+			let data = {
+				// id: this.$route.params.id
+				title: this.title,
+				author: this.author,
+				tags: tags,
+				content: this.content
+			};
+			this.showLoading = true;
+			if (this.$route.name === this.routerMap.modify.name) {
+				data.id = this.$route.params.id;
+			}
+			APIs.addUpdateArticle.post(data)
+				.then(resp => resp.json())
+				.then((rst) => {
+					this.showLoading = false;
+					this.toastContent = rst.description;
+					this.showToast = true;
+				});
+		}
 	},
 	props: {
 		router: {
@@ -39,7 +78,8 @@ export default {
 	},
 	route: {
 		data(transition) {
-			console.log('data');
+			NProgress.start();
+			NProgress.inc(0.2);
 			let getTags = APIs.allTags.get()
 				.then(resp => resp.json()
 					.tags);
@@ -53,6 +93,8 @@ export default {
 						};
 					});
 					this.currentItem = 0;
+					NProgress.inc(0.5);
+					NProgress.done();
 				});
 			} else if (this.$route.name === this.routerMap.modify.name) {
 				let getArticle = APIs.getArticle.get({
@@ -73,6 +115,8 @@ export default {
 						this.title = post.title;
 						this.author = post.author;
 						this.tagsStr = post.tags.join(',') + ',';
+						NProgress.inc(0.5);
+						NProgress.done();
 					});
 				return this.modifyPromise;
 			}
@@ -80,6 +124,9 @@ export default {
 	},
 	data() {
 		return {
+			showLoading: false,
+			showToast: false,
+			toastContent: '',
 			currentItem: null,
 			modifyPromise: null,
 			tagsStr: '',
@@ -95,7 +142,6 @@ export default {
 		};
 	},
 	attached() {
-		console.log('attached');
 		if (!this.simplemde) {
 			let simplemde = this.simplemde = new SimpleMDE({
 				element: document.getElementById('simplemde-editor'),
@@ -121,5 +167,8 @@ export default {
 				this.simplemde.value(this.content);
 			});
 		}
+	},
+	detached() {
+		this.showLoading = false;
 	}
 };

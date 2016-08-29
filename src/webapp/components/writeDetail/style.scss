@@ -1,5 +1,6 @@
 $writeFontFamily: "Microsoft Yahei";
 $writeLabelColor: #333;
+$border: 2px solid #999;
 .write-detail {
 	padding-top: 50px;
 }
@@ -33,7 +34,6 @@ $writeLabelColor: #333;
 	}
 }
 
-// ************
 $fontFamily: "Microsoft Yahei";
 $previewTitleFont: normal 26px $fontFamily;
 .markdown-editor {
@@ -52,7 +52,7 @@ $previewTitleFont: normal 26px $fontFamily;
 	text-align: center;
 	margin: 0;
 	padding: 10px;
-	border-bottom: 2px solid #999;
+	border-bottom: $border;
 }
 
 .mkd-preview {
@@ -85,4 +85,26 @@ $previewTitleFont: normal 26px $fontFamily;
 
 .CodeMirror-scroll {
 	font-family: $fontFamily;
+}
+
+.btn-bar {
+	text-align: center;
+}
+
+.submit-btn {
+	color: #fff;
+	font: 22px $fontFamily;
+	padding: 8px 30px;
+	border: $border;
+	border-radius: 8px;
+	outline: none;
+	cursor: pointer;
+	background: #999;
+	box-shadow: 0 0 2px rgba($color: #000, $alpha: 0.3);
+	transition: all 0.3s ease;
+	&:hover {
+		background: #aaa;
+		border-color: #aaa;
+		box-shadow: 0 0 3px rgba($color: #000, $alpha: 0.3);
+	}
 }

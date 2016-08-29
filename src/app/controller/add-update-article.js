@@ -1,7 +1,7 @@
 const TokenList = require('../lib/token-list');
 const StatusCode = require('../../common/status-code');
 
-function removeArticle(opts) {
+function addUpdateArticle(opts) {
 	return function* (next) {
 		let ctx = this;
 		let tokenList = TokenList.getInstance();
@@ -10,7 +10,7 @@ function removeArticle(opts) {
 		if (yield tokenList.has(token)) {
 			ctx.body = {
 				status: StatusCode.OK,
-				description: '删除成功'
+				description: '保存成功'
 			};
 		} else {
 			ctx.body = {
@@ -23,4 +23,4 @@ function removeArticle(opts) {
 	};
 }
 
-module.exports = removeArticle;
+module.exports = addUpdateArticle;

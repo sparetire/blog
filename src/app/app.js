@@ -11,6 +11,7 @@ const authorize = require('./controller/authorize');
 const login = require('./controller/login');
 const backstage = require('./controller/backstage');
 const removeArticle = require('./controller/remove-article');
+const addUpdateArticle = require('./controller/add-update-article');
 const allTags = require('./controller/all-tags');
 const post = require('./controller/post');
 const routerMap = require('./config/routerMap');
@@ -242,7 +243,9 @@ router.get('/articles', function* (next) {
 	.post('/authorize', authorize())
 	.get(routerMap.backstage.name, routerMap.backstage.path, backstage())
 	.post('/removearticle', removeArticle())
-	.get(routerMap.allTags.name, routerMap.allTags.path, allTags());
+	.get(routerMap.allTags.name, routerMap.allTags.path, allTags())
+	.post(routerMap.addUpdateArticle.name, routerMap.addUpdateArticle.path,
+		addUpdateArticle());
 
 let app = new Koa();
 app.keys = ['wTf852,./'];

@@ -42,6 +42,10 @@ let APIs = {
 	},
 	allTags: {
 		pathname: '/alltags'
+	},
+	addUpdateArticle: {
+		pathname: '/addupdate',
+		method: 'post'
 	}
 };
 

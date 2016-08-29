@@ -14,5 +14,9 @@ module.exports = {
 	post: {
 		name: 'post',
 		path: '/post/:id'
+	},
+	addUpdateArticle: {
+		name: 'addUpdateArticle',
+		path: '/addupdate'
 	}
 };
