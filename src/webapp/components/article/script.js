@@ -18,6 +18,11 @@ export default {
 					this.pageTitle = `${article.title} | Sparetire`;
 					NProgress.done();
 					transition.next();
+				})
+				.catch(err => {
+					console.error(err);
+					NProgress.done();
+					transition.next();
 				});
 		}
 	},

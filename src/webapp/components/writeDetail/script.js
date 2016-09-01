@@ -9,6 +9,7 @@ import toast from '../toast/toast';
 import Promise from 'bluebird';
 import _ from 'lodash';
 import NProgress from 'nprogress/nprogress';
+import StatusCode from '../../../common/status-code';
 import 'nprogress/nprogress.css';
 /* global APIs */
 
@@ -100,21 +101,26 @@ export default {
 				let getArticle = APIs.getArticle.get({
 						id: this.$route.params.id
 					})
-					.then(resp => resp.json()
-						.post);
+					.then(resp => resp.json());
 				this.modifyPromise = Promise.all([getTags, getArticle])
-					.then(([tags, post]) => {
-						this.dropDownItems = tags.map((item, index, array) => {
-							return {
-								key: item,
-								value: 0
-							};
-						});
-						this.currentItem = 0;
-						this.content = post.content;
-						this.title = post.title;
-						this.author = post.author;
-						this.tagsStr = post.tags.join(',') + ',';
+					.then(([tags, data]) => {
+						if (data.status === StatusCode.OK) {
+							let post = data.post;
+							this.dropDownItems = tags.map((item, index, array) => {
+								return {
+									key: item,
+									value: 0
+								};
+							});
+							this.currentItem = 0;
+							this.content = post.content;
+							this.title = post.title;
+							this.author = post.author;
+							this.tagsStr = post.tags.join(',') + ',';
+						} else {
+							this.toastContent = data.description;
+							this.showToast = true;
+						}
 						NProgress.inc(0.5);
 						NProgress.done();
 					});

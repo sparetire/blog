@@ -1,5 +1,6 @@
 const util = require('../../common/util');
 const Promise = require('bluebird');
+const StatusCode = require('../../common/status-code');
 const MarkdownParseService = require('./MarkdownParseService');
 
 /*global ArticleService, APIs */
@@ -65,9 +66,13 @@ let ArticleService = (function () {
 						return resp.json();
 					})
 					.then(data => {
-						let markdownParser = MarkdownParseService.getInstance();
-						article = data.post;
-						return markdownParser.parse(article.content);
+						if (data.status === StatusCode.OK) {
+							let markdownParser = MarkdownParseService.getInstance();
+							article = data.post;
+							return markdownParser.parse(article.content);
+						} else {
+							throw new Error(`Error: ${data.description}`);
+						}
 					})
 					.then(content => {
 						article.content = content;

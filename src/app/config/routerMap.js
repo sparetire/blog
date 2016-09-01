@@ -1,3 +1,4 @@
+const post = require('../controller/post');
 module.exports = {
 	login: {
 		name: 'login',
@@ -13,7 +14,9 @@ module.exports = {
 	},
 	post: {
 		name: 'post',
-		path: '/post/:id'
+		path: '/post/:id',
+		method: 'get',
+		controller: post()
 	},
 	addUpdateArticle: {
 		name: 'addUpdateArticle',

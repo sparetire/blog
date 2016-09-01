@@ -13,7 +13,6 @@ const backstage = require('./controller/backstage');
 const removeArticle = require('./controller/remove-article');
 const addUpdateArticle = require('./controller/add-update-article');
 const allTags = require('./controller/all-tags');
-const post = require('./controller/post');
 const routerMap = require('./config/routerMap');
 
 let router = new KoaRouter();
@@ -74,7 +73,7 @@ router.get('/articles', function* (next) {
 		};
 		return;
 	})
-	.get(routerMap.post.name, routerMap.post.path, post())
+	.get(routerMap.post.name, routerMap.post.path, routerMap.post.controller)
 	.get('/archives', function* (next) {
 		this.body = {
 			total: 23,
