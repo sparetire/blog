@@ -9,7 +9,6 @@ function addUpdateArticle(opts) {
 		let ctx = this;
 		let tokenList = TokenList.getInstance();
 		let token = ctx.cookies.get('token');
-		let routerMap = ctx.routerMap;
 
 		if (!(yield tokenList.has(token))) {
 			ctx.body = {

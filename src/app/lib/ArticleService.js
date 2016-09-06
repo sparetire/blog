@@ -358,6 +358,95 @@ function ArticleService() {
 
 		};
 	}
+
+	if (!util.isFunction(self.removeArticleById)) {
+		ArticleService.prototype.removeArticleById = function (idStr) {
+			try {
+				let id = new ObjectId(idStr);
+				let query = {
+					_id: id
+				};
+				let rmArticle = articles.remove(query)
+					.then(rst => rst.result.ok);
+				let updateArchive = archive.findOne({
+						'posts.id': id
+					})
+					.then(data => {
+						let posts = data.posts;
+						if (posts.length === 1) {
+							return archive.remove({
+									year: data.year,
+									month: data.month
+								})
+								.then(rst => rst.result.ok);
+						}
+						for (let key in posts) {
+							if (posts[key].id.toString() === idStr) {
+								posts.splice(key, 1);
+								break;
+							}
+						}
+						return archive.updateOne({
+								'posts.id': id
+							}, {
+								$set: data
+							})
+							.then(rst => rst.matchedCount);
+					});
+
+				let updateTags = new Promise(function (resolve, reject) {
+					tags.find({
+							'titles.id': id
+						})
+						.toArray(function (err, data) {
+							let bulk = tags.initializeOrderedBulkOp();
+							let hasOperation = false;
+							for (let key in data) {
+								let titles = data[key].titles;
+								if (titles.length === 1) {
+									hasOperation = true;
+									bulk.find({
+											name: data[key].name
+										})
+										.deleteOne();
+								} else {
+									for (let k in titles) {
+										if (titles[k].id.toString() === idStr) {
+											titles.splice(k, 1);
+											break;
+										}
+									}
+									hasOperation = true;
+									bulk.find({
+											name: data[key].name
+										})
+										.updateOne({
+											$set: data[key]
+										});
+								}
+							}
+							if (hasOperation) {
+								bulk.execute(function (err, rst) {
+									if (err) {
+										resolve(0);
+									} else {
+										resolve(1);
+									}
+								});
+							} else {
+								resolve(1);
+							}
+						});
+				});
+				return Promise.all([rmArticle, updateArchive, updateTags])
+					.then(([rst0, rst1, rst2]) => {
+						return rst0 & rst1 & rst2;
+					});
+			} catch (err) {
+				return Promise.resolve(0);
+			}
+		};
+	}
 	flag = false;
 	return self;
 }
