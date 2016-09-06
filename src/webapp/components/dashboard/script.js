@@ -103,8 +103,6 @@ export default {
 							let beDeletePost = this.beDeletePost;
 							this.archiveList[beDeletePost.itemIndex].posts.splice(beDeletePost.postIndex,
 								1);
-						} else {
-							console.log(data);
 						}
 						this.toastContent = data.description;
 						this.showToast = true;

@@ -447,6 +447,63 @@ function ArticleService() {
 			}
 		};
 	}
+
+	if (!util.isFunction(self.getTagsName)) {
+		ArticleService.prototype.getTagsName = function () {
+			return new Promise(function (resolve, reject) {
+				tags.find({}, {
+						name: 1,
+						_id: 0
+					})
+					.toArray(function (err, data) {
+						if (err) {
+							resolve([]);
+						} else if (util.isNullOrUndefined(data)) {
+							resolve([]);
+						} else {
+							resolve(data.map(item => item.name));
+						}
+					});
+			});
+		};
+	}
+
+	if (!util.isFunction(self.getArticlesCount)) {
+		ArticleService.prototype.getArticlesCount = function () {
+			return new Promise(function (resolve, reject) {
+				articles.find({}, {
+						_id: 1
+					})
+					.toArray(function (err, data) {
+						if (err) {
+							resolve(0);
+						} else {
+							resolve(data.length);
+						}
+					});
+			});
+		};
+	}
+
+	if (!util.isFunction(self.getTags)) {
+		ArticleService.prototype.getTags = function () {
+			return new Promise(function (resolve, reject) {
+				tags.find({}, {
+						_id: 0
+					})
+					.toArray(function (err, data) {
+						if (err) {
+							resolve([]);
+						} else if (util.isNullOrUndefined(data)) {
+							resolve([]);
+						} else {
+							resolve(data);
+						}
+					});
+			});
+		};
+	}
+
 	flag = false;
 	return self;
 }

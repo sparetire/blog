@@ -6,13 +6,6 @@ const getRawBody = require('raw-body');
 const path = require('path');
 const favicon = require('koa-favicon');
 const init = require('./init');
-const captcha = require('./controller/captcha');
-const authorize = require('./controller/authorize');
-const login = require('./controller/login');
-const backstage = require('./controller/backstage');
-const removeArticle = require('./controller/remove-article');
-const addUpdateArticle = require('./controller/add-update-article');
-const allTags = require('./controller/all-tags');
 const routerMap = require('./config/routerMap');
 
 let router = new KoaRouter();
@@ -129,90 +122,7 @@ router.get('/articles', function* (next) {
 		};
 		return;
 	})
-	.get('/tags', function* (next) {
-		let temp = [{
-			name: 'Linux',
-			titles: [{
-				title: 'Hello0',
-				id: 0
-			}, {
-				title: 'Hello1',
-				id: 1
-			}, {
-				title: 'Hello2',
-				id: 2
-			}]
-		}, {
-			name: 'Javascript',
-			titles: [{
-				title: 'Hello3',
-				id: 0
-			}, {
-				title: 'Hello4',
-				id: 1
-			}, {
-				title: 'Hello5',
-				id: 2
-			}]
-		}, {
-			name: 'Security',
-			titles: [{
-				title: 'Hello6',
-				id: 0
-			}, {
-				title: 'Hello7',
-				id: 1
-			}, {
-				title: 'Hello8',
-				id: 2
-			}]
-		}, {
-			name: 'Node',
-			titles: [{
-				title: 'Hello9',
-				id: 0
-			}, {
-				title: 'Hello10',
-				id: 1
-			}, {
-				title: 'Hello0',
-				id: 2
-			}]
-		}, {
-			name: 'CSS',
-			titles: [{
-				title: 'Hello1',
-				id: 0
-			}, {
-				title: 'Hello2',
-				id: 1
-			}, {
-				title: 'Hello3',
-				id: 2
-			}]
-		}, {
-			name: 'HTML',
-			titles: [{
-				title: 'Hello4',
-				id: 0
-			}, {
-				title: 'Hello5',
-				id: 1
-			}, {
-				title: 'Hello6',
-				id: 2
-			}]
-		}];
-		let tagList = temp.concat(temp)
-			.concat(temp)
-			.concat(temp)
-			.concat(temp);
-		this.body = {
-			total: 20,
-			tagList
-		};
-		return;
-	})
+	.get(routerMap.tags.name, routerMap.tags.path, routerMap.tags.controller)
 	.get('/about', function* (next) {
 		this.body = {
 			content: `# About me
@@ -237,14 +147,15 @@ router.get('/articles', function* (next) {
 		};
 		return;
 	})
-	.get('/captcha', captcha())
-	.get(routerMap.login.name, routerMap.login.path, login())
-	.post('/authorize', authorize())
-	.get(routerMap.backstage.name, routerMap.backstage.path, backstage())
-	.post('/removearticle', removeArticle())
-	.get(routerMap.allTags.name, routerMap.allTags.path, allTags())
+	.get(routerMap.captcha.name, routerMap.captcha.path, routerMap.captcha.controller)
+	.get(routerMap.login.name, routerMap.login.path, routerMap.login.controller)
+	.post(routerMap.authorize.name, routerMap.authorize.path, routerMap.authorize.controller)
+	.get(routerMap.backstage.name, routerMap.backstage.path, routerMap.backstage.controller)
+	.post(routerMap.removeArticle.name, routerMap.removeArticle.path, routerMap.removeArticle
+		.controller)
+	.get(routerMap.allTags.name, routerMap.allTags.path, routerMap.allTags.controller)
 	.post(routerMap.addUpdateArticle.name, routerMap.addUpdateArticle.path,
-		addUpdateArticle());
+		routerMap.addUpdateArticle.controller);
 
 let app = new Koa();
 app.keys = ['wTf852,./'];
