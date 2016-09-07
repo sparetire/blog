@@ -65,9 +65,9 @@ module.exports = {
 		inline: true,
 		progress: true
 	},
-	node: {
-		fs: 'empty'
-	},
+	// node: {
+	// 	fs: 'empty'
+	// },
 	devtool: 'source-map',
 	module: {
 		preLoaders: [{
@@ -134,7 +134,7 @@ module.exports = {
 			filename: 'index.html',
 			template: path.resolve(APP_PATH, 'index.ejs'),
 			favicon: path.resolve(APP_PATH, './assets/favicon.ico'),
-			chunks: ['main', 'common'],
+			chunks: ['common', 'main'],
 			inject: 'body',
 			minify: {
 				collapseWhitespace: true,
@@ -148,11 +148,8 @@ module.exports = {
 		}),
 		new CommonsChunkPlugin({
 			name: 'common',
-			filename: 'scripts/vendor.js',
+			filename: 'scripts/common.js',
 			minChunks: Infinity
-		}),
-		new ProvidePlugin({
-			CodeMirror: 'codemirror'
 		})
 	]
 };
