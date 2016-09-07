@@ -7,121 +7,13 @@ const path = require('path');
 const favicon = require('koa-favicon');
 const init = require('./init');
 const routerMap = require('./config/routerMap');
+/* global logger */
 
 let router = new KoaRouter();
-router.get('/articles', function* (next) {
-		this.body = {
-			total: 43,
-			articleList: [{
-				title: 'Hello',
-				content: '# Marked in browser\n\nRendered by **marked**.',
-				author: 'Sparetire',
-				views: 50,
-				timeStamp: 1470751691242,
-				year: 2016,
-				month: 8,
-				day: 10,
-				id: '1'
-			}, {
-				title: 'Hello',
-				content: '# Marked in browser\n\nRendered by **marked**.',
-				author: 'Sparetire',
-				views: 50,
-				timeStamp: 1470751691242,
-				year: 2016,
-				month: 8,
-				day: 10,
-				id: '2'
-			}, {
-				title: 'Hello',
-				content: '# Marked in browser\n\nRendered by **marked**.',
-				author: 'Sparetire',
-				views: 50,
-				timeStamp: 1470751691242,
-				year: 2016,
-				month: 8,
-				day: 10,
-				id: '3'
-			}, {
-				title: 'Hello',
-				content: '# Marked in browser\n\nRendered by **marked**.',
-				author: 'Sparetire',
-				views: 50,
-				timeStamp: 1470751691242,
-				year: 2016,
-				month: 8,
-				day: 10,
-				id: '4'
-			}, {
-				title: 'Hello',
-				content: '# Marked in browser\n\nRendered by **marked**.',
-				author: 'Sparetire',
-				views: 50,
-				timeStamp: 1470751691242,
-				year: 2016,
-				month: 8,
-				day: 10,
-				id: '5'
-			}]
-		};
-		return;
-	})
+router.get(routerMap.articles.name, routerMap.articles.path, routerMap.articles
+		.controller)
 	.get(routerMap.post.name, routerMap.post.path, routerMap.post.controller)
-	.get('/archives', function* (next) {
-		this.body = {
-			total: 23,
-			archiveList: [{
-				year: 2016,
-				month: 8,
-				posts: [{
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello1',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}]
-			}, {
-				year: 2016,
-				month: 8,
-				posts: [{
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}]
-			}, {
-				year: 2016,
-				month: 8,
-				posts: [{
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}, {
-					title: 'Hello',
-					id: '1'
-				}]
-			}]
-		};
-		return;
-	})
+	.get(routerMap.archives.name, routerMap.archives.path, routerMap.archives.controller)
 	.get(routerMap.tags.name, routerMap.tags.path, routerMap.tags.controller)
 	.get('/about', function* (next) {
 		this.body = {
@@ -184,11 +76,9 @@ app.use(KoaStatic(path.resolve(__dirname, '../../dist')))
 			limit: '1mb',
 			encoding: 'utf8'
 		});
-		console.log(this.url);
-		console.log(body);
 	});
 app.on('error', function (error) {
-	console.log(error);
+	logger.error(error);
 });
 
 app.listen(80);

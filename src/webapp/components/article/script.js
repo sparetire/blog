@@ -20,7 +20,6 @@ export default {
 					transition.next();
 				})
 				.catch(err => {
-					console.error(err);
 					NProgress.done();
 					transition.next();
 				});

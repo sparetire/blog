@@ -98,7 +98,9 @@ function ArticleService() {
 							return 0;
 						}
 						if (!rst1) {
+							let dateMonth = article.year * 100 + article.month;
 							upsertArchive = archive.insertOne({
+									dateMonth: dateMonth,
 									year: article.year,
 									month: article.month,
 									posts: [{
@@ -339,7 +341,6 @@ function ArticleService() {
 							rmOrUpdateTag
 						])
 						.then(function ([rst0, rst1, rst2, rst3]) {
-							console.log(rst0);
 							return rst0 & rst1 & rst2 & rst3;
 						});
 				} catch (err) {
@@ -501,6 +502,53 @@ function ArticleService() {
 						}
 					});
 			});
+		};
+	}
+
+	if (!util.isFunction(self.getArticles)) {
+		ArticleService.prototype.getArticles = function (page, limit) {
+			let skip = (page - 1) * limit;
+			return articles.find()
+				.sort({
+					timeStamp: -1
+				})
+				.skip(skip)
+				.limit(limit)
+				.toArray()
+				.then(data => {
+					data.forEach(item => {
+						// ObjectId写入response前会自动调用toStrin序列化
+						item.id = item._id;
+						delete item._id;
+					});
+					return data;
+				});
+		};
+	}
+
+	if (!util.isFunction(self.getArchivesCount)) {
+		ArticleService.prototype.getArchivesCount = function () {
+			return archive.find({}, {
+					_id: 1
+				})
+				.toArray()
+				.then(data => data.length || 0);
+		};
+	}
+
+	if (!util.isFunction(self.getArchives)) {
+		ArticleService.prototype.getArchives = function (page, limit) {
+			let skip = (page - 1) * limit;
+			return archive.find({}, {
+					_id: 0,
+					dateMonth: 0
+				})
+				.sort({
+					dateMonth: -1
+				})
+				.skip(skip)
+				.limit(limit)
+				.toArray();
 		};
 	}
 

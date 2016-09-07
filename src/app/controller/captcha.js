@@ -12,7 +12,6 @@ function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
 	// todo
-	console.log(`验证码请求次数:${ipInfo.requestCount}`);
 	return currentTime - ipInfo.startTime < timeout && ipInfo.requestCount >= 10;
 }
 

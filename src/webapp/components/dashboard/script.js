@@ -153,11 +153,11 @@ export default {
 			/* global APIs */
 			return APIs.getArchives.get({
 					page: curPage,
-					limit: this.config.perPageLimit
+					limit: this.config.archivePageLimit
 				})
 				.then(data => data.json())
 				.then(data => {
-					this.total = Math.ceil(data.total / this.config.perPageLimit);
+					this.total = Math.ceil(data.total / this.config.archivePageLimit);
 					if (curPage > this.total) {
 						this.curPage = 1;
 						NProgress.done();

@@ -4,7 +4,8 @@ export default {
 	blogName: '0x45E0',
 	blogIntro: '//无可奉告',
 	summaryLimit: 200,
-	perPageLimit: 5,
+	perPageLimit: 10,
+	archivePageLimit: 5,
 	pageCount: 10,
 	navList: [{
 		iconClass: 'icon-home',

@@ -45,15 +45,15 @@ function init(app) {
 	app.context.routerMap = routerMap;
 	RedisClient.config(config.redis);
 	logger.info('Koa app is initializing...');
-	setTimeout(() => {
-		dbs.blog.collection('articles')
-			.findOne({
-				_id: 'abc'
-			})
-			.then(data => {
-				console.log(JSON.stringify(data));
-			});
-	}, 5000);
+	// setTimeout(() => {
+	// 	dbs.blog.collection('articles')
+	// 		.findOne({
+	// 			_id: 'abc'
+	// 		})
+	// 		.then(data => {
+	// 			console.log(JSON.stringify(data));
+	// 		});
+	// }, 5000);
 }
 
 module.exports = init;

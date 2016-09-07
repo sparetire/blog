@@ -7,7 +7,19 @@ const allTags = require('../controller/all-tags');
 const authorize = require('../controller/authorize');
 const captcha = require('../controller/captcha');
 const tags = require('../controller/tags');
+const articles = require('../controller/articles');
+const archives = require('../controller/archives');
 module.exports = {
+	articles: {
+		name: 'articles',
+		path: '/articles',
+		controller: articles()
+	},
+	archives: {
+		name: 'archives',
+		path: '/archives',
+		controller: archives()
+	},
 	login: {
 		name: 'login',
 		path: '/login',

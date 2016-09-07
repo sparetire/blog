@@ -33,7 +33,6 @@ function isValidUser(username, password, captcha, uuid) {
 function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
-	console.log(`授权失败次数:${ipInfo.errorCount}`);
 	return currentTime - ipInfo.startTime < timeout && ipInfo.errorCount >= 5;
 }
 
