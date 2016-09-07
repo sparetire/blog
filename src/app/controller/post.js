@@ -1,6 +1,6 @@
 const StatusCode = require('../../common/status-code');
-const ArticleService = require('../lib/ArticleService');
-const Validate = require('../../common/Validate');
+const ArticleService = require('../lib/article-service');
+const Validate = require('../../common/validate');
 
 function post(opts) {
 	return function* (next) {

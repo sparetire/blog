@@ -1,5 +1,5 @@
 import aboutDetail from '../aboutDetail/about-detail';
-import MarkdownParseService from '../../services/MarkdownParseService';
+import MarkdownParseService from '../../services/markdown-parse-service';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
 export default {

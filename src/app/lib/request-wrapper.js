@@ -1,6 +1,6 @@
 const request = require('request');
 const Promise = require('bluebird');
-const util = require('../common/util');
+const util = require('../../common/util');
 
 
 function RequestWrapper(method, url, bodyOpts, bodyType) {

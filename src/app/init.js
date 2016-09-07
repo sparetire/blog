@@ -4,11 +4,10 @@ const path = require('path');
 const RedisClient = require('./lib/redis-client');
 const config = require('./config/app.conf');
 const APIConfig = require('./api.conf');
-const API = require('../common/APIs');
-const RequestWrapper = require('./RequestWrapper');
+const API = require('../common/apis');
+const RequestWrapper = require('./lib/request-wrapper');
 const routerMap = require('./config/routerMap');
-// const DBClientFactory = require('./lib/DBClientFactory');
-const DBs = require('./lib/DBs');
+const DBs = require('./lib/dbs');
 
 function init(app) {
 	let APIs = new API(APIConfig, RequestWrapper);
@@ -43,6 +42,8 @@ function init(app) {
 	global.routerMap = routerMap;
 	global.DBs = dbs;
 	app.context.routerMap = routerMap;
+	// app.context.router = router;
+	app.keys = config.appKeys;
 	RedisClient.config(config.redis);
 	logger.info('Koa app is initializing...');
 	// setTimeout(() => {

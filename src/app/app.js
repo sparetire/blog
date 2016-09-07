@@ -50,7 +50,6 @@ router.get(routerMap.articles.name, routerMap.articles.path, routerMap.articles
 		routerMap.addUpdateArticle.controller);
 
 let app = new Koa();
-app.keys = ['wTf852,./'];
 init(app);
 app.context.router = router;
 

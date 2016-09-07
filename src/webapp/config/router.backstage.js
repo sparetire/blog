@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import articleAside from '../components/aside/aside';
+import home from '../components/home/home';
 import article from '../components/article/article';
 import archive from '../components/archive/archive';
 import dashboard from '../components/dashboard/dashboard';
@@ -17,7 +17,7 @@ let router = new VueRouter();
 router.map({
 	'/home/:page': {
 		name: routerMap.home.name,
-		component: articleAside
+		component: home
 	},
 	'/archives/:page': {
 		name: routerMap.archives.name,

@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import APIConfig from './config/api.backstage.conf';
-import API from '../common/APIs';
-import RequestWrapper from './lib/RequestWrapper';
+import API from '../common/apis';
+import RequestWrapper from './lib/request-wrapper';
 import app from './components/backstage/backstage';
 import router from './config/router.backstage';
-import ArticleService from './services/ArticleService';
+import ArticleService from './services/article-service';
 /** init */
 let APIs = new API(APIConfig, RequestWrapper);
 window.APIs = APIs;

@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import APIConfig from './config/api.conf';
-import API from '../common/APIs';
-import RequestWrapper from './lib/RequestWrapper';
+import API from '../common/apis';
+import RequestWrapper from './lib/request-wrapper';
 import app from './components/app/app';
 import router from './config/router';
-import ArticleService from './services/ArticleService';
+import ArticleService from './services/article-service';
 /** init */
 let APIs = new API(APIConfig, RequestWrapper);
 window.APIs = APIs;

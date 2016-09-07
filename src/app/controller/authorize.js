@@ -5,9 +5,10 @@ const TokenList = require('../lib/token-list');
 const getRawBody = require('raw-body');
 const queryString = require('querystring');
 const crypto = require('crypto');
+const config = require('../config/app.conf');
 
 
-let secret = 'sparetire';
+let secret = config.tokenSecret;
 
 // todo
 function getToken(uuid) {
@@ -25,7 +26,8 @@ function isValidUser(username, password, captcha, uuid) {
 	let uuidCaptchaList = UuidCaptchaList.getInstance();
 	return uuidCaptchaList.get(uuid)
 		.then(data => {
-			return username === 'admin' && password === '123' && captcha === data;
+			return username === config.username && password === config.password &&
+				captcha === data;
 		});
 }
 

@@ -1,4 +1,4 @@
-const APIObject = require('./apiobject');
+const APIObject = require('./api-object');
 const util = require('./util');
 
 

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import APIConfig from './config/api.backstage.conf';
-import API from '../common/APIs';
-import RequestWrapper from './lib/RequestWrapper';
+import API from '../common/apis';
+import RequestWrapper from './lib/request-wrapper';
 import './style/login.scss';
 /** init */
 let APIs = new API(APIConfig, RequestWrapper);

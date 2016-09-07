@@ -3,8 +3,9 @@ const uuid = require('node-uuid');
 const BlackList = require('../lib/blacklist');
 const CaptchaReqList = require('../lib/captcha-req-list');
 const UuidCaptchaList = require('../lib/uuid-captcha-list');
+const config = require('../config/app.conf');
 // session的最大无响应时间也即过期时间，也是uuid的过期时间，uuid过期不代表token过期，每次重新请求会刷新,ms
-let SESSION_TIMEOUT = 300000;
+let SESSION_TIMEOUT = config.sessionTimeout;
 
 
 

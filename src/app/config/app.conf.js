@@ -1,4 +1,9 @@
 module.exports = {
+	appKeys: ['wTf852,./'],
+	sessionTimeout: 300000,
+	tokenSecret: 'sparetire',
+	username: 'admin',
+	password: '123',
 	redis: {
 		password: '123456'
 	},

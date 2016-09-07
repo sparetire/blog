@@ -1,4 +1,4 @@
-const DBClientFactory = require('./DBClientFactory');
+const DBClientFactory = require('./db-client-factory');
 const co = require('co');
 
 /* global logger */

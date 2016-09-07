@@ -1,7 +1,7 @@
 const util = require('../../common/util');
 const Promise = require('bluebird');
 const StatusCode = require('../../common/status-code');
-const MarkdownParseService = require('./MarkdownParseService');
+const MarkdownParseService = require('./markdown-parse-service');
 
 /*global ArticleService, APIs */
 

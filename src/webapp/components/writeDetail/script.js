@@ -1,6 +1,6 @@
 // import mkdEditor from '../markdownEditor/markdown-editor';
 import SimpleMDE from '../../lib/simplemde.min';
-import MarkdownParseService from '../../services/MarkdownParseService';
+import MarkdownParseService from '../../services/markdown-parse-service';
 import '../../style/simplemde.min.css';
 import '../../style/font-awesome.min.css';
 import dropdown from '../dropdown/dropdown';

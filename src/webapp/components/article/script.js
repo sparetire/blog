@@ -1,5 +1,5 @@
 import articleDetail from '../articleDetail/article-detail';
-import ArticleService from '../../services/ArticleService';
+import ArticleService from '../../services/article-service';
 import NProgress from 'nprogress/nprogress';
 import 'nprogress/nprogress.css';
 export default {

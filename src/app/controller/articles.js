@@ -1,5 +1,5 @@
 const StatusCode = require('../../common/status-code');
-const ArticleService = require('../lib/ArticleService');
+const ArticleService = require('../lib/article-service');
 
 function articles(opts) {
 	return function* (next) {

@@ -1,8 +1,8 @@
 const TokenList = require('../lib/token-list');
 const StatusCode = require('../../common/status-code');
 const getRawBody = require('raw-body');
-const Validate = require('../../common/Validate');
-const ArticleService = require('../lib/ArticleService');
+const Validate = require('../../common/validate');
+const ArticleService = require('../lib/article-service');
 
 function addUpdateArticle(opts) {
 	return function* (next) {

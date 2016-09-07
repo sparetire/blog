@@ -1,6 +1,6 @@
 const StatusCode = require('../../common/status-code');
 const TokenList = require('../lib/token-list');
-const ArticleService = require('../lib/ArticleService');
+const ArticleService = require('../lib/article-service');
 
 function allTags(opts) {
 	return function* (next) {

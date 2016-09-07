@@ -1,5 +1,5 @@
 import SimpleMDE from '../../lib/simplemde.min';
-import MarkdownParseService from '../../services/MarkdownParseService';
+import MarkdownParseService from '../../services/markdown-parse-service';
 import '../../style/simplemde.min.css';
 import '../../style/font-awesome.min.css';
 /* global SimpleMDE */
