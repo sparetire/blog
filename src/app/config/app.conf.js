@@ -5,7 +5,8 @@ module.exports = {
 	username: 'admin',
 	password: '123',
 	redis: {
-		password: '123456'
+		password: '123456',
+		port: 6379
 	},
 	mongodb: {
 		default: {

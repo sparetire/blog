@@ -46,6 +46,9 @@ let APIs = {
 	addUpdateArticle: {
 		pathname: '/addupdate',
 		method: 'post'
+	},
+	captcha: {
+		pathname: '/captcha'
 	}
 };
 
