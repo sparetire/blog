@@ -6,7 +6,7 @@ import archive from '../components/archive/archive';
 import tags from '../components/tags/tags';
 import tagList from '../components/tagList/tag-list';
 import about from '../components/about/about';
-import routerMap from './routerMap';
+import routerMap from './router-map';
 
 
 Vue.use(VueRouter);

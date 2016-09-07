@@ -6,7 +6,7 @@ const getRawBody = require('raw-body');
 const path = require('path');
 const favicon = require('koa-favicon');
 const init = require('./init');
-const routerMap = require('./config/routerMap');
+const routerMap = require('./config/router-map');
 /* global logger */
 
 let router = new KoaRouter();

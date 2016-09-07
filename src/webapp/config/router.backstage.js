@@ -9,7 +9,7 @@ import tagList from '../components/tagList/tag-list';
 import write from '../components/write/write';
 import writeDetail from '../components/writeDetail/write-detail';
 import about from '../components/about/about';
-import routerMap from './routerMap.backstage';
+import routerMap from './router-map.backstage';
 
 
 Vue.use(VueRouter);

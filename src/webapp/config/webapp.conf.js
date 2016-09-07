@@ -1,4 +1,4 @@
-import routerMap from './routerMap';
+import routerMap from './router-map';
 export default {
 	defaultLogo: 'logo',
 	blogName: '0x45E0',

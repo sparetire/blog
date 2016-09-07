@@ -2,7 +2,7 @@ import navBar from '../navBar/nav-bar';
 import mainContent from '../mainContent/main-content';
 import scrollTop from '../scrollTop/scroll-top';
 import config from '../../config/webapp.backstage.conf';
-import routerMap from '../../config/routerMap.backstage';
+import routerMap from '../../config/router-map.backstage';
 import router from '../../config/router.backstage';
 import $ from 'jquery';
 import '../../style/app.scss';

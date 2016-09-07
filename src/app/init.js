@@ -6,7 +6,7 @@ const config = require('./config/app.conf');
 const APIConfig = require('./api.conf');
 const API = require('../common/apis');
 const RequestWrapper = require('./lib/request-wrapper');
-const routerMap = require('./config/routerMap');
+const routerMap = require('./config/router-map');
 const DBs = require('./lib/dbs');
 
 function init(app) {

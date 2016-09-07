@@ -2,7 +2,7 @@ import navBar from '../navBar/nav-bar';
 import mainContent from '../mainContent/main-content';
 import scrollTop from '../scrollTop/scroll-top';
 import config from '../../config/webapp.conf';
-import routerMap from '../../config/routerMap';
+import routerMap from '../../config/router-map';
 import router from '../../config/router';
 import $ from 'jquery';
 import '../../style/app.scss';

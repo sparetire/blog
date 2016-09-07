@@ -1,4 +1,4 @@
-import routerMap from './routerMap.backstage';
+import routerMap from './router-map.backstage';
 export default {
 	defaultLogo: 'logo',
 	blogName: '0x45E0',
