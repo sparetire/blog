@@ -3,7 +3,7 @@ export default {
 	defaultLogo: 'logo',
 	blogName: '掏空男孩',
 	blogIntro: '// TKBOY (没有s',
-	summaryLimit: 200,
+	summaryLimit: 300,
 	perPageLimit: 10,
 	archivePageLimit: 5,
 	pageCount: 10,
