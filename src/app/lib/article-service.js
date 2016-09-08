@@ -9,11 +9,18 @@ let instance = null,
 	tags = null,
 	archive = null;
 
-setTimeout(() => {
-	articles = DBs.blog.collection('articles');
-	archive = DBs.blog.collection('archive');
-	tags = DBs.blog.collection('tags');
-}, 5000);
+function init() {
+	let blog = DBs.blog;
+	if (!blog) {
+		setTimeout(init, 3000);
+	} else {
+		articles = DBs.blog.collection('articles');
+		archive = DBs.blog.collection('archive');
+		tags = DBs.blog.collection('tags');
+	}
+}
+
+setTimeout(init, 3000);
 
 // 又一个非常乱的
 

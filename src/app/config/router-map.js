@@ -14,41 +14,49 @@ module.exports = {
 	articles: {
 		name: 'articles',
 		path: '/articles',
+		method: 'get',
 		controller: articles()
 	},
 	archives: {
 		name: 'archives',
 		path: '/archives',
+		method: 'get',
 		controller: archives()
 	},
 	about: {
 		name: 'about',
 		path: '/about',
+		method: 'get',
 		controller: about()
 	},
 	login: {
 		name: 'login',
 		path: '/login',
+		method: 'get',
 		controller: login()
 	},
 	backstage: {
 		name: 'backstage',
 		path: '/backstage',
+		method: 'get',
 		controller: backstage()
 	},
 	allTags: {
 		name: 'allTags',
 		path: '/alltags',
+		method: 'get',
 		controller: allTags()
 	},
 	captcha: {
 		name: 'captcha',
 		path: '/captcha',
+		method: 'get',
 		controller: captcha()
 	},
 	authorize: {
 		name: 'authorize',
 		path: '/authorize',
+		method: 'post',
 		controller: authorize()
 	},
 	post: {
@@ -60,16 +68,19 @@ module.exports = {
 	addUpdateArticle: {
 		name: 'addUpdateArticle',
 		path: '/addupdate',
+		method: 'post',
 		controller: addUpdateArticle()
 	},
 	removeArticle: {
 		name: 'removeArticle',
 		path: '/removearticle',
+		method: 'post',
 		controller: removeArticle()
 	},
 	tags: {
 		name: 'tags',
 		path: '/tags',
+		method: 'get',
 		controller: tags()
 	}
 };
