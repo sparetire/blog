@@ -9,6 +9,7 @@ const captcha = require('../controller/captcha');
 const tags = require('../controller/tags');
 const articles = require('../controller/articles');
 const archives = require('../controller/archives');
+const about = require('../controller/about');
 module.exports = {
 	articles: {
 		name: 'articles',
@@ -19,6 +20,11 @@ module.exports = {
 		name: 'archives',
 		path: '/archives',
 		controller: archives()
+	},
+	about: {
+		name: 'about',
+		path: '/about',
+		controller: about()
 	},
 	login: {
 		name: 'login',
