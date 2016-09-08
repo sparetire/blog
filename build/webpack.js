@@ -4,7 +4,7 @@ const APP_PATH = path.resolve(ROOT_PATH, 'src/webapp');
 const COMPONENTS_PATH = path.resolve(APP_PATH, 'components');
 const STYLE_PATH = path.resolve(APP_PATH, 'style');
 const MODULE_PATH = path.resolve(ROOT_PATH, 'node_modules');
-const OUTPUT_PATH = path.resolve(ROOT_PATH, 'dist');
+const OUTPUT_PATH = path.resolve(ROOT_PATH, 'public');
 
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -133,7 +133,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: path.resolve(APP_PATH, 'index.ejs'),
-			favicon: path.resolve(APP_PATH, './assets/favicon.ico'),
+			favicon: path.resolve(APP_PATH, './assets/favicon-32x32.png'),
 			chunks: ['common', 'main'],
 			inject: 'body',
 			minify: {

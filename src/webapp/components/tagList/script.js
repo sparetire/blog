@@ -20,9 +20,9 @@ export default {
 	route: {
 		data() {
 			if (this.$route.name === this.tagsRouteName) {
-				this.pageTitle = 'Tags | Sparetire';
+				this.pageTitle = 'Tags | TKBOY';
 			} else {
-				this.pageTitle = `${this.$route.params.tag} | Sparetire`;
+				this.pageTitle = `${this.$route.params.tag} | TKBOY`;
 			}
 		}
 	},
@@ -43,7 +43,7 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'Tags | Sparetire',
+			pageTitle: 'Tags | TKBOY',
 			query: '',
 			titles: []
 		};

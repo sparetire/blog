@@ -2,6 +2,8 @@ module.exports = {
 	appKeys: ['wTf852,./'],
 	sessionTimeout: 300000,
 	tokenSecret: 'sparetire',
+	captchaRequestLimit: 10,
+	loginRetryLimit: 5,
 	username: 'admin',
 	password: '123',
 	redis: {

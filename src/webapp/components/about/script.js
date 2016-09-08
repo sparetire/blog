@@ -31,7 +31,7 @@ export default {
 	data() {
 		return {
 			userInfo: 'Hello',
-			pageTitle: 'About | Sparetire'
+			pageTitle: 'About | TKBOY'
 		};
 	}
 };

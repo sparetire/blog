@@ -1,8 +1,8 @@
 import routerMap from './router-map';
 export default {
 	defaultLogo: 'logo',
-	blogName: '0x45E0',
-	blogIntro: '//无可奉告',
+	blogName: '掏空男孩',
+	blogIntro: '// TKBOY (没有s',
 	summaryLimit: 200,
 	perPageLimit: 10,
 	archivePageLimit: 5,

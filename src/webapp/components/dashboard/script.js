@@ -35,7 +35,7 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'Dashboard | Sparetire',
+			pageTitle: 'Dashboard | TKBOY',
 			archiveList: [],
 			curPage: 1,
 			pageCount: 1,

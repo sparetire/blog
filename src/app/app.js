@@ -13,8 +13,8 @@ init(app);
 app.context.router = Router;
 
 
-app.use(KoaStatic(path.resolve(__dirname, '../../dist')))
-	.use(favicon(path.resolve(__dirname, '../../dist/favicon.ico')))
+app.use(KoaStatic(path.resolve(__dirname, '../../public')))
+	.use(favicon(path.resolve(__dirname, '../../public/favicon-32x32.png')))
 	.use(KoaSession({
 		key: 'uuid'
 	}, app))

@@ -116,7 +116,7 @@ export default {
 	data() {
 		return {
 			enter: true,
-			pageTitle: 'Tag | Sparetire',
+			pageTitle: 'Tag | TKBOY',
 			rawData: {
 				tagList: []
 			},

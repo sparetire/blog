@@ -13,7 +13,7 @@ import 'nprogress/nprogress.css';
 export default {
 	data() {
 			return {
-				pageTitle: 'Home | Sparetire',
+				pageTitle: 'Home | TKBOY',
 				articles: [],
 				curPage: 1,
 				pageCount: 1,

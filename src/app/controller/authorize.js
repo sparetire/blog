@@ -35,7 +35,8 @@ function isValidUser(username, password, captcha, uuid) {
 function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
-	return currentTime - ipInfo.startTime < timeout && ipInfo.errorCount >= 5;
+	return currentTime - ipInfo.startTime < timeout && ipInfo.errorCount >= config
+		.loginRetryLimit;
 }
 
 function authorize(opts) {

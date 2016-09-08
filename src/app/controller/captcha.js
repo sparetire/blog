@@ -13,7 +13,8 @@ function isOverLimit(ipInfo, timeout) {
 	let currentTime = (new Date())
 		.getTime();
 	// todo
-	return currentTime - ipInfo.startTime < timeout && ipInfo.requestCount >= 10;
+	return currentTime - ipInfo.startTime < timeout && ipInfo.requestCount >=
+		config.captchaRequestLimit;
 }
 
 

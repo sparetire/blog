@@ -16,7 +16,7 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'Archives | Sparetire',
+			pageTitle: 'Archives | TKBOY',
 			archiveList: [],
 			curPage: 1,
 			pageCount: 1,

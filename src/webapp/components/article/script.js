@@ -15,7 +15,7 @@ export default {
 			articleService.getArticleById(id)
 				.then(article => {
 					this.article = article;
-					this.pageTitle = `${article.title} | Sparetire`;
+					this.pageTitle = `${article.title} | TKBOY`;
 					NProgress.done();
 					transition.next();
 				})
