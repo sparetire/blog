@@ -8,7 +8,7 @@ module.exports = {
 	password: '123',
 	redis: {
 		password: '123456',
-		port: 6379
+		port: 9588
 	},
 	mongodb: {
 		default: {
