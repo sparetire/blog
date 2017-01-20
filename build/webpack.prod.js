@@ -110,7 +110,7 @@ module.exports = {
 		}, {
 			test: /\.s[ac]ss$/,
 			include: STYLE_PATH,
-			loader: 'style-loader!css-loader!postcss-loader!sass-loader?sourceMap'
+			loader: 'style-loader!css-loader!sass-loader!postcss-loader?sourceMap'
 				// loader: extractSass.extract('style-loader',
 				// 	'css-loader?sourceMap!sass-loader?sourceMap', {
 				// 		publicPath: 'http://localhost/style/'

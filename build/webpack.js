@@ -107,7 +107,7 @@ module.exports = {
 		}, {
 			test: /\.s[ac]ss$/,
 			include: STYLE_PATH,
-			loader: 'style-loader!css-loader!postcss-loader!sass-loader?sourceMap'
+			loader: 'style-loader!css-loader!sass-loader!postcss-loader?sourceMap'
 		}, {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: 'url',
